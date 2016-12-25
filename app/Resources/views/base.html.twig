@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+            <div id="wholeContainer">
+                <a id="wholeTitle" href="{{ path('home_index') }}">
+                    KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
+                </a>
+                <div id="headerRow">
+                    <a class="leftItem" href="{{ path('home_index') }}">
+                        HOME
+                    </a>
+                    <a class="leftItem" href="{{ path('home_about') }}">
+                        ABOUT
+                    </a>
+
+                    <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a class="rightItem" target="_blank" href="https://www.facebook.com/haveyourpieceofcake">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div id="headerImage" style="background-image: url({{ asset('images/header.jpg') }})"></div>
+                <div id="mainContent">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% block container %}
+                                <div class="col-lg-9 leftContainer">
+                                    {% block containerLeft %}
+                                    {% endblock %}
+                                </div>
+                                <div class="col-lg-3 rightContainer">
+                                    <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
+                                    <span class="smallLine"></span>
+                                    <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
+                                    <a href="{{ path('home_about') }}">About</a>
+
+                                    <br><br>
+                                    <div class="rightTitle">SUBSCRIBE VIA EMAIL</div>
+                                    <span class="smallLine"></span>
+                                    <br><br>
+                                    <form>
+                                        <input type="email" class="form-control" placeholder="Email Address"/>
+                                        <button type="submit" class="btn">Subscribe Now</button>
+                                    </form>
+
+                                    <br><br>
+                                    <div class="rightTitle">RECENT POSTS</div>
+                                    <span class="smallLine"></span>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div id="footer">
+                        © 2017 by Miriam Siegenthaler | <a href="{{ path('home_about') }}">About</a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block container %}
+    <h2>About Me</h2>
+    <span class="smallLine"></span>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" style="padding-left: 0">
+                <b>Miriam S.</b>
+                <p>Captain of Awesomness</p>
+                <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }}); height: 130px; margin: 0">
+                </div>
+            </div>
+            <div class="col-lg-4" style="border-right: 1px solid black; padding-left: 30px; padding-right: 60px">
+                Sed faucibus posuere porta. Vestibulum vel nisl vulputate, interdum metus in, pulvinar neque.
+                Vestibulum eleifend neque sit amet tempus suscipit. Nulla ex neque, dictum id ex condimentum, iaculis tempor dolor.
+                Sed id ipsum a justo convallis pharetra. Morbi porta lacus nibh, lacinia convallis risus facilisis vel.
+                Phasellus a lorem sed est sagittis aliquet sed ut ipsum. Sed quis arcu eu enim sodales interdum.
+            </div>
+            <div class="col-lg-6" style="padding-right: 0; padding-left: 50px">
+                <table width="100%">
+                    <tr>
+                        <th>CONTACT ME</th>
+                        <td>
+                            <input type="text" placeholder="Name" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input type="email" placeholder="Email Address" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="letter-spacing: 5px">
+                            <a target="_blank" href="https://www.facebook.com/haveyourpieceofcake">
+                                <i class="fa fa-2x fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/_mii_riam_/">
+                                <i class="fa fa-2x fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </th>
+                        <td rowspan="3">
+                            <textarea rows="8" class="form-control" placeholder="Message"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <a href="mailto:info@kuchenkruemel.ch">
+                                info@kuchenkruemel.ch
+                            </a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>+41 79 483 38 41</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td style="text-align: right">
+                            <button class="btn">Send Message</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

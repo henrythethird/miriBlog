@@ -1,0 +1,148 @@
+body {
+    background-color: white;
+}
+
+i.fa {
+    color: gray;
+}
+
+a {
+    color: black;
+}
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a:active {
+    color: black;
+    text-decoration: none;
+}
+
+div#wholeContainer {
+    width: 1000px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 50px;
+}
+
+a#wholeTitle {
+    display: block;
+    border: 6px solid black;
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    font-variant: small-caps;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: white;
+    letter-spacing: 5px;
+}
+
+div#headerImage {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 333px;
+    background-position: center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+div#mainContent {
+    position: absolute;
+    top: 400px;
+    padding-top: 20px;
+    left: 0;
+    right: 0;
+}
+
+div#headerRow {
+    position: absolute;
+    top: 20px;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+}
+
+div#headerRow a {
+    color: gray;
+    pointer-events: initial;
+}
+
+div#headerRow a.leftItem {
+    padding-right: 40px;
+    font-size: 13px;
+}
+
+div#headerRow a.rightItem {
+    float: right;
+    padding-left: 10px;
+}
+
+div#headerRow a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.rightContainer {
+    padding: 0;
+    padding-left: 70px;
+}
+
+.rightContainer a {
+    color: gray;
+    text-decoration: underline;
+}
+
+.leftContainer h2 {
+    margin-top: 0;
+}
+
+.rightTitle {
+    font-size: 17px;
+}
+
+.rightPortrait {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    height: 200px;
+    background-size: cover;
+    background-position: top center;
+}
+
+.smallLine {
+    height: 5px;
+    width: 30px;
+    background-color: black;
+    display: inline-block;
+}
+
+#footer {
+    text-align: center;
+    font-size: 13px;
+    color: gray;
+    padding: 50px;
+}
+
+#footer * {
+    color: gray;
+}
+
+.blogPost > .date {
+    color: gray;
+}
+
+.blogPost > .image {
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    margin-bottom: 10px;
+}
+
+.blogPost > .btn {
+    float: right;
+}
