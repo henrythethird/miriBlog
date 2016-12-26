@@ -16,10 +16,10 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $posts = $this->getDoctrine()
+        $posts = [];/*$this->getDoctrine()
             ->getRepository(Post::class)
             ->findAllFirstPageResults();
-
+*/
         return [
             'posts' => $posts
         ];
@@ -30,6 +30,15 @@ class HomeController extends Controller
      * @Template("home/about.html.twig")
      */
     public function aboutAction()
+    {
+        return [];
+    }
+
+    /**
+     * @Route("/archive", name="home_archive")
+     * @Template("home/archive.html.twig")
+     */
+    public function archiveAction()
     {
         return [];
     }

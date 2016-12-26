@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta lang="en">
 
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,6 +26,9 @@
                     <a class="leftItem" href="{{ path('home_about') }}">
                         ABOUT
                     </a>
+                    <a class="leftItem" href="{{ path('home_archive') }}">
+                        ARCHIVE
+                    </a>
 
                     <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
                         <i class="fa fa-instagram" aria-hidden="true"></i>
@@ -43,6 +47,7 @@
                                     {% endblock %}
                                 </div>
                                 <div class="col-lg-3 rightContainer">
+                                    {% block containerRight %}
                                     <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
                                     <span class="smallLine"></span>
                                     <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
@@ -53,13 +58,13 @@
                                     <span class="smallLine"></span>
                                     <br><br>
                                     <form>
-                                        <input type="email" class="form-control" placeholder="Email Address"/>
-                                        <button type="submit" class="btn">Subscribe Now</button>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                            <input type="email" class="form-control" placeholder="Email Address">
+                                        </div>
+                                        <button style="float: right" type="submit" class="btn">Subscribe Now <i class="fa fa-envelope-o"></i></button>
                                     </form>
-
-                                    <br><br>
-                                    <div class="rightTitle">RECENT POSTS</div>
-                                    <span class="smallLine"></span>
+                                    {% endblock %}
                                 </div>
                             {% endblock %}
                         </div>
