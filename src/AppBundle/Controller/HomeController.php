@@ -6,7 +6,6 @@ use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
@@ -16,13 +15,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $posts = [];/*$this->getDoctrine()
+        $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findAllFirstPageResults();
-*/
-        return [
+
+	    return [
             'posts' => $posts
-        ];
+	    ];
     }
 
     /**

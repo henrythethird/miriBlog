@@ -10,13 +10,12 @@ class PostRepository extends EntityRepository
 
     public function findAllFirstPageResults()
     {
-        $this->createQueryBuilder('p')
+        return $this->createQueryBuilder('p')
             ->addOrderBy('p.datePublished')
             ->where('p.datePublished >= :NOW')
             ->setParameters([
                 'NOW' => new \DateTime()
             ])
-            ->setMaxResults(self::NUM_FIRSTPAGE_RESULTS)
-        ;
+            ->setMaxResults(self::NUM_FIRSTPAGE_RESULTS);
     }
 }

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @ORM\Table()
  */
 class Post
@@ -51,6 +51,12 @@ class Post
      * @ORM\Column(type="datetime")
      */
     private $datePublished;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
 
     /**
      * @return int
@@ -170,5 +176,19 @@ class Post
     public function setPicture($picture)
     {
         $this->picture = $picture;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory() {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category) {
+        $this->category = $category;
     }
 }
