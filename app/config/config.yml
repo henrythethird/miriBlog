@@ -68,6 +68,22 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+sonata_admin:
+    title: Miri Blog
+    dashboard:
+        groups:
+            User:
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+            Blog:
+                items:
+                    - admin.category
+                    - admin.ingredient
+                    - admin.post
+
+
 fos_user:
     db_driver: orm
     firewall_name: main

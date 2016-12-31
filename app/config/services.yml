@@ -4,6 +4,18 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    admin.category:
+        class: Application\Sonata\UserBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+    admin.ingredient:
+        class: Application\Sonata\UserBundle\Admin\IngredientAdmin
+        arguments: [~, AppBundle\Entity\Ingredient, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Ingredient }
+    admin.post:
+        class: Application\Sonata\UserBundle\Admin\PostAdmin
+        arguments: [~, AppBundle\Entity\Post, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Post }
