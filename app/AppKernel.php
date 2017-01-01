@@ -24,7 +24,11 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new AppBundle\AppBundle(),
-	        new Application\Sonata\UserBundle\ApplicationSonataUserBundle()
+	        new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+	        new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+	        new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+	        new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+	        new Sonata\FormatterBundle\SonataFormatterBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

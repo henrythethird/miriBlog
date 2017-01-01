@@ -37,6 +37,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    form_themes:
+        - 'SonataFormatterBundle:Form:formatter.html.twig'
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -71,6 +74,8 @@ sonata_block:
 
 sonata_admin:
     title: Miri Blog
+    templates:
+        layout: ApplicationSonataUserBundle::admin.html.twig
     dashboard:
         groups:
             User:
@@ -94,3 +99,40 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+stof_doctrine_extensions:
+    default_locale: en
+    translation_fallback: true
+    orm:
+        default:
+            tree: true
+            timestampable: true
+            sluggable: true
+
+
+
+sonata_formatter:
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: []

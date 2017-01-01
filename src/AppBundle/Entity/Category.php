@@ -80,4 +80,8 @@ class Category {
     public function removePost(Post $post) {
         $this->posts->remove($post);
     }
+
+	public function __toString() {
+		return $this->getName();
+    }
 }

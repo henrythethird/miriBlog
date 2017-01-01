@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
@@ -18,7 +20,8 @@ class Post
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=128, unique=true)
+     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
@@ -34,6 +37,7 @@ class Post
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={"image/jpeg", "image/png", "image/gif"})
      */
     private $picture;
 
@@ -57,6 +61,10 @@ class Post
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+	public function __construct() {
+		$this->dateCreated = new \DateTime();
+	}
 
     /**
      * @return int
