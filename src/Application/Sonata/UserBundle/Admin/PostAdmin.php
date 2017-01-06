@@ -3,6 +3,8 @@
 namespace Application\Sonata\UserBundle\Admin;
 
 use AppBundle\Entity\Category;
+use Application\Sonata\MediaBundle\Entity\Media;
+use Doctrine\DBAL\Types\StringType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -20,12 +22,14 @@ class PostAdmin extends Admin {
 			->add('description', TextareaType::class)
 			->add('content', 'sonata_simple_formatter_type', [
 				'format' => 'richhtml',
+				'ckeditor_context' => 'default',
 			])
 			->add('category', EntityType::class, [
 				'class' => Category::class
 			])
-			->add('picture', FileType::class, [
-				'data_class' => null
+			->add('picture', 'sonata_media_type', [
+				'provider' => 'sonata.media.provider.image',
+				'context'  => 'default'
 			])
 			->add('datePublished', DateTimePickerType::class)
 		;

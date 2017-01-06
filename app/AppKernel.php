@@ -29,6 +29,13 @@ class AppKernel extends Kernel
 	        new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 	        new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 	        new Sonata\FormatterBundle\SonataFormatterBundle(),
+	        new Sonata\MediaBundle\SonataMediaBundle(),
+	        new Sonata\IntlBundle\SonataIntlBundle(),
+	        new JMS\SerializerBundle\JMSSerializerBundle(),
+	        new Sonata\ClassificationBundle\SonataClassificationBundle(),
+	        new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+	        new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

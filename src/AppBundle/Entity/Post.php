@@ -36,8 +36,7 @@ class Post
     private $description;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\File(mimeTypes={"image/jpeg", "image/png", "image/gif"})
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      */
     private $picture;
 
