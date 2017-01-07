@@ -4,58 +4,14 @@
     {% for post in posts %}
         <div class="blogPost">
             <h2 class="title">{{ post.title }}</h2>
-            <div class="date">{{ post.datePublished }}</div>
+            <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
             <p>{{ post.description }}</p>
-            <div class="image" style="background-image: url({{ asset('uploads/DSC_4296.jpg') }})"></div>
-            <button class="btn">Continue Reading...</button><br><br>
+            <div class="image" style="background-image: url({% path post.picture, 'reference' %})"></div>
+            <a class="btn btn-default" href="{{ path('blog_post', {'slug': post.slug}) }}">Continue Reading...</a><br><br>
             <div style="clear: both"></div>
             <br>
         </div>
     {% endfor %}
-
-    <div class="blogPost">
-        <h2 class="title">Süsskartoffel-Erdnussbutter-Cookies</h2>
-        <div class="date">16 November 2016</div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed justo est.
-            Nulla sit amet lorem diam. Mauris scelerisque orci libero, sit amet rhoncus risus dapibus vel.
-            Cras eget varius mi. Sed id faucibus lacus, non convallis est.
-        </p>
-        <div class="image" style="background-image: url({{ asset('uploads/DSC_4296.jpg') }})"></div>
-        <button class="btn">Continue Reading...</button><br><br>
-        <div style="clear: both"></div>
-        <br>
-    </div>
-
-    <div class="blogPost">
-        <a href="">
-            <h2 class="title">Cobweb Cheesecake</h2>
-        </a>
-        <div class="date">16 November 2016</div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed justo est.
-            Nulla sit amet lorem diam. Mauris scelerisque orci libero, sit amet rhoncus risus dapibus vel.
-            Cras eget varius mi. Sed id faucibus lacus, non convallis est.
-        </p>
-        <div class="image" style="background-image: url({{ asset('uploads/DSC_4206.jpg') }})"></div>
-        <button class="btn">Continue Reading...</button><br><br>
-        <div style="clear: both"></div>
-        <br>
-    </div>
-
-    <div class="blogPost">
-        <h2 class="title">Kürbis-Spaghetti</h2>
-        <div class="date">16 November 2016</div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed justo est.
-            Nulla sit amet lorem diam. Mauris scelerisque orci libero, sit amet rhoncus risus dapibus vel.
-            Cras eget varius mi. Sed id faucibus lacus, non convallis est.
-        </p>
-        <div class="image" style="background-image: url({{ asset('uploads/DSC_4085.jpg') }})"></div>
-        <button class="btn">Continue Reading...</button><br><br>
-        <div style="clear: both"></div>
-        <br>
-    </div>
 {% endblock %}
 
 {% block containerRight %}

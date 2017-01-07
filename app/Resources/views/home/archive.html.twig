@@ -1,1 +1,12 @@
 {% extends "base.html.twig" %}
+
+{% block containerLeft %}
+    {% for year,yearPosts in posts %}
+        {% for month,monthPosts in yearPosts %}
+            <h1 style="clear: both">{{ year }} {{ month }}</h1>
+            {% for post in monthPosts %}
+                {% include 'home/archiveItem.html.twig' %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

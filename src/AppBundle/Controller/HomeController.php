@@ -39,6 +39,21 @@ class HomeController extends Controller
      */
     public function archiveAction()
     {
-        return [];
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findArchiveResults(0);
+
+	    $aggregate = [];
+	    foreach ($posts as $post) {
+	    	$aggregate[
+	    		$post->getDatePublished()->format('Y')
+		    ][
+		    	$post->getDatePublished()->format('m')
+		    ][] = $post;
+	    }
+
+	    return [
+	    	'posts' => $aggregate
+	    ];
     }
 }

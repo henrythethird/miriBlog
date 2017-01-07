@@ -146,3 +146,20 @@ div#headerRow a:hover {
 .blogPost > .btn {
     float: right;
 }
+
+.background-image-thumb {
+    display: inline-block;
+    width: 50%;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    margin: 0;
+    padding: 5px;
+    float: left;
+}
+
+.background-image-thumb:hover {
+    background-origin: padding-box;
+}

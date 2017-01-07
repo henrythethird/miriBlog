@@ -15,6 +15,8 @@ class BlogController extends Controller
      */
     public function postController(Post $post)
     {
-
+		return [
+			'post' => $post
+		];
     }
 }

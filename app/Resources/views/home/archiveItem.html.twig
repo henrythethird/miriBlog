@@ -1,0 +1,4 @@
+<a href="{{ path('blog_post', {'slug': post.slug }) }}" class="background-image-thumb"
+   style="background-image: url({% path post.picture, 'reference' %})">
+    <span>{{ post.title }}</span>
+</a>

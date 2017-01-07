@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block containerLeft %}
+    <h1>{{ post.title }}</h1>
+    <div>{{ post.datePublished|date('d.m.Y h:i') }}</div>
+    <div id="postContainer">
+        {{ post.content|raw }}
+    </div>
+
+    <style>
+        #postContainer img {
+            max-width: 100%;
+        }
+    </style>
+{% endblock %}
