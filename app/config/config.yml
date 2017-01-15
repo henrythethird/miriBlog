@@ -89,6 +89,10 @@ sonata_admin:
                     - admin.category
                     - admin.ingredient
                     - admin.post
+            Media:
+                items:
+                    - sonata.media.admin.media
+                    - sonata.classification.admin.category
 
 
 fos_user:

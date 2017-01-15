@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,25 +36,23 @@ class HomeController extends Controller
 
     /**
      * @Route("/archive", name="home_archive")
+     * @Route("/archive/{slug}", name="home_archive_slug")
      * @Template("home/archive.html.twig")
      */
-    public function archiveAction()
+    public function archiveAction(Category $category = null)
     {
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findArchiveResults(0);
 
-	    $aggregate = [];
-	    foreach ($posts as $post) {
-	    	$aggregate[
-	    		$post->getDatePublished()->format('Y')
-		    ][
-		    	$post->getDatePublished()->format('m')
-		    ][] = $post;
-	    }
+	    $categories = $this->getDoctrine()
+		    ->getRepository(Category::class)
+		    ->findAll();
 
 	    return [
-	    	'posts' => $aggregate
+	    	'posts' => $posts,
+		    'categories' => $categories,
+		    'activeCategory' => $category,
 	    ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -61,8 +62,37 @@ class Post
      */
     private $category;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostIngredient", mappedBy="post", cascade={"persist", "remove"})
+	 * @ORM\JoinColumn(referencedColumnName="ingredient_id")
+	 */
+	private $postIngredients;
+
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
+		$this->postIngredients = new ArrayCollection();
+	}
+
+	/**
+	 * @return ArrayCollection|PostIngredient[]
+	 */
+	public function getPostIngredients() {
+		return $this->postIngredients;
+	}
+
+	/**
+	 * @param ArrayCollection|PostIngredient[] $postIngredients
+	 */
+	public function setPostIngredients($postIngredients) {
+		$this->postIngredients = $postIngredients;
+	}
+
+	public function addPostIngredient(PostIngredient $postIngredient) {
+		$this->postIngredients->add($postIngredient);
+	}
+
+	public function removePostIngredient(PostIngredient $postIngredient) {
+		$this->postIngredients->removeElement($postIngredient);
 	}
 
     /**

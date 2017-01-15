@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @Doctrine\ORM\Mapping\Entity
@@ -21,6 +23,12 @@ class Category {
      */
     private $name;
 
+	/**
+	 * @ORM\Column(type="string", length=128, unique=true)
+	 * @Gedmo\Slug(fields={"name"})
+	 */
+	private $slug;
+
     /**
      * @var ArrayCollection|Post[]
      * @OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="category")
@@ -30,6 +38,20 @@ class Category {
     public function __construct() {
         $this->posts = new ArrayCollection();
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getSlug() {
+		return $this->slug;
+	}
+
+	/**
+	 * @param mixed $slug
+	 */
+	public function setSlug($slug) {
+		$this->slug = $slug;
+	}
 
     /**
      * @return mixed
