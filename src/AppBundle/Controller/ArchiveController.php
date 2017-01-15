@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Post;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+class ArchiveController extends Controller {
+
+	/**
+	 * @Route("/archive", name="home_archive")
+	 * @Route("/archive/{slug}", name="home_archive_slug")
+	 * @Template("archive/archive.html.twig")
+	 */
+	public function archiveAction(Category $category = null)
+	{
+		$posts = $this->getDoctrine()
+			->getRepository(Post::class)
+			->findArchiveResults();
+
+		$categories = $this->getDoctrine()
+			->getRepository(Category::class)
+			->findAll();
+
+		return [
+			'posts' => $posts,
+			'categories' => $categories,
+			'activeCategory' => $category,
+		];
+	}
+
+	/**
+	 * @Route("/archive/ajax/repopulate/{offset}", name="archive_ajax_repopulate")
+	 * @Template("archive/batch.html.twig")
+	 */
+	public function archiveRepopulateAction($offset = 1) {
+		$archiveAggregate = $this->getDoctrine()
+			->getRepository(Post::class)
+			->findArchiveResultsPaginator($offset);
+
+		return new JsonResponse([
+			'view' => $this->renderView('archive/batch.html.twig', [
+				'posts' => $archiveAggregate->getData()
+			]),
+			'count' => $archiveAggregate->getCount()
+		]);
+	}
+}

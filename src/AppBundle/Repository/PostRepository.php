@@ -2,13 +2,15 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Aggregate\ArchiveAggregate;
 use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class PostRepository extends EntityRepository
 {
     const NUM_FIRSTPAGE_RESULTS = 3;
-	const ARCHIVE_LIMIT = 24;
+	const ARCHIVE_LIMIT = 4;
 
 	/**
 	 * @return Post[]
@@ -22,14 +24,28 @@ class PostRepository extends EntityRepository
     }
 
 	/**
-	 * @param int $offset
 	 * @return Post[]
 	 */
-	public function findArchiveResults($offset) {
-		return $this->createSortedQueryBuilder()
-			->setMaxResults(self::ARCHIVE_LIMIT)
+	public function findArchiveResults() {
+		return $this->findArchiveReultsQb()
 			->getQuery()
 			->getResult();
+    }
+
+	/**
+	 * @param $offset
+	 *
+	 * @return ArchiveAggregate
+	 */
+	public function findArchiveResultsPaginator($offset) {
+		$queryBuilder = $this->findArchiveReultsQb($offset);
+
+		$paginator = new Paginator($queryBuilder);
+
+		return new ArchiveAggregate(
+			ceil($paginator->count() / self::ARCHIVE_LIMIT),
+			$paginator->getQuery()->getResult()
+		);
     }
 
 	/**
@@ -41,4 +57,17 @@ class PostRepository extends EntityRepository
 			->where('p.datePublished <= :NOW')
 			->setParameters(['NOW' => new \DateTime()]);
 	}
+
+	/**
+	 * @param $offset
+	 *
+	 * @return \Doctrine\ORM\QueryBuilder
+	 */
+	private function findArchiveReultsQb($offset = 0) {
+		$queryBuilder = $this->createSortedQueryBuilder()
+			->setMaxResults(self::ARCHIVE_LIMIT)
+			->setFirstResult(self::ARCHIVE_LIMIT * $offset);
+
+		return $queryBuilder;
+}
 }
