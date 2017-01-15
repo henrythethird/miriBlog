@@ -88,6 +88,7 @@ class Post
 	}
 
 	public function addPostIngredient(PostIngredient $postIngredient) {
+		$postIngredient->setPost($this);
 		$this->postIngredients->add($postIngredient);
 	}
 

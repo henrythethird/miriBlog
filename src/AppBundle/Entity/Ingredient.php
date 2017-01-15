@@ -64,4 +64,8 @@ class Ingredient {
 	public function setName($name) {
 		$this->name = $name;
 	}
+
+	public function __toString() {
+		return $this->getName();
+	}
 }

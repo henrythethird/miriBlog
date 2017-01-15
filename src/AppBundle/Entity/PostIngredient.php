@@ -36,7 +36,7 @@ class PostIngredient {
 	/**
 	 * @ORM\Column(type="string")
 	 */
-	private $description;
+	private $unit;
 
 	/**
 	 * @return int
@@ -90,14 +90,14 @@ class PostIngredient {
 	/**
 	 * @return string
 	 */
-	public function getDescription() {
-		return $this->description;
+	public function getUnit() {
+		return $this->unit;
 	}
 
 	/**
-	 * @param string $description
+	 * @param string $unit
 	 */
-	public function setDescription($description) {
-		$this->description = $description;
+	public function setUnit($unit) {
+		$this->unit = $unit;
 	}
 }

@@ -5,6 +5,16 @@
     <div>{{ post.datePublished|date('d.m.Y h:i') }}</div>
     <div id="postContainer">
         {{ post.content|raw }}
+
+        <ul>
+        {% for postIngredient in post.postIngredients %}
+            <li>
+                {{ postIngredient.amount + 0 }}
+                {{ postIngredient.unit }}
+                {{ postIngredient.ingredient }}
+            </li>
+        {% endfor %}
+        </ul>
     </div>
     <div class="fb-like" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-layout="standard"
          data-action="like" data-size="large" data-show-faces="true" data-share="true" data-width="720px"></div>
