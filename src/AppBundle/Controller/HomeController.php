@@ -7,6 +7,7 @@ use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends Controller
 {
@@ -41,9 +42,7 @@ class HomeController extends Controller
      */
     public function archiveAction(Category $category = null)
     {
-        $posts = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->findArchiveResults(0);
+        $posts = $this->findArchiveResultsByOffset();
 
 	    $categories = $this->getDoctrine()
 		    ->getRepository(Category::class)
@@ -54,5 +53,22 @@ class HomeController extends Controller
 		    'categories' => $categories,
 		    'activeCategory' => $category,
 	    ];
+    }
+
+	/**
+	 * @Route("/archive/ajax/repopulate/{offset}", name="archive_ajax_repopulate")
+	 */
+	public function archiveRepopulateAction($offset = 1) {
+		return new JsonResponse($this->findArchiveResultsByOffset($offset));
+    }
+
+	/**
+	 * @param int $offset
+	 * @return \AppBundle\Entity\Post[]
+	 */
+	private function findArchiveResultsByOffset($offset = 0) {
+		return $this->getDoctrine()
+			->getRepository(Post::class)
+			->findArchiveResults($offset);
     }
 }
