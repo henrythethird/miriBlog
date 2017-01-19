@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Post;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -18,28 +19,34 @@ class ArchiveController extends Controller {
 	 * @Route("/archive/{slug}", name="home_archive_slug")
 	 * @Template("archive/archive.html.twig")
 	 */
-	public function archiveAction(Category $category = null)
+	public function archiveAction(Category $filterCategory = null)
 	{
 		$posts = $this->getDoctrine()
 			->getRepository(Post::class)
-			->findArchiveResults();
+			->findArchiveResults($filterCategory);
 
 		$categories = $this->getDoctrine()
 			->getRepository(Category::class)
 			->findAll();
 
+		$ingredients = $this->getDoctrine()
+			->getRepository(Ingredient::class)
+			->findAll();
+
 		return [
 			'posts' => $posts,
 			'categories' => $categories,
-			'activeCategory' => $category,
+			'activeCategory' => $filterCategory,
+			'ingredients' => $ingredients
 		];
 	}
 
 	/**
 	 * @Route("/archive/ajax/repopulate/{offset}", name="archive_ajax_repopulate")
+	 * @Route("/archive/ajax/repopulate/{offset}/{slug}", name="archive_ajax_repopulate")
 	 * @Template("archive/batch.html.twig")
 	 */
-	public function archiveRepopulateAction($offset = 1) {
+	public function archiveRepopulateAction($offset, Category $filterCategory = null) {
 		$archiveAggregate = $this->getDoctrine()
 			->getRepository(Post::class)
 			->findArchiveResultsPaginator($offset);

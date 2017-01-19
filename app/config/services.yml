@@ -25,3 +25,8 @@ services:
         arguments: [~, AppBundle\Entity\PostIngredient, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: PostIngredient }
+    admin.step:
+        class: Application\Sonata\UserBundle\Admin\StepAdmin
+        arguments: [~, AppBundle\Entity\Step, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Step }

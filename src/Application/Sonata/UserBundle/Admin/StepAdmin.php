@@ -6,21 +6,22 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class CategoryAdmin extends Admin {
+class StepAdmin extends Admin {
 	protected function configureFormFields(FormMapper $form) {
-		$form->add('name', TextType::class)
-			->add('color', TextType::class);
+		$form
+			->add('description');
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
-		$datagridMapper->add('name');
+		$datagridMapper
+			->add('description');
 	}
 
 	protected function configureListFields(ListMapper $listMapper)
 	{
-		$listMapper->addIdentifier('name');
+		$listMapper
+			->addIdentifier('description');
 	}
 }

@@ -2,40 +2,58 @@
 
 {% block containerLeft %}
     <div id="batchContainer" data-index="1" data-lock="" data-count="99">
-    {% for category in categories %}
-        <h1>{{ category.name }}</h1>
+        Categories:
+        <div>
+            {% for category in categories %}
+                {% set active = '' %}
+                {% if activeCategory.id == category.id %}
+                    {% set active = 'active' %}
+                {% endif %}
+                <a href="{{ path('home_archive_slug', {slug: category.slug}) }}">
+                    <div class="category {{ active }}" style="background-color: {{ category.color }}">
+                        {{ category.name }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
 
-    {% endfor %}
+        Ingredients:
+        <ul>
+            {% for ingredient in ingredients %}
+                <li>{{ ingredient.name }}</li>
+            {% endfor %}
+        </ul>
 
     {% include 'archive/batch.html.twig' %}
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
+{% if false %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() < $(document).height() - 100) return;
 
-    <script type="text/javascript">
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() < $(document).height() - 100) return;
+                var batchContainer = $('#batchContainer');
+                var lock = batchContainer.attr('data-lock');
+                var count = batchContainer.attr('data-count');
 
-            var batchContainer = $('#batchContainer');
-            var lock = batchContainer.attr('data-lock');
-            var count = batchContainer.attr('data-count');
+                if (lock) return;
 
-            if (lock) return;
+                batchContainer.attr('data-lock', true);
+                var index = batchContainer.attr('data-index');
 
-            batchContainer.attr('data-lock', true);
-            var index = batchContainer.attr('data-index');
+                if (index >= count) return;
 
-            if (index >= count) return;
+                $.get('{{ 0 }}' + '/' + (index++), null, function(response) {
+                    batchContainer.html(batchContainer.html() + response.view);
 
-            $.get('{{ path('archive_ajax_repopulate') }}' + '/' + (index++), null, function(response) {
-                batchContainer.html(batchContainer.html() + response.view);
-
-                batchContainer.attr('data-index', index);
-                batchContainer.attr('data-lock', '');
-                batchContainer.attr('data-count', response.count);
+                    batchContainer.attr('data-index', index);
+                    batchContainer.attr('data-lock', '');
+                    batchContainer.attr('data-count', response.count);
+                });
             });
-        });
-    </script>
-{% endblock %}
+        </script>
+    {% endblock %}
+{% endif %}

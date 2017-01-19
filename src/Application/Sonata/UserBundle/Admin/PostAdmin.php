@@ -42,6 +42,12 @@ class PostAdmin extends Admin {
 				'edit' => 'inline',
 				'inline' => 'table',
 			])
+			->add('steps', 'sonata_type_collection', [
+				'by_reference' => false
+			], [
+				'edit' => 'inline',
+				'inline' => 'table',
+			])
 		;
 	}
 

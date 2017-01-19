@@ -15,7 +15,12 @@
             </li>
         {% endfor %}
         </ul>
+
+        {% for step in post.steps %}
+            <div>{{ loop.index }} {{ step.description }}</div>
+        {% endfor %}
     </div>
+    <br>
     <div class="fb-like" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-layout="standard"
          data-action="like" data-size="large" data-show-faces="true" data-share="true" data-width="720px"></div>
     <div class="fb-comments" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-width="100%"

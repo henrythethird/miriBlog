@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Aggregate\ArchiveAggregate;
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class PostRepository extends EntityRepository
 {
     const NUM_FIRSTPAGE_RESULTS = 3;
-	const ARCHIVE_LIMIT = 4;
+	const ARCHIVE_LIMIT = 1000;
 
 	/**
 	 * @return Post[]
@@ -24,10 +25,18 @@ class PostRepository extends EntityRepository
     }
 
 	/**
-	 * @return Post[]
+	 * @param Category|null $filterCategory
+	 *
+	 * @return array
 	 */
-	public function findArchiveResults() {
-		return $this->findArchiveReultsQb()
+	public function findArchiveResults(Category $filterCategory = null) {
+		$queryBuilder = $this->findArchiveReultsQb();
+
+		if ($filterCategory) {
+			$queryBuilder->andWhere('p.category = :CATEGORY');
+			$queryBuilder->setParameter('CATEGORY', $filterCategory);
+		}
+		return $queryBuilder
 			->getQuery()
 			->getResult();
     }

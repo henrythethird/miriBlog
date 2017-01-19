@@ -68,9 +68,39 @@ class Post
 	 */
 	private $postIngredients;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Step", mappedBy="post", cascade={"persist", "remove"})
+	 * @ORM\JoinColumn(referencedColumnName="post_id")
+	 */
+	private $steps;
+
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
 		$this->postIngredients = new ArrayCollection();
+		$this->steps = new ArrayCollection();
+	}
+
+	/**
+	 * @return Step[]|ArrayCollection
+	 */
+	public function getSteps() {
+		return $this->steps;
+	}
+
+	/**
+	 * @param Step[]|ArrayCollection $steps
+	 */
+	public function setSteps($steps) {
+		$this->steps = $steps;
+	}
+
+	public function addStep(Step $step) {
+		$step->setPost($this);
+		$this->steps->add($step);
+	}
+
+	public function removeStep(Step $step) {
+		$this->steps->removeElement($step);
 	}
 
 	/**

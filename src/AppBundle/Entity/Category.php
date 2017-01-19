@@ -24,6 +24,11 @@ class Category {
     private $name;
 
 	/**
+	 * @ORM\Column(type="string")
+	 */
+	private $color;
+
+	/**
 	 * @ORM\Column(type="string", length=128, unique=true)
 	 * @Gedmo\Slug(fields={"name"})
 	 */
@@ -37,7 +42,22 @@ class Category {
 
     public function __construct() {
         $this->posts = new ArrayCollection();
+	    $this->color = "#ff00ff";
     }
+
+	/**
+	 * @return string
+	 */
+	public function getColor() {
+		return $this->color;
+	}
+
+	/**
+	 * @param string $color
+	 */
+	public function setColor($color) {
+		$this->color = $color;
+	}
 
 	/**
 	 * @return mixed
