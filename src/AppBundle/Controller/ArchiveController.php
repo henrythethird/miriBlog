@@ -29,15 +29,20 @@ class ArchiveController extends Controller {
 			->getRepository(Category::class)
 			->findAll();
 
-		$ingredients = $this->getDoctrine()
-			->getRepository(Ingredient::class)
-			->findAll();
+		$aggregate = [];
+		foreach ($posts as $post) {
+			$aggregate[
+				$post->getDatePublished()->format('Y')
+			][
+				$post->getDatePublished()->format('m')
+			][] = $post;
+		}
 
 		return [
 			'posts' => $posts,
 			'categories' => $categories,
 			'activeCategory' => $filterCategory,
-			'ingredients' => $ingredients
+			'archive' => $aggregate
 		];
 	}
 

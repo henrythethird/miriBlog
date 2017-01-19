@@ -27,7 +27,7 @@ class PostRepository extends EntityRepository
 	/**
 	 * @param Category|null $filterCategory
 	 *
-	 * @return array
+	 * @return Post[]
 	 */
 	public function findArchiveResults(Category $filterCategory = null) {
 		$queryBuilder = $this->findArchiveReultsQb();

@@ -2,58 +2,87 @@
 
 {% block containerLeft %}
     <div id="batchContainer" data-index="1" data-lock="" data-count="99">
-        Categories:
         <div>
-            {% for category in categories %}
-                {% set active = '' %}
-                {% if activeCategory.id == category.id %}
-                    {% set active = 'active' %}
-                {% endif %}
+            {% if activeCategory %}
+                <a href="{{ path('home_archive') }}">
+                    <div class="category" style="background-color: #93c3cd">
+                        All Categories
+                    </div>
+                </a>
+            {% endif %}
+
+            {% for category in categories if category != activeCategory %}
                 <a href="{{ path('home_archive_slug', {slug: category.slug}) }}">
-                    <div class="category {{ active }}" style="background-color: {{ category.color }}">
+                    <div class="category" style="background-color: {{ category.color }}">
                         {{ category.name }}
                     </div>
                 </a>
             {% endfor %}
         </div>
 
-        Ingredients:
-        <ul>
-            {% for ingredient in ingredients %}
-                <li>{{ ingredient.name }}</li>
-            {% endfor %}
-        </ul>
-
+        {% if activeCategory %}
+            <div class="category categoryTotal" style="background-color: {{ activeCategory.color }}">
+                {{ activeCategory.name }}
+            </div>
+        {% else %}
+            <div class="category categoryTotal" style="background-color: #93c3cd">
+                All Categories
+            </div>
+        {% endif %}
+        <div style="clear: both;"></div>
+        <br><br>
     {% include 'archive/batch.html.twig' %}
     </div>
 {% endblock %}
 
-{% if false %}
-    {% block javascripts %}
-        {{ parent() }}
-        <script type="text/javascript">
-            $(window).scroll(function() {
-                if ($(window).scrollTop() + $(window).height() < $(document).height() - 100) return;
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        (function($) {
+            var element = $('.categoryTotal'),
+                originalY = element.offset().top;
 
-                var batchContainer = $('#batchContainer');
-                var lock = batchContainer.attr('data-lock');
-                var count = batchContainer.attr('data-count');
+            // Space between element and top of screen (when scrolling)
+            var topMargin = 0;
 
-                if (lock) return;
+            // Should probably be set in CSS; but here just for emphasis
+            element.css('position', 'relative');
 
-                batchContainer.attr('data-lock', true);
-                var index = batchContainer.attr('data-index');
+            $(window).on('scroll', function(event) {
+                var scrollTop = $(window).scrollTop();
 
-                if (index >= count) return;
-
-                $.get('{{ 0 }}' + '/' + (index++), null, function(response) {
-                    batchContainer.html(batchContainer.html() + response.view);
-
-                    batchContainer.attr('data-index', index);
-                    batchContainer.attr('data-lock', '');
-                    batchContainer.attr('data-count', response.count);
-                });
+                element.css('top', scrollTop < originalY ? 0 : scrollTop - originalY + topMargin);
             });
-        </script>
-    {% endblock %}
-{% endif %}
+        })(jQuery);
+    </script>
+{% endblock %}
+
+{% block containerRight %}
+    <div class="rightTitle">Date Archive</div>
+    <span class="smallLine"></span>
+    <br>
+    <br>
+    <ul class="archiveList">
+    {% for year,yearArchive in archive %}
+        <li>
+            {{ year }}
+            <ul>
+                {% for month,monthArchive in yearArchive %}
+                    <li>
+                        {{ month }}
+                        <ul>
+                            {% for archivePost in monthArchive %}
+                                <li>
+                                    <a href="{{ path('blog_post', {'slug': archivePost.slug}) }}">
+                                        {{ archivePost.datePublished|date('d.m.Y') }}
+                                    </a>
+                                </li>
+                            {% endfor  %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

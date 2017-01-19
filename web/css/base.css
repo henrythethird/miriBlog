@@ -175,10 +175,15 @@ div#headerRow a:hover {
     opacity: 0.7;
 }
 
-.category.active {
-    opacity: 0.9;
-}
-
 .category:hover {
     opacity: 1;
+}
+
+.category.categoryTotal {
+    opacity: 0.9;
+    width: 100%;
+}
+
+ul.archiveList, ul.archiveList ul {
+    padding: 0 10px;
 }
