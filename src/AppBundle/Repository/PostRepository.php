@@ -12,6 +12,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class PostRepository extends EntityRepository
 {
     const NUM_FIRSTPAGE_RESULTS = 3;
+	const NUM_RECENT_RESULTS = 3;
 	const ARCHIVE_LIMIT = 1000;
 
 	/**
@@ -23,6 +24,14 @@ class PostRepository extends EntityRepository
             ->setMaxResults(self::NUM_FIRSTPAGE_RESULTS)
 	        ->getQuery()
 	        ->getResult();
+    }
+
+	public function findRecentPosts() {
+		return $this->createSortedQueryBuilder()
+			->setMaxResults(self::NUM_RECENT_RESULTS)
+			->setFirstResult(self::NUM_FIRSTPAGE_RESULTS)
+			->getQuery()
+			->getResult();
     }
 
 	/**

@@ -19,8 +19,13 @@ class HomeController extends Controller
             ->getRepository(Post::class)
             ->findAllFirstPageResults();
 
+	    $recentPosts = $this->getDoctrine()
+		    ->getRepository(Post::class)
+		    ->findRecentPosts();
+
 	    return [
-            'posts' => $posts
+            'posts' => $posts,
+		    'recentPosts' => $recentPosts
 	    ];
     }
 
