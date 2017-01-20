@@ -8,12 +8,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class PostIngredientAdmin extends Admin {
+class RecipeIngredientAdmin extends Admin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
 			->add('ingredient')
 			->add('amount')
-			->add('unit', TextType::class, ['required' => false]);
+			->add('unit', TextType::class, ['required' => false])
+			->add('comment', TextType::class, ['required' => false])
+		;
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)

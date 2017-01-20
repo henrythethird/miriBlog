@@ -20,11 +20,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Post }
 
-    admin.post_ingredient:
-        class: Application\Sonata\UserBundle\Admin\PostIngredientAdmin
-        arguments: [~, AppBundle\Entity\PostIngredient, ~]
+    admin.recipe:
+        class: Application\Sonata\UserBundle\Admin\RecipeAdmin
+        arguments: [~, AppBundle\Entity\Recipe, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: PostIngredient }
+            - { name: sonata.admin, manager_type: orm, label: Recipe }
+
+    admin.recipe_ingredient:
+        class: Application\Sonata\UserBundle\Admin\RecipeIngredientAdmin
+        arguments: [~, AppBundle\Entity\RecipeIngredient, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: RecipeIngredient }
     admin.step:
         class: Application\Sonata\UserBundle\Admin\StepAdmin
         arguments: [~, AppBundle\Entity\Step, ~]

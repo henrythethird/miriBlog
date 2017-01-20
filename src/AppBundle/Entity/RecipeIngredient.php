@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="post_ingredients")
+ * @ORM\Table(name="recipe_ingredients")
  */
-class PostIngredient {
+class RecipeIngredient {
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
@@ -17,16 +17,21 @@ class PostIngredient {
 	private $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient", inversedBy="postIngredients")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient", inversedBy="recipeIngredients")
 	 * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
 	 */
 	private $ingredient;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="postIngredients")
-	 * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="recipeIngredients")
+	 * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
 	 */
-	private $post;
+	private $recipe;
+
+	/**
+	 * @ORM\Column(type="string", nullable=true)
+	 */
+	private $comment;
 
 	/**
 	 * @ORM\Column(type="decimal", precision=10, scale=2)
@@ -46,17 +51,31 @@ class PostIngredient {
 	}
 
 	/**
-	 * @return Post
+	 * @return string
 	 */
-	public function getPost() {
-		return $this->post;
+	public function getComment() {
+		return $this->comment;
 	}
 
 	/**
-	 * @param Post $post
+	 * @param string $comment
 	 */
-	public function setPost(Post $post) {
-		$this->post = $post;
+	public function setComment($comment) {
+		$this->comment = $comment;
+	}
+
+	/**
+	 * @return Recipe
+	 */
+	public function getRecipe() {
+		return $this->recipe;
+	}
+
+	/**
+	 * @param Recipe $recipe
+	 */
+	public function setRecipe(Recipe $recipe) {
+		$this->recipe = $recipe;
 	}
 
 	/**

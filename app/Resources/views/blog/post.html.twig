@@ -5,40 +5,46 @@
     <div>{{ post.datePublished|date('d.m.Y h:i') }}</div>
     <div id="postContainer">
         {{ post.content|raw }}
-
-        <br>
-        <span class="smallLine"></span>
-        <br><br>
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="sectionTitle">
-                    <b>Z</b>UTATEN
-                </div>
-                <div class="feedsN">{{ post.feedsNPeople }}</div>
-                {% for postIngredient in post.postIngredients %}
-                    <div class="piItem">
-                        <b>{{ postIngredient.amount + 0 }}</b>
-                        <b>{{ postIngredient.unit }}</b>
-                        <a href="#">
-                            <span class="postIngredient">{{ postIngredient.ingredient }}</span>
-                        </a>
+        {% for recipe in post.recipes %}
+            <br><br>
+            <span class="smallLine"></span>
+            <br><br>
+            <h2>{{ recipe.title }}</h2>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="sectionTitle">
+                        <b>Z</b>UTATEN
                     </div>
-                {% endfor %}
-            </div>
-            <div class="col-xs-8">
-                <div class="sectionTitle">
-                    <b>Z</b>UBEREITUNG
-                </div>
-                {% for step in post.steps %}
-                    <div class="step">
-                        <div class="index">{{ loop.index }}</div>
-                        <div class="description">
-                            {{ step.description }}
+                    <div class="feedsN">{{ recipe.feedsNPeople }}</div>
+                    {% for recipeIngredient in recipe.recipeIngredients %}
+                        <div class="piItem">
+                            <b>{{ recipeIngredient.amount + 0 }}</b>
+                            <b>{{ recipeIngredient.unit }}</b>
+                            <a href="#">
+                                <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
+                            </a>
+                            <span>
+                                {{ recipeIngredient.comment }}
+                            </span>
                         </div>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-8">
+                    <div class="sectionTitle">
+                        <b>Z</b>UBEREITUNG
                     </div>
-                {% endfor %}
+                    {% for step in recipe.steps %}
+                        <div class="step">
+                            <div class="index">{{ loop.index }}</div>
+                            <div class="description">
+                                {{ step.description }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
     <br>
     <div class="fb-like" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-layout="standard"

@@ -56,11 +56,6 @@ class Post
      */
     private $datePublished;
 
-	/**
-	 * @ORM\Column(type="string")
-	 */
-	private $feedsNPeople;
-
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -68,81 +63,42 @@ class Post
     private $category;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostIngredient", mappedBy="post", cascade={"persist", "remove"})
-	 * @ORM\JoinColumn(referencedColumnName="ingredient_id")
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Recipe", mappedBy="post", cascade={"persist", "remove"})
 	 */
-	private $postIngredients;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Step", mappedBy="post", cascade={"persist", "remove"})
-	 * @ORM\JoinColumn(referencedColumnName="post_id")
-	 */
-	private $steps;
+	private $recipes;
 
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
-		$this->postIngredients = new ArrayCollection();
-		$this->steps = new ArrayCollection();
+		$this->recipes = new ArrayCollection();
 	}
 
 	/**
-	 * @return Step[]|ArrayCollection
+	 * @return Recipe[]|ArrayCollection
 	 */
-	public function getSteps() {
-		return $this->steps;
+	public function getRecipes() {
+		return $this->recipes;
 	}
 
 	/**
-	 * @return string
+	 * @param Recipe[]|ArrayCollection $recipes
 	 */
-	public function getFeedsNPeople() {
-		return $this->feedsNPeople;
+	public function setRecipes($recipes) {
+		$this->recipes = $recipes;
 	}
 
 	/**
-	 * @param string $feedsNPeople
+	 * @param Recipe $recipe
 	 */
-	public function setFeedsNPeople($feedsNPeople) {
-		$this->feedsNPeople = $feedsNPeople;
+	public function addRecipe($recipe) {
+		$recipe->setPost($this);
+		$this->recipes->add($recipe);
 	}
 
 	/**
-	 * @param Step[]|ArrayCollection $steps
+	 * @param Recipe $recipe
 	 */
-	public function setSteps($steps) {
-		$this->steps = $steps;
-	}
-
-	public function addStep(Step $step) {
-		$step->setPost($this);
-		$this->steps->add($step);
-	}
-
-	public function removeStep(Step $step) {
-		$this->steps->removeElement($step);
-	}
-
-	/**
-	 * @return ArrayCollection|PostIngredient[]
-	 */
-	public function getPostIngredients() {
-		return $this->postIngredients;
-	}
-
-	/**
-	 * @param ArrayCollection|PostIngredient[] $postIngredients
-	 */
-	public function setPostIngredients($postIngredients) {
-		$this->postIngredients = $postIngredients;
-	}
-
-	public function addPostIngredient(PostIngredient $postIngredient) {
-		$postIngredient->setPost($this);
-		$this->postIngredients->add($postIngredient);
-	}
-
-	public function removePostIngredient(PostIngredient $postIngredient) {
-		$this->postIngredients->removeElement($postIngredient);
+	public function removeRecipe($recipe) {
+		$this->recipes->removeElement($recipe);
 	}
 
     /**
