@@ -114,7 +114,7 @@ div#headerRow a:hover {
     margin-bottom: 5px;
     height: 200px;
     background-size: cover;
-    background-position: top center;
+    background-position: top left;
 }
 
 .smallLine {

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block containerLeft %}
     <h1>{{ post.title }}</h1>
     <div>{{ post.datePublished|date('d.m.Y h:i') }}</div>
