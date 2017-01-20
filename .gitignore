@@ -14,5 +14,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/web/uploads/
+/web/uploads/*
+web/.htaccess
+web/.user.ini
 .idea/
