@@ -1,3 +1,7 @@
+* {
+    font-family: 'Raleway', cursive;
+}
+
 body {
     background-color: white;
 }
@@ -9,12 +13,7 @@ i.fa {
 a {
     color: black;
 }
-a:hover {
-    color: black;
-    text-decoration: none;
-}
-
-a:active {
+a:hover, a:active, a:visited, a:link {
     color: black;
     text-decoration: none;
 }
@@ -96,6 +95,10 @@ div#headerRow a:hover {
 .rightContainer a {
     color: gray;
     text-decoration: underline;
+}
+
+.leftContainer {
+    font-size: 16px;
 }
 
 .leftContainer h2 {
@@ -210,4 +213,55 @@ ul.archiveList, ul.archiveList ul {
     opacity: 0.8;
     color: white;
     padding: 5px 10px;
+}
+
+.step {
+    position: relative;
+    margin-bottom: 15px;
+    clear: both;
+}
+
+.step > .description {
+    margin-left: 40px;
+    padding-top: 10px;
+}
+
+.step > .index {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 5px;
+    height: 100%;
+    position: absolute;
+}
+
+.sectionTitle {
+    font-variant: small-caps;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.feedsN {
+    color: #adadad;
+    font-size: 17px;
+    margin-bottom: 10px;
+
+}
+
+.postIngredient {
+    background-color: #f2f0ed;
+    padding: 5px;
+}
+
+.piItem {
+    padding: 5px 0;
+}
+
+.piItem, .step {
+    font-size: 20px;
+}
+
+.postIngredient:hover {
+    color: white;
+    background-color: black;
 }

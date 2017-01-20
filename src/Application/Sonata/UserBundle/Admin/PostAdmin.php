@@ -30,6 +30,7 @@ class PostAdmin extends Admin {
 			->add('datePublished', 'sonata_type_datetime_picker', [
 				'required' => false
 			])
+			->add('feedsNPeople')
 			->add('postIngredients', 'sonata_type_collection', [
 				'by_reference' => false
 			], [
