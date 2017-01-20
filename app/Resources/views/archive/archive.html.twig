@@ -30,7 +30,7 @@
             </div>
         {% endif %}
         <div style="clear: both;"></div>
-        <br><br>
+        <br>
     {% include 'archive/batch.html.twig' %}
     </div>
 {% endblock %}
@@ -45,9 +45,6 @@
             // Space between element and top of screen (when scrolling)
             var topMargin = 0;
 
-            // Should probably be set in CSS; but here just for emphasis
-            element.css('position', 'relative');
-
             $(window).on('scroll', function(event) {
                 var scrollTop = $(window).scrollTop();
 
@@ -58,6 +55,9 @@
 {% endblock %}
 
 {% block containerRight %}
+    {{ parent() }}
+
+    <br><br><br>
     <div class="rightTitle">Date Archive</div>
     <span class="smallLine"></span>
     <br>
