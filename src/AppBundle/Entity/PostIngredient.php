@@ -34,7 +34,7 @@ class PostIngredient {
 	private $amount;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable=true)
 	 */
 	private $unit;
 
