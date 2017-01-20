@@ -21,7 +21,7 @@
                         <div class="piItem">
                             <b>{{ recipeIngredient.amount }}</b>
                             <b>{{ recipeIngredient.unit }}</b>
-                            <a href="#">
+                            <a href="{{ path('ingredient_index_slug', {'slug': recipeIngredient.ingredient.slug}) }}">
                                 <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
                             </a>
                             <span>

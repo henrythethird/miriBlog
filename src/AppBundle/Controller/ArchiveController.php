@@ -29,8 +29,8 @@ class ArchiveController extends Controller {
 	];
 
 	/**
-	 * @Route("/archive", name="home_archive")
-	 * @Route("/archive/{slug}", name="home_archive_slug")
+	 * @Route("/archive", name="archive")
+	 * @Route("/archive/{slug}", name="archive_slug")
 	 * @Template("archive/archive.html.twig")
 	 */
 	public function archiveAction(Category $filterCategory = null)

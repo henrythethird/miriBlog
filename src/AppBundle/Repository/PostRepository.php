@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Aggregate\ArchiveAggregate;
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -78,5 +79,26 @@ class PostRepository extends EntityRepository
 			->setFirstResult(self::ARCHIVE_LIMIT * $offset);
 
 		return $queryBuilder;
-}
+	}
+
+	/**
+	 * @param Ingredient $ingredient
+	 *
+	 * @return Post[]
+	 */
+	public function findByIngredient(Ingredient $ingredient = null) {
+		$queryBuilder = $this->createSortedQueryBuilder();
+
+		if ($ingredient) {
+			$queryBuilder
+				->leftJoin('p.recipes', 'recipes')
+				->leftJoin('recipes.recipeIngredients', 'recipeIngredients')
+				->andWhere('recipeIngredients.ingredient = :INGREDIENT')
+				->setParameter('INGREDIENT', $ingredient);
+		}
+
+		return $queryBuilder
+			->getQuery()
+			->getResult();
+	}
 }
