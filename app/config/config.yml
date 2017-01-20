@@ -90,6 +90,7 @@ sonata_admin:
                     - admin.category
                     - admin.ingredient
                     - admin.post
+                    - admin.recipe
             Media:
                 items:
                     - sonata.media.admin.media
