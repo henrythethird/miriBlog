@@ -276,6 +276,7 @@ ul.archiveList, ul.archiveList ul {
     color: white;
     display: inline-block;
     clear: both;
+    margin-bottom: 20px;
 }
 
 .ingredientBox {
