@@ -11,7 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class RecipeIngredientAdmin extends Admin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
-			->add('ingredient')
+			->add('ingredient', 'sonata_type_model', [
+				'property' => 'name',
+			])
 			->add('amount')
 			->add('unit', TextType::class, ['required' => false])
 			->add('comment', TextType::class, ['required' => false])
