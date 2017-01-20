@@ -10,7 +10,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 class StepAdmin extends Admin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
-			->add('description');
+			->add('description')
+			->add('position', 'hidden')
+		;
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)

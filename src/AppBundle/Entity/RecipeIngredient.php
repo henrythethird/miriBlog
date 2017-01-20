@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -39,6 +40,12 @@ class RecipeIngredient {
 	private $amount;
 
 	/**
+	 * @Gedmo\SortablePosition()
+	 * @ORM\Column(type="integer", nullable=true)
+	 */
+	private $position;
+
+	/**
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	private $unit;
@@ -48,6 +55,20 @@ class RecipeIngredient {
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getPosition() {
+		return $this->position;
+	}
+
+	/**
+	 * @param mixed $position
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
 	}
 
 	/**

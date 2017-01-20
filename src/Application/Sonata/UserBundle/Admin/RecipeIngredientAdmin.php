@@ -15,6 +15,7 @@ class RecipeIngredientAdmin extends Admin {
 			->add('amount')
 			->add('unit', TextType::class, ['required' => false])
 			->add('comment', TextType::class, ['required' => false])
+			->add('position', 'hidden')
 		;
 	}
 
