@@ -13,14 +13,27 @@ class IngredientController extends Controller {
 	 * @Route("/ingredient", name="ingredient_index")
 	 * @Template("ingredient/index.html.twig")
 	 */
-	public function indexAction(Ingredient $ingredient = null) {
-		$ingredients = $this->getDoctrine()
+	public function indexAction() {
+		$letters = $this->getDoctrine()
 			->getRepository(Ingredient::class)
-			->findBy([], ['name' => 'ASC']);
+			->findFirstLetters();
 
 		return [
-			'ingredients' => $ingredients,
-			'currentIngredient' => $ingredient
+			'letters' => $letters
+		];
+	}
+
+	/**
+	 * @Route("/ingredient/{letter}", name="ingredient_letter")
+	 * @Template("ingredient/letter.html.twig")
+	 */
+	public function letterAction($letter) {
+		$ingredients = $this->getDoctrine()
+			->getRepository(Ingredient::class)
+			->findByFirstLetter($letter);
+
+		return [
+			'ingredients' => $ingredients
 		];
 	}
 
