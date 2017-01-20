@@ -40,6 +40,7 @@ twig:
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 
 # Doctrine Configuration

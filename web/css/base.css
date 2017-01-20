@@ -136,7 +136,7 @@ div#headerRow a:hover {
     color: gray;
 }
 
-.blogPost > .image {
+.blogPost .image {
     background-size: cover;
     background-position: center;
     height: 450px;
