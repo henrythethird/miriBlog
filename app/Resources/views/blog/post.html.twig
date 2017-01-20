@@ -19,7 +19,7 @@
                     <div class="feedsN">{{ recipe.feedsNPeople }}</div>
                     {% for recipeIngredient in recipe.recipeIngredients %}
                         <div class="piItem">
-                            <b>{{ recipeIngredient.amount + 0 }}</b>
+                            <b>{{ recipeIngredient.amount }}</b>
                             <b>{{ recipeIngredient.unit }}</b>
                             <a href="#">
                                 <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
