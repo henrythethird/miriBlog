@@ -2,13 +2,13 @@
 
 {% block containerLeft %}
     <h1>Ingredient Index</h1>
-    <p>Click on the ingredients to see the associated posts.</p>
+    <p>Click on the letters to see the associated ingredients.</p>
 
     <ul>
-    {% for ingredient in ingredients %}
+    {% for letter in letters %}
         <li>
-            <a href="{{ path('ingredient_filter', {'slug': ingredient.slug }) }}">
-                {{ ingredient.name }}
+            <a href="{{ path('ingredient_letter', {'letter': letter.letter }) }}">
+                {{ letter.letter }}
             </a>
         </li>
     {% endfor %}

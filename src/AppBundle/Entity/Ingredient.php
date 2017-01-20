@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
- * @Doctrine\ORM\Mapping\Entity
+ * @Doctrine\ORM\Mapping\Entity(repositoryClass="AppBundle\Repository\IngredientRepository")
  * @Doctrine\ORM\Mapping\Table(name="ingredients")
  */
 class Ingredient {
