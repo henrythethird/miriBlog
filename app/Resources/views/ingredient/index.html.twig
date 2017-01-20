@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Ingredient {% if activeIngredient %}{{ activeIngredient.name }}{% endif %}{% endblock %}
+
 {% block containerLeft %}
     <h1>Ingredient Index</h1>
 
