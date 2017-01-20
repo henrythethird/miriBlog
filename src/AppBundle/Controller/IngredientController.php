@@ -11,22 +11,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IngredientController extends Controller {
 	/**
 	 * @Route("/ingredient", name="ingredient_index")
-	 * @Route("/ingredient/{slug}", name="ingredient_index_slug")
 	 * @Template("ingredient/index.html.twig")
 	 */
 	public function indexAction(Ingredient $ingredient = null) {
-		$posts = $this->getDoctrine()
-			->getRepository(Post::class)
-			->findByIngredient($ingredient);
-
 		$ingredients = $this->getDoctrine()
 			->getRepository(Ingredient::class)
 			->findBy([], ['name' => 'ASC']);
 
 		return [
-			'posts' => $posts,
 			'ingredients' => $ingredients,
 			'currentIngredient' => $ingredient
+		];
+	}
+
+	/**
+	 * @Route("/ingredient/filter/{slug}", name="ingredient_filter")
+	 * @Template("ingredient/filter.html.twig")
+	 */
+	public function filterAction(Ingredient $ingredient) {
+		$posts = $this->getDoctrine()
+			->getRepository(Post::class)
+			->findByIngredient($ingredient);
+
+		return [
+			'posts' => $posts,
+			'activeIngredient' => $ingredient
 		];
 	}
 }
