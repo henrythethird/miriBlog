@@ -34,7 +34,7 @@ class RecipeIngredient {
 	private $comment;
 
 	/**
-	 * @ORM\Column(type="decimal", precision=10, scale=2)
+	 * @ORM\Column(type="string")
 	 */
 	private $amount;
 
