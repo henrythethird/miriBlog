@@ -27,7 +27,7 @@ class ArchiveController extends Controller {
 
 		$categories = $this->getDoctrine()
 			->getRepository(Category::class)
-			->findBy([], ['name' => 'DESC']);
+			->findBy([], ['name' => 'ASC']);
 
 		$aggregate = [];
 		foreach ($posts as $post) {
