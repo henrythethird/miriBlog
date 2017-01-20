@@ -27,7 +27,9 @@ class PostAdmin extends Admin {
 				'provider' => 'sonata.media.provider.image',
 				'context'  => 'default'
 			])
-			->add('datePublished', 'sonata_type_datetime_picker')
+			->add('datePublished', 'sonata_type_datetime_picker', [
+				'required' => false
+			])
 			->add('postIngredients', 'sonata_type_collection', [
 				'by_reference' => false
 			], [
