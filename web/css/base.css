@@ -265,3 +265,26 @@ ul.archiveList, ul.archiveList ul {
     color: white;
     background-color: black;
 }
+
+.jump {
+    padding: 0 10px;
+}
+
+.letterBox {
+    background-color: black;
+    padding: 8px 12px;
+    color: white;
+    display: inline-block;
+    clear: both;
+}
+
+.ingredientBox {
+    display: inline-block;
+    width: 33.33333333333333%;
+    float: left;
+}
+
+.bothMarg {
+    clear: both;
+    margin-top: 20px;
+}
