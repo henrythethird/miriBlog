@@ -32,6 +32,7 @@ class RecipeAdmin extends Admin {
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
 		$datagridMapper
+			->add('title')
 			->add('post')
 			->add('feedsNPeople')
 		;
@@ -41,6 +42,7 @@ class RecipeAdmin extends Admin {
 	{
 		$listMapper
 			->addIdentifier('title')
+			->addIdentifier('post')
 		;
 	}
 }

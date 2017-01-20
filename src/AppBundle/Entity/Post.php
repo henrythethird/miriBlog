@@ -234,4 +234,8 @@ class Post
     public function setCategory($category) {
         $this->category = $category;
     }
+
+	public function __toString() {
+		return $this->getTitle();
+    }
 }
