@@ -27,4 +27,13 @@
     <br><br><br>
     <div class="rightTitle">RECENT POSTS</div>
     <span class="smallLine"></span>
+    <br>
+    {% for post in recentPosts %}
+        <a class="postRef" href="{{ path('blog_post', {'slug': post.slug}) }}">
+            <div class="title">{{ post.title }}</div>
+
+            {% thumbnail post.picture, 'big' %}
+            <div class="image" style="background-image: url({% path post.picture, 'reference' %})"></div>
+        </a>
+    {% endfor %}
 {% endblock %}

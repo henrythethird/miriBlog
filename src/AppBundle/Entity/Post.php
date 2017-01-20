@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -206,7 +207,7 @@ class Post
     }
 
     /**
-     * @return string
+     * @return MediaInterface
      */
     public function getPicture()
     {
@@ -214,7 +215,7 @@ class Post
     }
 
     /**
-     * @param string $picture
+     * @param MediaInterface $picture
      */
     public function setPicture($picture)
     {
