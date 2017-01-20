@@ -17,7 +17,7 @@ class Step {
 	private $id;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="text")
 	 */
 	private $description;
 
