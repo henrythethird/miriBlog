@@ -28,6 +28,11 @@ class Step {
 	private $recipe;
 
 	/**
+	 * @ORM\Column(type="integer")
+	 */
+	private $position;
+
+	/**
 	 * @return mixed
 	 */
 	public function getId() {
@@ -39,6 +44,20 @@ class Step {
 	 */
 	public function getRecipe() {
 		return $this->recipe;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getPosition() {
+		return $this->position;
+	}
+
+	/**
+	 * @param mixed $position
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
 	}
 
 	/**

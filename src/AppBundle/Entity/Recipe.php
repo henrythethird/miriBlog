@@ -35,12 +35,14 @@ class Recipe {
 	/**
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecipeIngredient", mappedBy="recipe", cascade={"persist", "remove"})
 	 * @ORM\JoinColumn(referencedColumnName="ingredient_id")
+	 * @ORM\OrderBy({"position" = "ASC"})
 	 */
 	private $recipeIngredients;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Step", mappedBy="recipe", cascade={"persist", "remove"})
 	 * @ORM\JoinColumn(referencedColumnName="post_id")
+	 * @ORM\OrderBy({"position" = "ASC"})
 	 */
 	private $steps;
 

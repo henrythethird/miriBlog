@@ -19,12 +19,14 @@ class RecipeAdmin extends Admin {
 			], [
 				'edit' => 'inline',
 				'inline' => 'table',
+				'sortable' => 'position',
 			])
 			->add('steps', 'sonata_type_collection', [
 				'by_reference' => false
 			], [
 				'edit' => 'inline',
 				'inline' => 'table',
+				'sortable' => 'position',
 			])
 		;
 	}
