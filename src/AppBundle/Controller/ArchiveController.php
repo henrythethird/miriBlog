@@ -13,6 +13,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArchiveController extends Controller {
+	private static $months = [
+		'01' => 'Januar',
+		'02' => 'Februar',
+		'03' => 'März',
+		'04' => 'April',
+		'05' => 'Mai',
+		'06' => 'Juni',
+		'07' => 'Juli',
+		'08' => 'August',
+		'09' => 'September',
+		'10' => 'Oktober',
+		'11' => 'November',
+		'12' => 'Dezember'
+	];
 
 	/**
 	 * @Route("/archive", name="home_archive")
@@ -34,7 +48,7 @@ class ArchiveController extends Controller {
 			$aggregate[
 				$post->getDatePublished()->format('Y')
 			][
-				$post->getDatePublished()->format('m')
+				self::$months[$post->getDatePublished()->format('m')]
 			][] = $post;
 		}
 
