@@ -22,10 +22,10 @@ class Step {
 	private $description;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="steps")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="steps")
 	 * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
 	 */
-	private $post;
+	private $recipe;
 
 	/**
 	 * @return mixed
@@ -37,15 +37,15 @@ class Step {
 	/**
 	 * @return mixed
 	 */
-	public function getPost() {
-		return $this->post;
+	public function getRecipe() {
+		return $this->recipe;
 	}
 
 	/**
-	 * @param mixed $post
+	 * @param mixed $recipe
 	 */
-	public function setPost($post) {
-		$this->post = $post;
+	public function setRecipe($recipe) {
+		$this->recipe = $recipe;
 	}
 
 	/**

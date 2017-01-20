@@ -22,12 +22,12 @@ class Ingredient {
     private $name;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostIngredient", mappedBy="ingredient")
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecipeIngredient", mappedBy="ingredient")
 	 */
-	private $postIngredients;
+	private $recipeIngredients;
 
 	public function __construct() {
-		$this->postIngredients = new ArrayCollection();
+		$this->recipeIngredients = new ArrayCollection();
 	}
 	
 	/**
@@ -38,17 +38,17 @@ class Ingredient {
 	}
 
 	/**
-	 * @return PostIngredient[]|ArrayCollection
+	 * @return RecipeIngredient[]|ArrayCollection
 	 */
-	public function getPostIngredients() {
-		return $this->postIngredients;
+	public function getRecipeIngredients() {
+		return $this->recipeIngredients;
 	}
 
 	/**
-	 * @param PostIngredient[]|ArrayCollection $postIngredients
+	 * @param RecipeIngredient[]|ArrayCollection $recipeIngredients
 	 */
-	public function setPostIngredients($postIngredients) {
-		$this->postIngredients = $postIngredients;
+	public function setRecipeIngredients($recipeIngredients) {
+		$this->recipeIngredients = $recipeIngredients;
 	}
 
 	/**
