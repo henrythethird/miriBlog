@@ -11,44 +11,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IngredientController extends Controller {
 	/**
 	 * @Route("/ingredient", name="ingredient_index")
+	 * @Route("/ingredient/{slug}", name="ingredient_filter")
 	 * @Template("ingredient/index.html.twig")
 	 */
-	public function indexAction() {
+	public function indexAction(Ingredient $ingredient = null) {
 		$letters = $this->getDoctrine()
 			->getRepository(Ingredient::class)
 			->findFirstLetters();
 
-		return [
-			'letters' => $letters
-		];
-	}
-
-	/**
-	 * @Route("/ingredient/{letter}", name="ingredient_letter")
-	 * @Template("ingredient/letter.html.twig")
-	 */
-	public function letterAction($letter) {
 		$ingredients = $this->getDoctrine()
 			->getRepository(Ingredient::class)
-			->findByFirstLetter($letter);
+			->findBy([], ['name' => 'ASC']);
 
-		return [
-			'ingredients' => $ingredients
-		];
-	}
-
-	/**
-	 * @Route("/ingredient/filter/{slug}", name="ingredient_filter")
-	 * @Template("ingredient/filter.html.twig")
-	 */
-	public function filterAction(Ingredient $ingredient) {
 		$posts = $this->getDoctrine()
 			->getRepository(Post::class)
 			->findByIngredient($ingredient);
 
 		return [
-			'posts' => $posts,
-			'activeIngredient' => $ingredient
+			'letters' => $letters,
+			'ingredients' => $ingredients,
+			'activeIngredient' => $ingredient,
+			'posts' => $posts
 		];
 	}
 }

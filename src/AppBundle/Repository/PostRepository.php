@@ -87,17 +87,11 @@ class PostRepository extends EntityRepository
 	 * @return Post[]
 	 */
 	public function findByIngredient(Ingredient $ingredient = null) {
-		$queryBuilder = $this->createSortedQueryBuilder();
-
-		if ($ingredient) {
-			$queryBuilder
-				->leftJoin('p.recipes', 'recipes')
-				->leftJoin('recipes.recipeIngredients', 'recipeIngredients')
-				->andWhere('recipeIngredients.ingredient = :INGREDIENT')
-				->setParameter('INGREDIENT', $ingredient);
-		}
-
-		return $queryBuilder
+		return $this->createSortedQueryBuilder()
+			->leftJoin('p.recipes', 'recipes')
+			->leftJoin('recipes.recipeIngredients', 'recipeIngredients')
+			->andWhere('recipeIngredients.ingredient = :INGREDIENT')
+			->setParameter('INGREDIENT', $ingredient)
 			->getQuery()
 			->getResult();
 	}
