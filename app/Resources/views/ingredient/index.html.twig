@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block containerLeft %}
+    <h1>Ingredient Index</h1>
+    <p>Click on the ingredients to see the associated posts.</p>
+
+    <ul>
+    {% for ingredient in ingredients %}
+        <li>
+            <a href="{{ path('ingredient_filter', {'slug': ingredient.slug }) }}">
+                {{ ingredient.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block containerLeft %}
+    <div class="category categoryTotal" style="background-color: darkgray">
+        {{ activeIngredient.name }}
+    </div>
+    <br>
+    <br>
+    <br>
+
+    {% include 'archive/batch.html.twig' %}
+{% endblock %}
