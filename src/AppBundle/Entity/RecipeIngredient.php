@@ -40,7 +40,6 @@ class RecipeIngredient {
 	private $amount;
 
 	/**
-	 * @Gedmo\SortablePosition()
 	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	private $position;
