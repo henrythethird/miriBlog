@@ -56,6 +56,11 @@ class Post
      */
     private $datePublished;
 
+	/**
+	 * @ORM\Column(type="string")
+	 */
+	private $feedsNPeople;
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -85,6 +90,20 @@ class Post
 	 */
 	public function getSteps() {
 		return $this->steps;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFeedsNPeople() {
+		return $this->feedsNPeople;
+	}
+
+	/**
+	 * @param string $feedsNPeople
+	 */
+	public function setFeedsNPeople($feedsNPeople) {
+		$this->feedsNPeople = $feedsNPeople;
 	}
 
 	/**

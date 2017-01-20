@@ -6,19 +6,39 @@
     <div id="postContainer">
         {{ post.content|raw }}
 
-        <ul>
-        {% for postIngredient in post.postIngredients %}
-            <li>
-                {{ postIngredient.amount + 0 }}
-                {{ postIngredient.unit }}
-                {{ postIngredient.ingredient }}
-            </li>
-        {% endfor %}
-        </ul>
-
-        {% for step in post.steps %}
-            <div>{{ loop.index }} {{ step.description }}</div>
-        {% endfor %}
+        <br>
+        <span class="smallLine"></span>
+        <br><br>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="sectionTitle">
+                    <b>Z</b>UTATEN
+                </div>
+                <div class="feedsN">{{ post.feedsNPeople }}</div>
+                {% for postIngredient in post.postIngredients %}
+                    <div class="piItem">
+                        <b>{{ postIngredient.amount + 0 }}</b>
+                        <b>{{ postIngredient.unit }}</b>
+                        <a href="#">
+                            <span class="postIngredient">{{ postIngredient.ingredient }}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-8">
+                <div class="sectionTitle">
+                    <b>Z</b>UBEREITUNG
+                </div>
+                {% for step in post.steps %}
+                    <div class="step">
+                        <div class="index">{{ loop.index }}</div>
+                        <div class="description">
+                            {{ step.description }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <br>
     <div class="fb-like" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-layout="standard"
