@@ -12,7 +12,15 @@
         </a>
     {% endfor %}
     </div>
-    <br>
+
+    {% if activeIngredient %}
+        <div class="category categoryTotal" style="background-color: #fef2c7;">
+            {{ activeIngredient.name }}
+        </div>
+        <br>
+        <br>
+        <br>
+    {% endif %}
 
     {% if posts %}
         {% include 'archive/batch.html.twig' %}
