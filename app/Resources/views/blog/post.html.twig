@@ -8,7 +8,7 @@
     <div id="postContainer">
         {{ post.content|raw }}
         {% for recipe in post.recipes %}
-            <br><br>
+            <br>
             <span class="smallLine"></span>
             <br><br>
             <h2>{{ recipe.title }}</h2>
@@ -46,6 +46,10 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if recipe.content %}
+                <br>
+                {{ recipe.content|raw }}
+            {% endif %}
         {% endfor %}
     </div>
     <br>
