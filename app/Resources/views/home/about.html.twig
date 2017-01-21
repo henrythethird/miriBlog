@@ -34,13 +34,14 @@
                 </p>
             </div>
             <div class="col-lg-6" style="padding-right: 0; padding-left: 50px">
+                {{ form_start(contactForm) }}
                 <table width="100%">
                     <tr>
                         <th>CONTACT ME</th>
                         <td>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" placeholder="Name" class="form-control" />
+                                {{ form_widget(contactForm.name, {'attr': {'placeholder': 'Name', 'class': 'form-control'}}) }}
                             </div>
                         </td>
                     </tr>
@@ -49,7 +50,7 @@
                         <td>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                {{ form_widget(contactForm.email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
                             </div>
                         </td>
                     </tr>
@@ -63,7 +64,7 @@
                             </a>
                         </th>
                         <td rowspan="3">
-                            <textarea rows="8" class="form-control" placeholder="Message"></textarea>
+                            {{ form_widget(contactForm.text, {'attr': {'placeholder': 'Message', 'class': 'form-control', 'rows': '16'}}) }}
                         </td>
                     </tr>
                     <tr>
@@ -83,6 +84,7 @@
                         </td>
                     </tr>
                 </table>
+                {{ form_end(contactForm) }}
             </div>
         </div>
     </div>

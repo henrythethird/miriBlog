@@ -5,6 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Doctrine\ORM\Mapping\Entity
@@ -19,7 +20,7 @@ class Category {
     private $id;
 
     /**
-     * @Doctrine\ORM\Mapping\Column(type="string")
+     * @Doctrine\ORM\Mapping\Column(type="string", unique=true)
      */
     private $name;
 

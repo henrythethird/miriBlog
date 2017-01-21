@@ -4,16 +4,22 @@ parameters:
 #    parameter_name: value
 
 services:
+    app_bundle.mail:
+        class: AppBundle\Service\ContactService
+        arguments: ["@swiftmailer.mailer"]
+
     admin.category:
         class: Application\Sonata\UserBundle\Admin\CategoryAdmin
         arguments: [~, AppBundle\Entity\Category, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }
+
     admin.ingredient:
         class: Application\Sonata\UserBundle\Admin\IngredientAdmin
         arguments: [~, AppBundle\Entity\Ingredient, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Ingredient }
+
     admin.post:
         class: Application\Sonata\UserBundle\Admin\PostAdmin
         arguments: [~, AppBundle\Entity\Post, ~]
@@ -31,8 +37,10 @@ services:
         arguments: [~, AppBundle\Entity\RecipeIngredient, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: RecipeIngredient }
+
     admin.step:
         class: Application\Sonata\UserBundle\Admin\StepAdmin
         arguments: [~, AppBundle\Entity\Step, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Step }
+

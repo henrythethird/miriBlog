@@ -19,7 +19,7 @@ class Ingredient {
     private $id;
 
     /**
-     * @Doctrine\ORM\Mapping\Column(type="string")
+     * @Doctrine\ORM\Mapping\Column(type="string", unique=true)
      */
     private $name;
 

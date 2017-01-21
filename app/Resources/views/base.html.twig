@@ -56,6 +56,11 @@
                 <div id="headerImage" style="background-image: url({{ asset('images/header.jpg') }})"></div>
                 <div id="mainContent">
                     <div class="container-fluid">
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <p class="popup bg-success">
+                                {{ flashMessage }}
+                            </p>
+                        {% endfor %}
                         <div class="row">
                             {% block container %}
                                 <div class="col-xs-9 leftContainer">
@@ -64,22 +69,22 @@
                                 </div>
                                 <div class="col-xs-3 rightContainer">
                                     {% block containerRight %}
-                                    <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
-                                    <span class="smallLine"></span>
-                                    <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
-                                    <a href="{{ path('home_about') }}">About</a>
+                                        <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
+                                        <span class="smallLine"></span>
+                                        <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
+                                        <a href="{{ path('home_about') }}">About</a>
 
-                                    <br><br>
-                                    <div class="rightTitle">SUBSCRIBE VIA EMAIL</div>
-                                    <span class="smallLine"></span>
-                                    <br><br>
-                                    <form>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                                            <input type="email" class="form-control" placeholder="Email Address" name="email">
-                                        </div>
-                                        <button style="float: right" type="submit" class="btn">Subscribe Now <i class="fa fa-envelope-o"></i></button>
-                                    </form>
+                                        <br><br>
+                                        <div class="rightTitle">SUBSCRIBE VIA EMAIL</div>
+                                        <span class="smallLine"></span>
+                                        <br><br>
+                                        {{ form_start(subscribeForm) }}
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                                {{ form_widget(subscribeForm.email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
+                                            </div>
+                                            <button style="float: right" type="submit" class="btn">Subscribe Now <i class="fa fa-envelope-o"></i></button>
+                                        {{ form_end(subscribeForm) }}
                                     {% endblock %}
                                 </div>
                             {% endblock %}

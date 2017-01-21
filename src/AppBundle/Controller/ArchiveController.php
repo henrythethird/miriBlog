@@ -10,9 +10,11 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArchiveController extends Controller {
+class ArchiveController extends BaseSubscribeController {
 	private static $months = [
 		'01' => 'Januar',
 		'02' => 'Februar',
@@ -33,7 +35,7 @@ class ArchiveController extends Controller {
 	 * @Route("/archive/{slug}", name="archive_slug")
 	 * @Template("archive/archive.html.twig")
 	 */
-	public function archiveAction(Category $filterCategory = null)
+	public function archiveAction(Request $request, Category $filterCategory = null)
 	{
 		$posts = $this->getDoctrine()
 			->getRepository(Post::class)
@@ -52,11 +54,18 @@ class ArchiveController extends Controller {
 			][] = $post;
 		}
 
+		$subscribeForm = $this->handleSubscribe($request);
+
+		if ($subscribeForm instanceof Response) {
+			return $subscribeForm;
+		}
+
 		return [
 			'posts' => $posts,
 			'categories' => $categories,
 			'activeCategory' => $filterCategory,
-			'archive' => $aggregate
+			'archive' => $aggregate,
+			'subscribeForm' => $subscribeForm->createView()
 		];
 	}
 

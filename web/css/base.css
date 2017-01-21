@@ -295,3 +295,7 @@ ul.archiveList, ul.archiveList ul {
 .postRef img {
     width: 100%;
 }
+
+.popup {
+    padding: 20px;
+}
