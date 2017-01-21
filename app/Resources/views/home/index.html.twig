@@ -9,7 +9,7 @@
             <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
             <p>{{ post.description }}</p>
             <a href="{{ path('blog_post', {'slug': post.slug}) }}">
-                <div class="image" style="background-image: url({% path post.picture, 'reference' %})"></div>
+                {% media post.picture, 'big' with {'class': 'image'} %}
             </a>
             <a class="btn btn-default" href="{{ path('blog_post', {'slug': post.slug}) }}">
                 Continue Reading...
