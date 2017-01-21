@@ -28,9 +28,6 @@
         </script>
         {% block body %}
             <div id="wholeContainer">
-                <a id="wholeTitle" href="{{ path('home_index') }}">
-                    KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
-                </a>
                 <div id="headerRow">
                     <a class="leftItem" href="{{ path('home_index') }}">
                         HOME
@@ -53,6 +50,10 @@
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
                 </div>
+                <div id="wholeTitle">
+                    KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
+                    <a href="{{ path('home_index') }}"></a>
+                </div>
                 <div id="headerImage" style="background-image: url({{ asset('images/header.jpg') }})"></div>
                 <div id="mainContent">
                     <div class="container-fluid">
@@ -71,8 +72,10 @@
                                     {% block containerRight %}
                                         <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
                                         <span class="smallLine"></span>
-                                        <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
-                                        <a href="{{ path('home_about') }}">About</a>
+                                        <a href="{{ path('home_about') }}">
+                                            <div class="rightPortrait" style="background-image: url({{ asset('images/portrait.jpg') }})"></div>
+                                            About
+                                        </a>
 
                                         <br><br>
                                         <div class="rightTitle">SUBSCRIBE VIA EMAIL</div>

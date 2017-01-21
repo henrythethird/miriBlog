@@ -26,7 +26,8 @@ div#wholeContainer {
     margin-top: 50px;
 }
 
-a#wholeTitle {
+div#wholeTitle {
+    position: relative;
     display: block;
     border: 6px solid black;
     width: 400px;
@@ -38,6 +39,14 @@ a#wholeTitle {
     padding: 10px;
     background-color: white;
     letter-spacing: 5px;
+}
+
+div#wholeTitle > a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 div#headerImage {
@@ -62,7 +71,6 @@ div#mainContent {
 div#headerRow {
     position: absolute;
     top: 20px;
-    pointer-events: none;
     left: 0;
     right: 0;
 }
