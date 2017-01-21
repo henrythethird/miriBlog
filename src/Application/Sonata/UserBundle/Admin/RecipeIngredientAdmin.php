@@ -14,9 +14,15 @@ class RecipeIngredientAdmin extends Admin {
 			->add('ingredient', 'sonata_type_model', [
 				'property' => 'name',
 			])
-			->add('amount')
-			->add('unit', TextType::class, ['required' => false])
-			->add('comment', TextType::class, ['required' => false])
+			->add('amount', null, [
+				'required' => false
+			])
+			->add('unit', TextType::class, [
+				'required' => false
+			])
+			->add('comment', TextType::class, [
+				'required' => false
+			])
 			->add('position', 'hidden')
 		;
 	}
