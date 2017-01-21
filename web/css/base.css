@@ -140,10 +140,9 @@ div#headerRow a:hover {
 }
 
 .blogPost .image {
-    background-size: cover;
-    background-position: center;
-    height: 450px;
     margin-bottom: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .blogPost > .btn {
