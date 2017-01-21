@@ -1,5 +1,5 @@
 <a href="{{ path('blog_post', {'slug': post.slug }) }}" class="background-image-thumb"
-   style="background-image: url({% path post.picture, 'reference' %})">
+   style="background-image: url({% path post.picture, 'medium' %})">
     <div class="postTitle">{{ post.title }}</div>
     <div class="postDate">{{ post.datePublished|date('d.m.Y') }}</div>
 </a>
