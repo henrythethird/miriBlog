@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
+    app_bundle.post_content_listener:
+        class: AppBundle\Listener\PostContentListener
+        arguments: ["@sonata.media.provider.image"]
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
     app_bundle.mail:
         class: AppBundle\Service\ContactService
         arguments: ["@swiftmailer.mailer"]
@@ -43,4 +49,3 @@ services:
         arguments: [~, AppBundle\Entity\Step, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Step }
-
