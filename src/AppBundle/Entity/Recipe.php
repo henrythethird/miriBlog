@@ -28,7 +28,7 @@ class Recipe {
 	private $post;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable=true)
 	 */
 	private $feedsNPeople;
 
@@ -46,23 +46,35 @@ class Recipe {
 	 */
 	private $steps;
 
+	/**
+	 * @ORM\Column(type="text", nullable=true)
+	 */
+	private $content;
+
 	public function __construct() {
 		$this->recipeIngredients = new ArrayCollection();
 		$this->steps = new ArrayCollection();
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
 	public function getId() {
 		return $this->id;
 	}
 
 	/**
-	 * @param mixed $id
+	 * @return string
 	 */
-	public function setId($id) {
-		$this->id = $id;
+	public function getContent() {
+		return $this->content;
+	}
+
+	/**
+	 * @param string $content
+	 */
+	public function setContent($content) {
+		$this->content = $content;
 	}
 
 	/**

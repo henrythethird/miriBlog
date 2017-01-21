@@ -13,7 +13,9 @@ class RecipeAdmin extends Admin {
 			->add('title', 'text', [
 				'required' => false
 			])
-			->add('feedsNPeople')
+			->add('feedsNPeople', 'text', [
+				'required' => false
+			])
 			->add('recipeIngredients', 'sonata_type_collection', [
 				'by_reference' => false
 			], [
@@ -27,6 +29,11 @@ class RecipeAdmin extends Admin {
 				'edit' => 'inline',
 				'inline' => 'table',
 				'sortable' => 'position',
+			])
+			->add('content', 'sonata_simple_formatter_type', [
+				'required' => false,
+				'format' => 'richhtml',
+				'ckeditor_context' => 'default',
 			])
 		;
 	}
