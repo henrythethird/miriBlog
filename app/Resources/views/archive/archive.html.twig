@@ -13,9 +13,16 @@
                 </a>
             {% endif %}
 
+            {% set loopLength = categories|length %}
+            {% set lastIteration = loopLength // 4 %}
+            {% set width = '' %}
             {% for category in categories if category != activeCategory %}
+                {% set currentIteration = loop.index0 // 4 %}
+                {% if currentIteration == lastIteration and not loop.index0 % 4 %}
+                    {% set width = 'width: ' ~ (1/(loopLength - loop.index0)*100) ~ '%' %}
+                {% endif %}
                 <a href="{{ path('archive_slug', {slug: category.slug}) }}">
-                    <div class="category" style="background-color: {{ category.color }}">
+                    <div class="category" style="background-color: {{ category.color }}; {{ width }}">
                         {{ category.name }}
                     </div>
                 </a>
