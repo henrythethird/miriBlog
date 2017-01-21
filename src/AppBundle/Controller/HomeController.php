@@ -5,15 +5,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class HomeController extends Controller
+class HomeController extends BaseSubscribeController
 {
     /**
      * @Route("/", name="home_index")
      * @Template("home/index.html.twig")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
@@ -23,9 +24,16 @@ class HomeController extends Controller
 		    ->getRepository(Post::class)
 		    ->findRecentPosts();
 
+		$subscribeForm = $this->handleSubscribe($request);
+
+	    if ($subscribeForm instanceof Response) {
+	    	return $subscribeForm;
+	    }
+
 	    return [
             'posts' => $posts,
-		    'recentPosts' => $recentPosts
+		    'recentPosts' => $recentPosts,
+		    'subscribeForm' => $subscribeForm->createView()
 	    ];
     }
 
