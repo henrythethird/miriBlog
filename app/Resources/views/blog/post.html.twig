@@ -48,7 +48,9 @@
             </div>
             {% if recipe.content %}
                 <br>
+                <div class="recipeAppendix">
                 {{ recipe.content|raw }}
+                </div>
             {% endif %}
         {% endfor %}
     </div>

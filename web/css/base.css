@@ -306,3 +306,7 @@ ul.archiveList, ul.archiveList ul {
 .popup {
     padding: 20px;
 }
+
+.recipeAppendix {
+    font-size: 120%;
+}
