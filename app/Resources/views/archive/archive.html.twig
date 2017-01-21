@@ -5,14 +5,6 @@
 {% block containerLeft %}
     <div id="batchContainer" data-index="1" data-lock="" data-count="99">
         <div>
-            {% if activeCategory %}
-                <a href="{{ path('archive') }}">
-                    <div class="category" style="background-color: #fef2c7">
-                        All Categories
-                    </div>
-                </a>
-            {% endif %}
-
             {% set loopLength = categories|length %}
             {% set lastIteration = loopLength // 4 %}
             {% set width = '' %}
@@ -27,6 +19,14 @@
                     </div>
                 </a>
             {% endfor %}
+
+            {% if activeCategory %}
+                <a href="{{ path('archive') }}">
+                    <div class="category" style="background-color: #fef2c7; {{ width }}">
+                        All Categories
+                    </div>
+                </a>
+            {% endif %}
         </div>
 
         {% if activeCategory %}
