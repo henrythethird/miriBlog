@@ -164,9 +164,9 @@ sonata_media:
                 - sonata.media.provider.file
                 - sonata.media.provider.vimeo
             formats:
-                small:  { width: 200 , quality: 100}
-                medium: { width: 400 , quality: 100}
-                big:    { width: 750 , quality: 100}
+                small:  { width: 200 , quality: 90}
+                medium: { width: 400 , quality: 90}
+                big:    { width: 750 , quality: 90}
         sonata_collection:
             providers:
               - sonata.media.provider.image
