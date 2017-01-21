@@ -32,7 +32,7 @@
         <a class="postRef" href="{{ path('blog_post', {'slug': post.slug}) }}">
             <div class="title">{{ post.title }}</div>
 
-            {% thumbnail post.picture, 'big' %}
+            {% thumbnail post.picture, 'small' %}
             <div class="image" style="background-image: url({% path post.picture, 'reference' %})"></div>
         </a>
     {% endfor %}
