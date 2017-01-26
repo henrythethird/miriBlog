@@ -22,7 +22,7 @@
 
             {% if activeCategory %}
                 <a href="{{ path('archive') }}">
-                    <div class="category" style="background-color: #fef2c7; {{ width }}">
+                    <div class="category" style="background-color: #fef2c7; {% if not width %}width: 100%{% else %}{{ width }}{% endif %}">
                         All Categories
                     </div>
                 </a>
