@@ -2,12 +2,10 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
-use AppBundle\Entity\Category;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -20,15 +18,19 @@ class PostAdmin extends Admin {
 				'format' => 'richhtml',
 				'ckeditor_context' => 'default',
 			])
-			->add('category', EntityType::class, [
-				'class' => Category::class
-			])
+			->add('categories', null, [], [
+			    'allow_add' => true
+            ])
 			->add('picture', 'sonata_media_type', [
 				'provider' => 'sonata.media.provider.image',
 				'context'  => 'default'
 			])
 			->add('datePublished', 'sonata_type_datetime_picker', [
-				'required' => false
+				'required' => false,
+                'format' => 'dd.MM.yyyy, HH:mm',
+                'attr' => [
+                    'data-date-format' => 'DD.MM.YYYY, HH:mm',
+                ],
 			])
 			->add('recipes', 'sonata_type_collection', [
 				'by_reference' => false
@@ -48,8 +50,8 @@ class PostAdmin extends Admin {
 	{
 		$listMapper->addIdentifier('title')
 			->addIdentifier('datePublished', 'date', [
-				'pattern' => 'Y-m-d'
+                'format' => 'dd.MM.yyyy, HH:mm',
 			])
-			;
+        ;
 	}
 }

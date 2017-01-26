@@ -58,19 +58,24 @@ class Post
     private $datePublished;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="posts", cascade={"persist", "remove"})
      */
-    private $category;
+    private $categories;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Recipe", mappedBy="post", cascade={"persist", "remove"})
 	 */
 	private $recipes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AlternateLink", mappedBy="post")
+     */
+	private $alternateLinks;
+
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
 		$this->recipes = new ArrayCollection();
+		$this->categories = new ArrayCollection();
 	}
 
 	/**
@@ -225,15 +230,25 @@ class Post
     /**
      * @return mixed
      */
-    public function getCategory() {
-        return $this->category;
+    public function getCategories() {
+        return $this->categories;
     }
 
     /**
-     * @param mixed $category
+     * @param Category[] $categories
      */
-    public function setCategory($category) {
-        $this->category = $category;
+    public function setCategory($categories) {
+        $this->categories = $categories;
+    }
+
+    public function addCategory(Category $category)
+    {
+        $this->categories->add($category);
+    }
+
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
     }
 
 	public function __toString() {

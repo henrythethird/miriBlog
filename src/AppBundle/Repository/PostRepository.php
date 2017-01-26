@@ -43,7 +43,8 @@ class PostRepository extends EntityRepository
 		$queryBuilder = $this->findArchiveReultsQb();
 
 		if ($filterCategory) {
-			$queryBuilder->andWhere('p.category = :CATEGORY');
+            $queryBuilder->leftJoin('p.categories', 'category');
+			$queryBuilder->andWhere('category = :CATEGORY');
 			$queryBuilder->setParameter('CATEGORY', $filterCategory);
 		}
 		return $queryBuilder

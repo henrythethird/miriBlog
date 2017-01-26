@@ -14,6 +14,7 @@ class HomeController extends BaseSubscribeController
 {
     /**
      * @Route("/", name="home_index")
+     * @Route("/blog", name="blog_index")
      * @Template("home/index.html.twig")
      */
     public function indexAction(Request $request)
