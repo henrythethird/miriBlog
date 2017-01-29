@@ -60,42 +60,41 @@
                 </div>
                 <div id="headerImage" style="background-image: url({{ asset('images/header.jpg') }})"></div>
                 <div id="mainContent">
-                    <div id="submenu" class="hidden-md hidden-lg">
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-2">
-                            <a class="leftItem" href="{{ path('home_index') }}">
-                                HOME
-                            </a>
-                        </div>
-                        <div class="col-xs-2">
-                            <a class="leftItem" href="{{ path('home_about') }}">
-                                ABOUT
-                            </a>
-                        </div>
-                        <div class="col-xs-2">
-                            <a class="leftItem" href="{{ path('archive') }}">
-                                ARCHIVE
-                            </a>
-                        </div>
+                    <nav class="navbar navbar-default hidden-md hidden-lg" role="navigation">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
 
-                        <div class="col-xs-2">
-                            <a class="leftItem" href="{{ path('ingredient_index') }}">
-                                INGREDIENTS
-                            </a>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ path('home_index') }}">Home</a></li>
+                                    <li><a href="{{ path('home_about') }}">About</a></li>
+                                    <li><a href="{{ path('archive') }}">Archive</a></li>
+                                    <li><a href="{{ path('ingredient_index') }}">Ingredients</a></li>
+                                    <li>
+                                        <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
+                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="rightItem" target="_blank" href="https://www.facebook.com/RealFoodForRealPeople">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-2">
-                            <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a class="rightItem" target="_blank" href="https://www.facebook.com/RealFoodForRealPeople">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
+                    </nav>
 
                     <div class="container-fluid">
+                        <div class="hidden-sm hidden-xs" style="height: 37px;">&nbsp;</div>
                         {% for flashMessage in app.session.flashbag.get('success') %}
                             <p class="popup bg-success">
                                 {{ flashMessage }}
