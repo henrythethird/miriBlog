@@ -210,6 +210,10 @@ div#formRightText {
     background-color: #f2f0ed;
 }
 
+#postContainer img {
+    max-width: 100%;
+}
+
 .category {
     width: 25%;
     height: 50px;
@@ -345,4 +349,8 @@ ul.archiveList, ul.archiveList ul {
 
 .recipeAppendix {
     font-size: 120%;
+}
+
+.ingredientList {
+    padding-bottom: 40px;
 }
