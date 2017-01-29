@@ -102,6 +102,12 @@ div#formRightText {
     border-right: 0 solid black;
 }
 
+.ingredientBox {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+
 @media screen and (min-width: 992px) {
     div#formRight {
         padding-right: 0;
@@ -124,6 +130,10 @@ div#formRightText {
 
     div#wholeContainer {
         margin-top: 50px;
+    }
+
+    .ingredientBox {
+        width: 33.33333333333333333%;
     }
 }
 
@@ -320,12 +330,6 @@ ul.archiveList, ul.archiveList ul {
     display: inline-block;
     clear: both;
     margin-bottom: 20px;
-}
-
-.ingredientBox {
-    display: inline-block;
-    width: 33.33333333333333%;
-    float: left;
 }
 
 .bothMarg {
