@@ -32,7 +32,7 @@ class ContentOptimizerService
     public function optimize(ContentInterface $entity)
     {
         $domCrawler = new Crawler();
-        $domCrawler->addContent($entity->getContent(), 'UTF-8');
+        $domCrawler->addHtmlContent($entity->getContent(), 'UTF-8');
 
         $images = $domCrawler->filter('img');
 
