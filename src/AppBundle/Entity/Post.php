@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @ORM\Table()
  */
-class Post
+class Post implements ContentInterface
 {
     /**
      * @ORM\Id

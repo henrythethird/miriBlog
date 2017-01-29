@@ -6,9 +6,13 @@ parameters:
 services:
     app_bundle.post_content_listener:
         class: AppBundle\Listener\PostContentListener
-        arguments: ["@sonata.media.provider.image", "@service_container"]
+        arguments: ["@service_container"]
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
+
+    app_bundle.content_optimizer:
+        class: AppBundle\Service\ContentOptimizerService
+        arguments: ["@sonata.media.provider.image", "@doctrine.orm.entity_manager"]
 
     app_bundle.mail:
         class: AppBundle\Service\ContactService

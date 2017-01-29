@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="recipe")
  */
-class Recipe {
+class Recipe implements ContentInterface {
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
