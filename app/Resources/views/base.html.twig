@@ -5,6 +5,7 @@
         <title>{% block title %}Blog{% endblock %} - Kuchenkrümel</title>
         <meta name="description" content="{% block description %}{% endblock %}">
         <meta lang="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -31,7 +32,7 @@
         </script>
         {% block body %}
             <div id="wholeContainer">
-                <div id="headerRow">
+                <div id="headerRow" class="hidden-sm hidden-xs">
                     <a class="leftItem" href="{{ path('home_index') }}">
                         HOME
                     </a>
@@ -59,6 +60,41 @@
                 </div>
                 <div id="headerImage" style="background-image: url({{ asset('images/header.jpg') }})"></div>
                 <div id="mainContent">
+                    <div id="submenu" class="hidden-md hidden-lg">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-2">
+                            <a class="leftItem" href="{{ path('home_index') }}">
+                                HOME
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a class="leftItem" href="{{ path('home_about') }}">
+                                ABOUT
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a class="leftItem" href="{{ path('archive') }}">
+                                ARCHIVE
+                            </a>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <a class="leftItem" href="{{ path('ingredient_index') }}">
+                                INGREDIENTS
+                            </a>
+                        </div>
+
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-2">
+                            <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a class="rightItem" target="_blank" href="https://www.facebook.com/RealFoodForRealPeople">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="container-fluid">
                         {% for flashMessage in app.session.flashbag.get('success') %}
                             <p class="popup bg-success">
@@ -67,11 +103,11 @@
                         {% endfor %}
                         <div class="row">
                             {% block container %}
-                                <div class="col-xs-9 leftContainer">
+                                <div class="col-xs-12 col-md-9 leftContainer">
                                     {% block containerLeft %}
                                     {% endblock %}
                                 </div>
-                                <div class="col-xs-3 rightContainer">
+                                <div class="col-md-3 hidden-sm hidden-xs rightContainer">
                                     {% block containerRight %}
                                         <div class="rightTitle">MADE BY MIRIAM WITH LOVE</div>
                                         <span class="smallLine"></span>
