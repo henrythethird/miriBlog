@@ -6,7 +6,7 @@ parameters:
 services:
     app_bundle.post_content_listener:
         class: AppBundle\Listener\PostContentListener
-        arguments: ["@sonata.media.provider.image"]
+        arguments: ["@sonata.media.provider.image", "@service_container"]
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
