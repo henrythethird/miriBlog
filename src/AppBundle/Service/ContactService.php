@@ -22,7 +22,6 @@ class ContactService {
 
 		$message->setReplyTo("info@kuchenkruemel.ch");
 		$message->setTo("info@kuchenkruemel.ch");
-		$message->setCc("patrick@famkaufmann.info");
 		$this->mailer->send($message);
 	}
 }
