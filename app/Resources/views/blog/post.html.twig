@@ -55,8 +55,9 @@
         {% endfor %}
     </div>
     <br>
-    <div class="fb-like" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-layout="standard"
+    {% set current_url = 'http://kuchenkruemel.ch' ~ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+    <div class="fb-like" data-href="{{ current_url }}" data-layout="standard"
          data-action="like" data-size="large" data-show-faces="true" data-share="true" data-width="100%"></div>
-    <div class="fb-comments" data-href="{{ app.request.getUriForPath(app.request.pathInfo) }}" data-width="100%"
+    <div class="fb-comments" data-href="{{ current_url }}" data-width="100%"
          data-numposts="5"></div>
 {% endblock %}
