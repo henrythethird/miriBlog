@@ -3,7 +3,7 @@
 {% block title %}{% if activeCategory %}{{ activeCategory.name }}{% else %}All Categories{% endif %} - Archive - {% endblock %}
 
 {% block containerLeft %}
-    <div id="batchContainer" data-index="1" data-lock="" data-count="99" style="height: 5000px">
+    <div id="batchContainer" data-index="1" data-lock="" data-count="99">
         <div>
             {% set loopLength = categories|length %}
             {% set lastIteration = loopLength // 4 %}
