@@ -4,7 +4,7 @@
 
 {% block containerLeft %}
     <h1>{{ post.title }}</h1>
-    <div>{{ post.datePublished|date('d.m.Y h:i') }}</div>
+    <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
     <div id="postContainer">
         {{ post.content|raw }}
         {% for recipe in post.recipes %}
