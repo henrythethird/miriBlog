@@ -3,7 +3,7 @@
 {% block title %}{% if activeCategory %}{{ activeCategory.name }}{% else %}All Categories{% endif %} - Archive - {% endblock %}
 
 {% block containerLeft %}
-    <div id="batchContainer" data-index="1" data-lock="" data-count="99">
+    <div id="batchContainer" data-index="1" data-lock="" data-count="99" style="height: 5000px">
         <div>
             {% set loopLength = categories|length %}
             {% set lastIteration = loopLength // 4 %}
@@ -29,6 +29,7 @@
             {% endif %}
         </div>
 
+        <div class="categoryPlaceholder">
         {% if activeCategory %}
             <div class="category categoryTotal" style="background-color: {{ activeCategory.color }}">
                 {{ activeCategory.name }}
@@ -38,6 +39,7 @@
                 All Categories
             </div>
         {% endif %}
+        </div>
         <div style="clear: both;"></div>
         <br>
     {% include 'archive/batch.html.twig' %}
@@ -51,13 +53,12 @@
             var element = $('.categoryTotal'),
                 originalY = element.offset().top;
 
-            // Space between element and top of screen (when scrolling)
-            var topMargin = 0;
-
             $(window).on('scroll', function(event) {
                 var scrollTop = $(window).scrollTop();
 
-                element.css('top', scrollTop < originalY ? 'auto' : scrollTop - originalY + topMargin);
+                element.css('position', scrollTop < originalY ? 'relative' : 'fixed');
+                element.css('top', scrollTop < originalY ? 'auto' : 0);
+                element.css('width', element.closest('.leftContainer').width()+'px');
             });
         })(jQuery);
     </script>

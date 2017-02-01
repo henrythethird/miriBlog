@@ -2,13 +2,13 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class RecipeIngredientAdmin extends Admin {
+class RecipeIngredientAdmin extends AbstractAdmin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
 			->add('ingredient', 'sonata_type_model', [
