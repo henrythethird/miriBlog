@@ -37,7 +37,7 @@ class Category {
 
     /**
      * @var ArrayCollection|Post[]
-     * @OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="categories")
      */
     private $posts;
 
