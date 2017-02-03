@@ -36,6 +36,10 @@ class SubscribeService
             ->getRepository(Post::class)
             ->findSubscribePosts();
 
+        if (!count($posts)) {
+            return;
+        }
+
         $this->mail->sendUpdateMail($subscribes, $posts);
     }
 
