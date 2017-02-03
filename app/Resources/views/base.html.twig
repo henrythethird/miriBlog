@@ -95,18 +95,15 @@
 
                     <div class="container-fluid">
                         <div class="hidden-sm hidden-xs" style="height: 37px;">&nbsp;</div>
-                        {% for flashMessage in app.session.flashbag.get('success') %}
-                            <p class="alert alert-success alert-dismissibles" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <strong>Success: </strong>{{ flashMessage }}
-                            </p>
+                        {% for type,message in {success: 'Success', danger: 'Error', warning: 'Warning'} %}
+                            {% for flashMessage in app.session.flashbag.get(type) %}
+                                <p class="alert alert-{{ type }} alert-dismissibles" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>{{ message }}: </strong>{{ flashMessage }}
+                                </p>
+                            {% endfor %}
                         {% endfor %}
-                        {% for flashMessage in app.session.flashbag.get('error') %}
-                            <p class="alert alert-danger alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <strong>Error: </strong>{{ flashMessage }}
-                            </p>
-                        {% endfor %}
+
                         <div class="row">
                             {% block container %}
                                 <div class="col-xs-12 col-md-9 leftContainer">

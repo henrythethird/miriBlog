@@ -33,22 +33,12 @@ class MailController extends BaseSubscribeController
 
         $subscribeForm->handleRequest($request);
         if ($subscribeForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', "Successfully subscribed! An email with a confirmation link has been sent to you");
+            $this->handleValidSubscribe($subscribeForm);
+        } else {
+            $this->handleValidationErrors($subscribeForm);
         }
-
-        $this->handleSubscribeErrors($subscribeForm);
 
         return $this->redirect($request->headers->get('referer'));
-    }
-
-    private function handleSubscribeErrors(Form $subscribeForm)
-    {
-        if (!$subscribeForm->getErrors(true)) return;
-
-        foreach ($subscribeForm->getErrors(true) as $error) {
-            $this->addFlash('error', "There was an error when you tried to subscribe: ".$error->getMessage());
-        }
     }
 
     /**
@@ -74,5 +64,48 @@ class MailController extends BaseSubscribeController
         $this->addFlash('success', "Successfully confirmed! You will now be notified of new content.");
 
         return $this->redirectToRoute('home_index');
+    }
+
+
+    private function handleValidSubscribe(Form $subscribeForm)
+    {
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash('success', "Successfully subscribed! An email with a confirmation link has been sent to you");
+        $this->sendConfirmationMail($subscribeForm->getData());
+    }
+
+    /**
+     * @param Form $subscribeForm
+     */
+    private function handleValidationErrors(Form $subscribeForm)
+    {
+        $email = $subscribeForm->get('email')->getData();
+        $subscribe = $this->getDoctrine()->getRepository(Subscribe::class)
+            ->findOneBy([
+                'email' => $email,
+                'active' => false
+            ]);
+
+        if (!$subscribe) {
+            $this->handleSubscribeErrors($subscribeForm);
+            return;
+        }
+
+        $this->addFlash('warning', "The email address is in use but deactivated. Resending confirmation link.");
+        $this->sendConfirmationMail($subscribe);
+    }
+
+    private function handleSubscribeErrors(Form $subscribeForm)
+    {
+        if (!$subscribeForm->getErrors(true)) return;
+
+        foreach ($subscribeForm->getErrors(true) as $error) {
+            $this->addFlash('danger', "There was an error when you tried to subscribe: ".$error->getMessage());
+        }
+    }
+
+    private function sendConfirmationMail(Subscribe $subscribe)
+    {
+        $this->get('app_bundle.subscribe')->dispatchConfirmEmail($subscribe);
     }
 }
