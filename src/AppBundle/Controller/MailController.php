@@ -69,9 +69,16 @@ class MailController extends BaseSubscribeController
 
     private function handleValidSubscribe(Form $subscribeForm)
     {
-        $this->getDoctrine()->getManager()->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $entity = $subscribeForm->getData();
+
+        $entityManager->persist($entity);
+        $entityManager->flush();
+
         $this->addFlash('success', "Successfully subscribed! An email with a confirmation link has been sent to you");
-        $this->sendConfirmationMail($subscribeForm->getData());
+
+        $this->sendConfirmationMail($entity);
     }
 
     /**
