@@ -8,27 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class BaseSubscribeController extends Controller {
-	protected function handleSubscribe(Request $request) {
-		$entityManager = $this->getDoctrine()->getManager();
-
+	protected function createSubscribeForm() {
 		$subscribe = new Subscribe();
-		$subscribeForm = $this->createForm(SubscribeForm::class, $subscribe);
-		$subscribeForm->handleRequest($request);
-
-		if ($subscribeForm->isSubmitted() && $subscribeForm->isValid()) {
-			$subscribe = $subscribeForm->getData();
-
-			$entityManager->persist($subscribe);
-			$entityManager->flush();
-
-			$this->get('app_bundle.subscribe')
-                ->dispatchConfirmEmail($subscribe);
-
-			$this->addFlash('success', "Successfully Subscribed! Please check your e-mail and confirm your subscription");
-
-			return $this->redirectToRoute('home_index');
-		}
+		$subscribeForm = $this->createForm(SubscribeForm::class, $subscribe, [
+            'action' => $this->generateUrl('mail_subscribe'),
+        ]);
 
 		return $subscribeForm;
-	}
+    }
 }

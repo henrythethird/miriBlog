@@ -35,7 +35,7 @@ class ArchiveController extends BaseSubscribeController {
 	 * @Route("/archive/{slug}", name="archive_slug")
 	 * @Template("archive/archive.html.twig")
 	 */
-	public function archiveAction(Request $request, Category $filterCategory = null)
+	public function archiveAction(Category $filterCategory = null)
 	{
 		$posts = $this->getDoctrine()
 			->getRepository(Post::class)
@@ -54,18 +54,12 @@ class ArchiveController extends BaseSubscribeController {
 			][] = $post;
 		}
 
-		$subscribeForm = $this->handleSubscribe($request);
-
-		if ($subscribeForm instanceof Response) {
-			return $subscribeForm;
-		}
-
 		return [
 			'posts' => $posts,
 			'categories' => $categories,
 			'activeCategory' => $filterCategory,
 			'archive' => $aggregate,
-			'subscribeForm' => $subscribeForm->createView()
+			'subscribeForm' => $this->createSubscribeForm()->createView()
 		];
 	}
 

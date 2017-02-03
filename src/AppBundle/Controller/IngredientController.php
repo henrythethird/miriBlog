@@ -15,7 +15,7 @@ class IngredientController extends BaseSubscribeController  {
 	 * @Route("/ingredient/{slug}", name="ingredient_filter")
 	 * @Template("ingredient/index.html.twig")
 	 */
-	public function indexAction(Request $request, Ingredient $ingredient = null) {
+	public function indexAction(Ingredient $ingredient = null) {
 		$ingredientRepository = $this->getDoctrine()
 			->getRepository(Ingredient::class);
 
@@ -26,18 +26,12 @@ class IngredientController extends BaseSubscribeController  {
 			->getRepository(Post::class)
 			->findByIngredient($ingredient);
 
-		$subscribeForm = $this->handleSubscribe($request);
-
-		if ($subscribeForm instanceof Response) {
-			return $subscribeForm;
-		}
-
 		return [
 			'letters' => $letters,
 			'ingredients' => $ingredients,
 			'activeIngredient' => $ingredient,
 			'posts' => $posts,
-			'subscribeForm' => $subscribeForm->createView()
+			'subscribeForm' => $this->createSubscribeForm()->createView()
 		];
 	}
 }

@@ -17,7 +17,7 @@ class HomeController extends BaseSubscribeController
      * @Route("/blog", name="blog_index")
      * @Template("home/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
@@ -27,16 +27,10 @@ class HomeController extends BaseSubscribeController
 		    ->getRepository(Post::class)
 		    ->findRecentPosts();
 
-		$subscribeForm = $this->handleSubscribe($request);
-
-	    if ($subscribeForm instanceof Response) {
-	    	return $subscribeForm;
-	    }
-
 	    return [
             'posts' => $posts,
 		    'recentPosts' => $recentPosts,
-		    'subscribeForm' => $subscribeForm->createView()
+		    'subscribeForm' => $this->createSubscribeForm()->createView()
 	    ];
     }
 
