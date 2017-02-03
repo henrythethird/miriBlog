@@ -2,22 +2,7 @@
 
 {% block containerLeft %}
     {% for post in posts %}
-        <div class="blogPost">
-            <a href="{{ path('blog_post', {'slug': post.slug}) }}">
-                <h2 class="title">{{ post.title }}</h2>
-            </a>
-            <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
-            <p>{{ post.description }}</p>
-            <a href="{{ path('blog_post', {'slug': post.slug}) }}">
-                {% media post.picture, 'big' with {'class': 'image'} %}
-            </a>
-            <a class="btn btn-default" href="{{ path('blog_post', {'slug': post.slug}) }}">
-                Continue Reading...
-            </a>
-            <br><br>
-            <div style="clear: both"></div>
-            <br>
-        </div>
+        {% include 'post/show.html.twig' %}
     {% endfor %}
 {% endblock %}
 

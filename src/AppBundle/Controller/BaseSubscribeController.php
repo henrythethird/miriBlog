@@ -21,7 +21,10 @@ class BaseSubscribeController extends Controller {
 			$entityManager->persist($subscribe);
 			$entityManager->flush();
 
-			$this->addFlash('success', "Successfully Subscribed");
+			$this->get('app_bundle.subscribe')
+                ->dispatchConfirmEmail($subscribe);
+
+			$this->addFlash('success', "Successfully Subscribed! Please check your e-mail and confirm your subscription");
 
 			return $this->redirectToRoute('home_index');
 		}

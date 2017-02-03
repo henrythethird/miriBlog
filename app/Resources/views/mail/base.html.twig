@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        {% block style %}
+        body {
+            margin: 10px;
+            padding: 0;
+        }
+
+        a {
+            color: #1c5170;
+            text-decoration: none;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        table.fullwidth {
+            width: 100%;
+        }
+
+        table.main {
+            width: 600px;
+        }
+
+        table.main tbody td {
+            height: 100px;
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        .head {
+            display: block;
+            border: 6px solid black;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            padding: 10px;
+        }
+
+        a.head {
+            color: black;
+        }
+
+        a.head:hover {
+            text-decoration: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        tfoot td, tfoot td a {
+            color: gray;
+            font-size: 13px;
+        }
+
+        tbody img {
+            width: 100%;
+            height: auto;
+        }
+
+        .date {
+            color: gray;
+        }
+        {% endblock %}
+    </style>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<table class="fullwidth"><tbody><tr><td align="center">
+            <table class="main">
+                <thead>
+                <tr>
+                    <td class="center">
+                        {% block altMail %}
+                        {% endblock %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="center">
+                        <a class="head" href="http://www.kuchenkruemel.ch{{ path('home_index') }}">
+                            KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="center">
+                        {% block content %}
+                        {% endblock %}
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="center">
+                        {% block footer %}
+                            Copyright © 2017 by Miriam Siegenthaler | <a href="http://www.kuchenkruemel.ch{{ path('mail_unsubscribe', {'id': subscribeUuid}) }}">To unsubscribe, click here</a>
+                        {% endblock %}
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </td></tr></tbody></table>
+    </body>
+</html>

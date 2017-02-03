@@ -1,0 +1,14 @@
+{% extends 'mail/base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% set urlPrefix = "http://www.kuchenkruemel.ch" %}
+
+{% block altMail %}
+    <a href="{{ urlPrefix }}{{ path('mail_view', {'id': archiveUuid}) }}">If the E-Mail doesn't display correctly, click here</a>
+{% endblock %}
+
+{% block content %}
+    <p>Welcome to our mailing list! Please click the link below to confirm your subscription.</p>
+    <a href="{{ urlPrefix }}{{ path('mail_confirm', {'id': subscribeUuid}) }}">Click here to confirm!</a>
+{% endblock %}

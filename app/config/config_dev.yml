@@ -31,4 +31,4 @@ monolog:
         #    level:  info
 
 swiftmailer:
-    delivery_address: patrick@famkaufmann.info
+    delivery_address: profoundlyaverage@gmail.com

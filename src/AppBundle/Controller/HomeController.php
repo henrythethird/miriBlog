@@ -54,7 +54,7 @@ class HomeController extends BaseSubscribeController
 	    if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 		    $contact = $contactForm->getData();
 
-		    $this->get('app_bundle.mail')
+		    $this->get('app_bundle.contact')
 			    ->sendMessage($contact);
 
 	    	$this->addFlash('success', "Contact request sent!");

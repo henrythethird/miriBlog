@@ -14,9 +14,17 @@ services:
         class: AppBundle\Service\ContentOptimizerService
         arguments: ["@sonata.media.provider.image", "@doctrine.orm.entity_manager"]
 
-    app_bundle.mail:
+    app_bundle.contact:
         class: AppBundle\Service\ContactService
         arguments: ["@swiftmailer.mailer"]
+
+    app_bundle.mail:
+        class: AppBundle\Service\MailService
+        arguments: ["@mailer", "@templating", "@doctrine.orm.entity_manager"]
+
+    app_bundle.subscribe:
+        class: AppBundle\Service\SubscribeService
+        arguments: ["@doctrine.orm.entity_manager", "@app_bundle.mail"]
 
     admin.category:
         class: Application\Sonata\UserBundle\Admin\CategoryAdmin

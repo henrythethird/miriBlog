@@ -14,8 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Subscribe {
 	/**
 	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue(strategy="UUID")
+	 * @ORM\Column(type="guid")
 	 */
 	private $id;
 
@@ -25,17 +25,23 @@ class Subscribe {
 	 */
 	private $email;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+	private $active;
+
 	/**
 	 * @ORM\Column(type="datetime")
 	 */
 	private $date_created;
 
 	public function __construct() {
+	    $this->active = 0;
 		$this->date_created = new \DateTime();
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getId() {
 		return $this->id;
@@ -68,4 +74,20 @@ class Subscribe {
 	public function setDateCreated($date_created) {
 		$this->date_created = $date_created;
 	}
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 }

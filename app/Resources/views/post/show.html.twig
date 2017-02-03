@@ -1,0 +1,19 @@
+{% if urlPrefix is not defined %}
+    {% set urlPrefix = "" %}
+{% endif %}
+<div class="blogPost">
+    <a href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
+        <h2 class="title">{{ post.title }}</h2>
+    </a>
+    <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
+    <p>{{ post.description }}</p>
+    <a href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
+        <img class="image" alt="{{ post.title }}" src="{{ urlPrefix }}{% path post.picture, 'big' %}"/>
+    </a>
+    <a class="btn btn-default" href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
+        Continue Reading...
+    </a>
+    <br><br>
+    <div style="clear: both"></div>
+    <br>
+</div>
