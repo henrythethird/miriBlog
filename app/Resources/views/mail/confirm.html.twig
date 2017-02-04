@@ -11,4 +11,6 @@
 {% block content %}
     <p>Welcome to our mailing list! Please click the link below to confirm your subscription.</p>
     <a href="{{ urlPrefix }}{{ path('mail_confirm', {'id': subscribeUuid}) }}">Click here to confirm!</a>
+    <br>
+    <br>
 {% endblock %}
