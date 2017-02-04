@@ -2,6 +2,7 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
+use Application\Sonata\UserBundle\Form\UrlType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -12,32 +13,45 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class PostAdmin extends AbstractAdmin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
-			->add('title', TextType::class)
-			->add('description', TextareaType::class)
-			->add('content', 'sonata_simple_formatter_type', [
-				'format' => 'richhtml',
-				'ckeditor_context' => 'default',
-			])
-			->add('categories', null, [], [
-			    'allow_add' => true
+            ->with('General', [
+                'class' => 'col-md-6'
             ])
-			->add('picture', 'sonata_media_type', [
-				'provider' => 'sonata.media.provider.image',
-				'context'  => 'default'
-			])
-			->add('datePublished', 'sonata_type_datetime_picker', [
-				'required' => false,
-                'format' => 'dd.MM.yyyy, HH:mm',
-                'attr' => [
-                    'data-date-format' => 'DD.MM.YYYY, HH:mm',
-                ],
-			])
-			->add('recipes', 'sonata_type_collection', [
-				'by_reference' => false
-			], [
-				'edit' => 'inline',
-				'inline' => 'table',
-			])
+                ->add('title', TextType::class)
+                ->add('slug', UrlType::class, [
+                    'required' => false
+                ])
+                ->add('datePublished', 'sonata_type_datetime_picker', [
+                    'required' => false,
+                    'format' => 'dd.MM.yyyy, HH:mm',
+                    'attr' => [
+                        'data-date-format' => 'DD.MM.YYYY, HH:mm',
+                    ],
+                ])
+                ->add('categories', null, [], [
+                    'allow_add' => true
+                ])
+            ->end()
+            ->with('Pictures', [
+                'class' => 'col-md-6'
+            ])
+                ->add('description', TextareaType::class)
+                ->add('picture', 'sonata_media_type', [
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default'
+                ])
+            ->end()
+            ->with('Content')
+                ->add('content', 'sonata_simple_formatter_type', [
+                    'format' => 'richhtml',
+                    'ckeditor_context' => 'default',
+                ])
+                ->add('recipes', 'sonata_type_collection', [
+                    'by_reference' => false
+                ], [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                ])
+            ->end()
 		;
 	}
 

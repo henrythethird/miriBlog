@@ -1,0 +1,5 @@
+{% block url_show_widget %}
+    {% spaceless %}
+        <a class="btn btn-primary" target="_blank" href="{{ path('blog_post', {slug: value}) }}">Preview Link</a>
+    {% endspaceless %}
+{% endblock %}

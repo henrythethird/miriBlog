@@ -61,3 +61,8 @@ services:
         arguments: [~, AppBundle\Entity\Step, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Step }
+
+    admin.url_show:
+        class: Application\Sonata\UserBundle\Form\UrlType
+        tags:
+            - { name: form.type, alias: url_show }

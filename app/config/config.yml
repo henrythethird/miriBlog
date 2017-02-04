@@ -41,7 +41,7 @@ twig:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
-
+        - 'ApplicationSonataUserBundle:Form:url_show.html.twig'
 
 # Doctrine Configuration
 doctrine:
