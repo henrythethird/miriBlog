@@ -12,5 +12,8 @@
     <p>Hey, we just added some new content. Check it out!</p>
     {% for post in posts %}
         {% include 'post/show.html.twig' %}
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
     {% endfor %}
 {% endblock %}

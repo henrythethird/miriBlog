@@ -2,12 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
         {% block style %}
         body {
             margin: 10px;
             padding: 0;
+            background-color: #fafafa;
         }
 
         a {
@@ -25,12 +27,9 @@
             width: 600px;
         }
 
-        table.main tbody td {
-            height: 100px;
-        }
-
         td {
             vertical-align: top;
+            padding: 0;
         }
 
         .head {
@@ -40,6 +39,23 @@
             font-weight: bold;
             letter-spacing: 5px;
             padding: 10px;
+        }
+
+        hr {
+            background-color: #dddddd;
+            border: 0;
+            height: 1px;
+            color: #dddddd;
+        }
+
+        table.main tbody tr td {
+            background-color: white;
+            border-left: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+        }
+
+        table.main tbody tr.last td {
+            border-bottom: 1px solid #dddddd;
         }
 
         a.head {
@@ -76,37 +92,45 @@
 <table class="fullwidth"><tbody><tr><td align="center">
             <table class="main">
                 <thead>
-                <tr>
-                    <td class="center">
-                        {% block altMail %}
-                        {% endblock %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="center">
-                        <a class="head" href="http://www.kuchenkruemel.ch{{ path('home_index') }}">
-                            KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
+                    <tr>
+                        <td class="center">
+                            {% block altMail %}
+                            {% endblock %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="center">
-                        {% block content %}
-                        {% endblock %}
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="center">
+                            <a class="head" href="http://www.kuchenkruemel.ch{{ path('home_index') }}">
+                                KUCHENKRÜMEL<br>&amp;<br>ROSMARIN
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="last">
+                        <td class="center" style="padding: 0 20px;">
+                            {% block content %}
+                            {% endblock %}
+                        </td>
+                    </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="center" style="padding-bottom: 10px">
+                        <a target="_blank" href="https://www.instagram.com/_mii_riam_/">
+                            <i class="fa fa-2x fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <span style="width: 5px; display: inline-block">&nbsp;</span>
+                        <a target="_blank" href="https://www.facebook.com/RealFoodForRealPeople">
+                            <i class="fa fa-2x fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="center">
