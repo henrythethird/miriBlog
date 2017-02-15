@@ -52,6 +52,12 @@ class MailService
         $this->sendMessage(self::SUBJECT_UPDATE, $subscribes, 'mail/update.html.twig', [
             'posts' => $posts
         ]);
+
+        foreach ($posts as $post) {
+            $post->setDateMailPublished(new \DateTime());
+        }
+
+        $this->entityManager->flush();
     }
 
     /**
@@ -75,7 +81,6 @@ class MailService
 
             $this->mailer->send($message);
         }
-        $this->entityManager->flush();
     }
 
     private function createArchiveEntry($mail)

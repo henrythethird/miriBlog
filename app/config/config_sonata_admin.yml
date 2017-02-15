@@ -1,0 +1,21 @@
+sonata_admin:
+    title: Miri Blog
+    templates:
+        layout: ApplicationSonataUserBundle::admin.html.twig
+    dashboard:
+        groups:
+            User:
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - admin.subscribe
+            Blog:
+                items:
+                    - admin.category
+                    - admin.ingredient
+                    - admin.post
+                    - admin.recipe
+            Media:
+                items:
+                    - sonata.media.admin.media
+                    - sonata.classification.admin.category

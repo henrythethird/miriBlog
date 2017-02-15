@@ -58,6 +58,11 @@ class Post implements ContentInterface
     private $datePublished;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateMailPublished;
+
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="posts", cascade={"persist", "remove"})
      */
     private $categories;
@@ -249,6 +254,19 @@ class Post implements ContentInterface
     public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateMailPublished()
+    {
+        return $this->dateMailPublished;
+    }
+
+    public function setDateMailPublished(\DateTime $dateMailPublished = null)
+    {
+        $this->dateMailPublished = $dateMailPublished;
     }
 
 	public function __toString() {

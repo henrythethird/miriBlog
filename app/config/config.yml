@@ -2,9 +2,14 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: config_sonata_media.yml }
+    - { resource: config_sonata_admin.yml }
+    - { resource: config_sonata_formatter.yml }
+    - { resource: config_sonata_block.yml }
+    - { resource: config_ivory.yml }
+    - { resource: config_fos_user.yml }
+    - { resource: config_stof_doctrine.yml }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
 
@@ -18,21 +23,18 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
     assets: ~
 
-# Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
@@ -43,7 +45,6 @@ twig:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'ApplicationSonataUserBundle:Form:url_show.html.twig'
 
-# Doctrine Configuration
 doctrine:
     dbal:
         driver:   pdo_mysql
@@ -60,152 +61,9 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        # enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts: [admin]
-
-sonata_admin:
-    title: Miri Blog
-    templates:
-        layout: ApplicationSonataUserBundle::admin.html.twig
-    dashboard:
-        groups:
-            User:
-                items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
-            Blog:
-                items:
-                    - admin.category
-                    - admin.ingredient
-                    - admin.post
-                    - admin.recipe
-            Media:
-                items:
-                    - sonata.media.admin.media
-                    - sonata.classification.admin.category
-
-
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: Application\Sonata\UserBundle\Entity\User
-    group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
-        group_manager: sonata.user.orm.group_manager
-
-    service:
-        user_manager: sonata.user.orm.user_manager
-
-stof_doctrine_extensions:
-    default_locale: en
-    translation_fallback: true
-    orm:
-        default:
-            tree: true
-            timestampable: true
-            sluggable: true
-
-
-
-sonata_formatter:
-    formatters:
-        markdown:
-            service: sonata.formatter.text.markdown
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        text:
-            service: sonata.formatter.text.text
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        richhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        twig:
-            service: sonata.formatter.text.twigengine
-            extensions: []
-    ckeditor:
-        templates:
-            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
-            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
-
-sonata_media:
-    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
-    default_context: default # you need to set a context
-    providers:
-        image:
-            resizer: sonata.media.resizer.square
-    contexts:
-        default:
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
-            formats:
-                small:  { width: 200 , quality: 80}
-                medium: { width: 360 , quality: 80}
-                big:    { width: 720 , quality: 80}
-        sonata_collection:
-            providers:
-              - sonata.media.provider.image
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-
-        sonata_category:
-            providers:
-              - sonata.media.provider.image
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-    cdn:
-        server:
-            path: /uploads/media # http://media.sonata-project.org/
-
-    filesystem:
-        local:
-            directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     true
-
-ivory_ck_editor:
-    default_config: default
-    configs:
-        default:
-            # default toolbar plus Format button
-            toolbar:
-            - [Bold, Italic, Underline, -, Cut, Copy, Paste, PasteText, PasteFromWord, -, Undo, Redo, -, NumberedList, BulletedList, -, Outdent, Indent, -, Blockquote, -, Image, Link, Unlink, Table]
-            - [Format, Maximize, Source]
-
-            filebrowserBrowseRoute: admin_sonata_media_media_ckeditor_browser
-            filebrowserImageBrowseRoute: admin_sonata_media_media_ckeditor_browser
-            filebrowserImageBrowseRouteParameters:
-                provider: sonata.media.provider.image
-            filebrowserUploadRoute: admin_sonata_media_media_ckeditor_upload
-            filebrowserUploadRouteParameters:
-                provider: sonata.media.provider.file
-            filebrowserImageUploadRoute: admin_sonata_media_media_ckeditor_upload
-            filebrowserImageUploadRouteParameters:
-                provider: sonata.media.provider.image
-                context: default

@@ -27,6 +27,13 @@ class PostAdmin extends AbstractAdmin {
                         'data-date-format' => 'DD.MM.YYYY, HH:mm',
                     ],
                 ])
+                ->add('dateMailPublished', 'sonata_type_datetime_picker', [
+                    'required' => false,
+                    'format' => 'dd.MM.yyyy, HH:mm',
+                    'attr' => [
+                        'data-date-format' => 'DD.MM.YYYY, HH:mm',
+                    ],
+                ])
                 ->add('categories', null, [], [
                     'allow_add' => true
                 ])

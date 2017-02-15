@@ -62,6 +62,13 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Step }
 
+    admin.subscribe:
+        class: Application\Sonata\UserBundle\Admin\SubscribeAdmin
+        arguments: [~, AppBundle\Entity\Subscribe, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Subscribe }
+
+
     admin.url_show:
         class: Application\Sonata\UserBundle\Form\UrlType
         tags:

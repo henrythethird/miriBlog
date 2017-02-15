@@ -40,12 +40,7 @@ class PostRepository extends EntityRepository
     public function findSubscribePosts()
     {
         return $this->createQueryBuilder('p')
-            ->where('p.datePublished <= :DATE_TO')
-            ->andWhere('p.datePublished >= :DATE_FROM')
-            ->setParameters([
-                'DATE_FROM' => new \DateTime(),
-                'DATE_TO' => new \DateTime('now +1 day')
-            ])
+            ->where('p.dateMailPublished IS NULL')
             ->orderBy('p.datePublished')
             ->getQuery()
             ->getResult();
