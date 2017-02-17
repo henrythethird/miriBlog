@@ -37,7 +37,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
+    globals:
+        urlPrefix: "%base_url%"
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'

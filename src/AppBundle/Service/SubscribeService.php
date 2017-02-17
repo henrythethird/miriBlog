@@ -46,5 +46,6 @@ class SubscribeService
     public function dispatchConfirmEmail(Subscribe $subscribe)
     {
         $this->mail->sendConfirmMail($subscribe);
+        $this->mail->sendNewSubscriberMail($subscribe);
     }
 }

@@ -12,6 +12,7 @@ class MailService
 {
     const SUBJECT_UPDATE = 'We just added some new content - Subscription updates';
     const SUBJECT_CONFIRM = 'Welcome - Please confirm your subscription';
+    const SUBJECT_NEWSUB = "Hey :-) You just got a new subscriber.";
     const FROM_ADDRESS = 'info@kuchenkruemel.ch';
 
     /**
@@ -49,15 +50,22 @@ class MailService
      */
     public function sendUpdateMail($subscribes, $posts)
     {
-        $this->sendMessage(self::SUBJECT_UPDATE, $subscribes, 'mail/update.html.twig', [
-            'posts' => $posts
-        ]);
-
         foreach ($posts as $post) {
             $post->setDateMailPublished(new \DateTime());
         }
 
-        $this->entityManager->flush();
+        $this->sendMessage(self::SUBJECT_UPDATE, $subscribes, 'mail/update.html.twig', [
+            'posts' => $posts
+        ]);
+    }
+
+    public function sendNewSubscriberMail(Subscribe $subscribe)
+    {
+        $this->sendMessage(self::SUBJECT_NEWSUB, [
+            new Subscribe(self::FROM_ADDRESS)
+        ], 'mail/newSubscriber.html.twig', [
+            'subscribe' => $subscribe
+        ]);
     }
 
     /**
@@ -81,6 +89,8 @@ class MailService
 
             $this->mailer->send($message);
         }
+
+        $this->entityManager->flush();
     }
 
     private function createArchiveEntry($mail)

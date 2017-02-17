@@ -35,9 +35,10 @@ class Subscribe {
 	 */
 	private $date_created;
 
-	public function __construct() {
+	public function __construct($email = null) {
 	    $this->active = 0;
 		$this->date_created = new \DateTime();
+		$this->email = $email;
 	}
 
 	/**
