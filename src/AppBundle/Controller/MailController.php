@@ -46,7 +46,8 @@ class MailController extends BaseSubscribeController
      */
     public function unsubscribeAction(Subscribe $subscribe)
     {
-        $this->getDoctrine()->getManager()->remove($subscribe);
+        $subscribe->setActive(false);
+        $this->getDoctrine()->getManager()->flush();
 
         $this->addFlash('success', "Successfully unsubscribed! You will not receive any more messages.");
 
