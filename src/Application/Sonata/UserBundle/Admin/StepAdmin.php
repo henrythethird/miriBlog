@@ -11,6 +11,10 @@ class StepAdmin extends AbstractAdmin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
 			->add('description')
+			->add('hint', null, [
+				'required' => false
+			])
+			->add('invert_hint')
 			->add('position', 'hidden')
 		;
 	}

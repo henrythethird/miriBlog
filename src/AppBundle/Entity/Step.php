@@ -22,6 +22,16 @@ class Step {
 	private $description;
 
 	/**
+	 * @ORM\Column(type="text", nullable=true)
+	 */
+	private $hint;
+
+	/**
+	 * @ORM\Column(type="boolean")
+	 */
+	private $invert_hint = false;
+
+	/**
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="steps")
 	 * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
 	 */
@@ -68,16 +78,44 @@ class Step {
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function getDescription() {
 		return $this->description;
 	}
 
 	/**
-	 * @param mixed $description
+	 * @param string $description
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getHint() {
+		return $this->hint;
+	}
+
+	/**
+	 * @param string $hint
+	 */
+	public function setHint($hint) {
+		$this->hint = $hint;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getInvertHint() {
+		return $this->invert_hint;
+	}
+
+	/**
+	 * @param boolean $invert_hint
+	 */
+	public function setInvertHint($invert_hint) {
+		$this->invert_hint = $invert_hint;
 	}
 }
