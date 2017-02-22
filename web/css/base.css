@@ -354,6 +354,10 @@ ul.archiveList, ul.archiveList ul {
 
 }
 
+#postContainer .piItem a {
+    background-color: transparent;
+}
+
 .postIngredient {
     background-color: #f2f0ed;
     padding: 5px;
