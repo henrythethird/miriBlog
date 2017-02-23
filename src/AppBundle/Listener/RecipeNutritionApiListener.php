@@ -5,6 +5,7 @@ namespace AppBundle\Listener;
 use AppBundle\Entity\Recipe;
 use AppBundle\Service\NutritionApiService;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Monolog\Logger;
 
 class RecipeNutritionApiListener
 {
@@ -13,9 +14,12 @@ class RecipeNutritionApiListener
      */
     private $api;
 
-    public function __construct(NutritionApiService $apiService)
+    private $logger;
+
+    public function __construct(NutritionApiService $apiService, Logger $logger)
     {
         $this->api = $apiService;
+        $this->logger = $logger;
     }
 
     public function preUpdate(PreUpdateEventArgs $eventArgs)
@@ -25,8 +29,14 @@ class RecipeNutritionApiListener
             return;
         }
 
-        $entity->setNutritionCached(
-            $this->api->fetch($entity, false)
-        );
+        try {
+            $entity->setNutritionCached(
+                $this->api->fetch($entity, false)
+            );
+        } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage(), [
+                'cause' => $exception->getTraceAsString()
+            ]);
+        }
     }
 }

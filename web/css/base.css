@@ -165,6 +165,10 @@ div#formRightText {
     .background-image-thumb {
         width: 50%;
     }
+
+    .recipeNutrition {
+        padding-right: 15px;
+    }
 }
 
 .rightContainer {

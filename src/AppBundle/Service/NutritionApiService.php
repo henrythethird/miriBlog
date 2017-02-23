@@ -22,6 +22,8 @@ class NutritionApiService
 
     /**
      * @param Recipe $recipe
+     * @param bool $cache
+     * @throws \Exception
      * @return string
      */
     public function fetch(Recipe $recipe, $cache = true)
@@ -34,14 +36,10 @@ class NutritionApiService
             return $recipe->getNutritionCached();
         }
 
-        try {
-            return $this->client
-                ->get($this->constructUri(10580))
-                ->getBody()
-                ->getContents();
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
+        return $this->client
+            ->get($this->constructUri(10580))
+            ->getBody()
+            ->getContents();
     }
 
     private function constructUri($id)

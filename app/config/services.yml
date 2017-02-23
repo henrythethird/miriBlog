@@ -7,7 +7,7 @@ services:
 
     app_bundle.recipe_nutrition_api_listener:
         class: AppBundle\Listener\RecipeNutritionApiListener
-        arguments: ["@app_bundle.nutrition_api"]
+        arguments: ["@app_bundle.nutrition_api", "@logger"]
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
