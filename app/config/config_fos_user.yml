@@ -5,8 +5,5 @@ fos_user:
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager
-    from_email:
-        address:        info@kuchenkruemel.ch
-        sender_name:    Kuchenkruemel
     service:
         user_manager: sonata.user.orm.user_manager
