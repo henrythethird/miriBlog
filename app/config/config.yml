@@ -9,6 +9,7 @@ imports:
     - { resource: config_ivory.yml }
     - { resource: config_fos_user.yml }
     - { resource: config_stof_doctrine.yml }
+    - { resource: config_guzzle.yml }
 
 parameters:
     locale: en

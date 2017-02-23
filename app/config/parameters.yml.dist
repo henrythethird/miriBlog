@@ -10,3 +10,7 @@ parameters:
     mailer_password:   ~
     secret:            ThisTokenIsNotSoSecretChangeIt
     base_url:          http://www.kuchenkruemel.ch
+    nutrition_url:     null
+    nutrition_endpoint: /api/recipetable
+    nutrition_user:    null
+    nutrition_pass:    null

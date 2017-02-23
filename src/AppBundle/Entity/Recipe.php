@@ -61,6 +61,16 @@ class Recipe implements ContentInterface {
 	 */
 	private $content;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $nutritionId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $nutritionCached;
+
 	public function __construct() {
 		$this->recipeIngredients = new ArrayCollection();
 		$this->steps = new ArrayCollection();
@@ -174,4 +184,36 @@ class Recipe implements ContentInterface {
 	public function removeRecipeIngredient(RecipeIngredient $postIngredient) {
 		$this->recipeIngredients->removeElement($postIngredient);
 	}
+
+    /**
+     * @return string
+     */
+    public function getNutritionId()
+    {
+        return $this->nutritionId;
+    }
+
+    /**
+     * @param string $nutritionId
+     */
+    public function setNutritionId($nutritionId)
+    {
+        $this->nutritionId = $nutritionId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNutritionCached()
+    {
+        return $this->nutritionCached;
+    }
+
+    /**
+     * @param string $nutritionCached
+     */
+    public function setNutritionCached($nutritionCached)
+    {
+        $this->nutritionCached = $nutritionCached;
+    }
 }

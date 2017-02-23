@@ -35,7 +35,7 @@ class AppKernel extends Kernel
 	        new Sonata\ClassificationBundle\SonataClassificationBundle(),
 	        new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
 	        new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
-
+            new EightPoints\Bundle\GuzzleBundle\GuzzleBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
