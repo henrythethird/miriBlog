@@ -14,6 +14,9 @@ class RecipeNutritionApiListener
      */
     private $api;
 
+    /**
+     * @var Logger
+     */
     private $logger;
 
     public function __construct(NutritionApiService $apiService, Logger $logger)
