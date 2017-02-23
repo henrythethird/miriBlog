@@ -169,6 +169,34 @@ div#formRightText {
     .recipeNutrition {
         padding-right: 15px;
     }
+
+    .step .hint {
+        position: absolute;
+        left: 100%;
+        width: 250px;
+        top: 50%;
+        padding-left: 45px;
+        padding-top: 40px;
+        background-image: url(/images/arrow.png);
+        background-position: top left;
+        background-size: 40px 40px;
+        background-repeat: no-repeat;
+    }
+
+    .step .hint.right {
+        left: auto;
+        right: 100%;
+        padding-left: 0;
+        padding-right: 45px;
+        background-image: url(/images/arrow_right.png);
+        background-position: top right;
+        text-align: right;
+    }
+}
+
+.step .hint {
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
 }
 
 .rightContainer {
@@ -314,31 +342,6 @@ ul.archiveList, ul.archiveList ul {
     padding-right: 5px;
     height: 100%;
     position: absolute;
-}
-
-.step .hint {
-    position: absolute;
-    left: 100%;
-    width: 250px;
-    top: 50%;
-    padding-left: 45px;
-    padding-top: 40px;
-    background-image: url(/images/arrow.png);
-    background-position: top left;
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-}
-
-.step .hint.right {
-    left: auto;
-    right: 100%;
-    padding-left: 0;
-    padding-right: 45px;
-    background-image: url(/images/arrow_right.png);
-    background-position: top right;
-    text-align: right;
 }
 
 .clearfix {
