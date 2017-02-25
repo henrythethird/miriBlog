@@ -51,12 +51,23 @@
                     {% endfor %}
                 </div>
             </div>
+            {% set nutritionInformation = recipe.nutritionCached %}
+
+            {% if nutritionInformation %}
+            <div class="col-xs-12 col-md-6">
+                <div class="row recipeNutrition">
+                    {{ nutritionInformation|raw }}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="col-xs-12 {% if nutritionInformation %}col-md-6{% else %}row{% endif %}">
             {% if recipe.content %}
-                <br>
                 <div class="recipeAppendix">
                 {{ recipe.content|raw }}
                 </div>
             {% endif %}
+            </div>
         {% endfor %}
     </div>
     <br>

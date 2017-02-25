@@ -1,0 +1,10 @@
+guzzle:
+    logging: true
+
+    clients:
+        api_nutrition:
+            base_url: "%nutrition_url%"
+            options:
+                auth:
+                    - "%nutrition_user%"
+                    - "%nutrition_pass%"

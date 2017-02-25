@@ -16,6 +16,7 @@ class RecipeAdmin extends AbstractAdmin {
 			->add('feedsNPeople', 'text', [
 				'required' => false
 			])
+            ->add('nutritionId')
 			->add('recipeIngredients', 'sonata_type_collection', [
 				'by_reference' => false
 			], [
