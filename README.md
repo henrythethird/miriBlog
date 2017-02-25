@@ -1,7 +1,7 @@
 # Kchenkrümel und Rosmarin
 
 This is a quite simple blog application I develop for my girlfriend. The
-productive version can be found (here)[http://kuchenkruemel.ch].
+productive version can be found [here](http://kuchenkruemel.ch).
 
 ## Requirements
 This is a symfony 3 project, so you can run the following command to
