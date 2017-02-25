@@ -2,11 +2,12 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Aggregate\ArchiveAggregate;
+use AppBundle\Aggregate\PostAggregate;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class PostRepository extends EntityRepository
@@ -20,10 +21,26 @@ class PostRepository extends EntityRepository
 	 */
     public function findAllFirstPageResults()
     {
-        return $this->createSortedQueryBuilder()
-            ->setMaxResults(self::NUM_FIRSTPAGE_RESULTS)
-	        ->getQuery()
-	        ->getResult();
+    	return $this->findAllFirstPageResultsQb()
+		    ->getQuery()
+		    ->getResult();
+    }
+
+	public function findAllFirstPageResultsPaginator($offset)
+	{
+		return $this->getResultsPaginator(
+			$this->findAllFirstPageResultsQb($offset),
+			self::NUM_FIRSTPAGE_RESULTS
+		);
+    }
+
+    private function findAllFirstPageResultsQb($offset = 0)
+    {
+	    return $this->queryBuilderOffset(
+		    $this->createSortedQueryBuilder(),
+		    $offset,
+		    self::NUM_FIRSTPAGE_RESULTS
+	    );
     }
 
 	public function findRecentPosts() {
@@ -66,18 +83,22 @@ class PostRepository extends EntityRepository
 
 	/**
 	 * @param $offset
-	 *
-	 * @return ArchiveAggregate
+	 * @return PostAggregate
 	 */
 	public function findArchiveResultsPaginator($offset) {
-		$queryBuilder = $this->findArchiveReultsQb($offset);
+		return $this->getResultsPaginator(
+			$this->findArchiveReultsQb($offset),
+			self::ARCHIVE_LIMIT
+		);
+    }
 
+    private function getResultsPaginator(QueryBuilder $queryBuilder, $numItems) {
 		$paginator = new Paginator($queryBuilder);
 
-		return new ArchiveAggregate(
-			ceil($paginator->count() / self::ARCHIVE_LIMIT),
-			$paginator->getQuery()->getResult()
-		);
+	    return new PostAggregate(
+		    ceil($paginator->count() / $numItems),
+		    $paginator->getQuery()->getResult()
+	    );
     }
 
 	/**
@@ -96,11 +117,17 @@ class PostRepository extends EntityRepository
 	 * @return \Doctrine\ORM\QueryBuilder
 	 */
 	private function findArchiveReultsQb($offset = 0) {
-		$queryBuilder = $this->createSortedQueryBuilder()
-			->setMaxResults(self::ARCHIVE_LIMIT)
-			->setFirstResult(self::ARCHIVE_LIMIT * $offset);
+		return $this->queryBuilderOffset(
+			$this->createSortedQueryBuilder(),
+			$offset,
+			self::ARCHIVE_LIMIT
+		);
+	}
 
-		return $queryBuilder;
+	private function queryBuilderOffset(QueryBuilder $queryBuilder, $offset, $increment) {
+		return $queryBuilder
+			->setMaxResults($increment)
+			->setFirstResult($increment * $offset);
 	}
 
 	/**

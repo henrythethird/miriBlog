@@ -7,6 +7,7 @@ use AppBundle\Entity\Post;
 use AppBundle\Form\ContactForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,6 +33,22 @@ class HomeController extends BaseSubscribeController
 		    'recentPosts' => $recentPosts,
 		    'subscribeForm' => $this->createSubscribeForm()->createView()
 	    ];
+    }
+
+	/**
+	 * @Route("/repopulate/{offset}", name="index_repopulate")
+	 * @Route("/repopulate/", name="index_repopulate_sans")
+	 */
+	public function indexRepopulate($offset = 0)
+	{
+		$postAggregate = $this->getDoctrine()
+			->getRepository(Post::class)
+			->findAllFirstPageResultsPaginator($offset);
+
+		return $this->createPaginatorResponse(
+			"home/batch.html.twig",
+			$postAggregate
+		);
     }
 
     /**

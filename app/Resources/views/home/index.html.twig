@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block containerLeft %}
-    {% for post in posts %}
-        {% include 'post/show.html.twig' %}
-    {% endfor %}
+    <div id="batchContainer" data-index="1" data-lock="" data-count="99">
+        {% include 'home/batch.html.twig' %}
+    </div>
+    <div class="text-center">
+        <button id="loadMore" class="btn btn-default" data-loading-text="Loading...">Load more...</button>
+    </div>
 {% endblock %}
 
 {% block containerRight %}
@@ -21,4 +24,12 @@
             <div class="image" style="background-image: url({% path post.picture, 'reference' %})"></div>
         </a>
     {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
+    <script type="text/javascript">
+        initializeScrollSpy("{{ path('index_repopulate_sans') }}");
+    </script>
 {% endblock %}
