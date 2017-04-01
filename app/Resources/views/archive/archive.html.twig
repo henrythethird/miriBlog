@@ -2,28 +2,32 @@
 
 {% block title %}{% if activeCategory %}{{ activeCategory.name }}{% else %}All Categories{% endif %} - Archive - {% endblock %}
 
+{% set iterationWidth = 5 %}
 {% block containerLeft %}
     <div id="batchContainer" data-index="1" data-lock="" data-count="99">
         <div>
             {% set loopLength = categories|length %}
-            {% set lastIteration = loopLength // 4 %}
+            {% set lastIteration = loopLength // iterationWidth %}
             {% set width = '' %}
             {% for category in categories if category != activeCategory %}
-                {% set currentIteration = loop.index0 // 4 %}
-                {% if currentIteration == lastIteration and not loop.index0 % 4 %}
+                {% set currentIteration = loop.index0 // iterationWidth %}
+                {% if currentIteration == lastIteration and not loop.index0 % iterationWidth %}
                     {% set width = 'width: ' ~ (1/(loopLength - loop.index0)*100) ~ '%' %}
                 {% endif %}
                 <a href="{{ path('archive_slug', {slug: category.slug}) }}">
-                    <div class="category" style="background-color: {{ category.color }}; {{ width }}">
-                        {{ category.name }}
+                    <div class="category" style="{{ width }}">
+                        {% include 'archive/category.html.twig' %}
                     </div>
                 </a>
             {% endfor %}
 
             {% if activeCategory %}
                 <a href="{{ path('archive') }}">
-                    <div class="category" style="background-color: #fef2c7; {% if not width %}width: 100%{% else %}{{ width }}{% endif %}">
-                        All Categories
+                    <div class="category" style="{% if not width %}width: 100%{% else %}{{ width }}{% endif %}">
+                        <img class="categroyImage" src="{{ asset('images/categories/all.png') }}" />
+                        <div>
+                            All Categories
+                        </div>
                     </div>
                 </a>
             {% endif %}
@@ -31,12 +35,15 @@
 
         <div class="categoryPlaceholder">
         {% if activeCategory %}
-            <div class="category categoryTotal" style="background-color: {{ activeCategory.color }}">
-                {{ activeCategory.name }}
+            <div class="category categoryTotal">
+                {% include 'archive/category.html.twig' with {category: activeCategory} %}
             </div>
         {% else %}
-            <div class="category categoryTotal" style="background-color: #fef2c7">
-                All Categories
+            <div class="category categoryTotal">
+                <img class="categroyImage" src="{{ asset('images/categories/all.png') }}" />
+                <div>
+                    All Categories
+                </div>
             </div>
         {% endif %}
         </div>

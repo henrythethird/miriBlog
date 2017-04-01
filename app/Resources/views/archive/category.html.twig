@@ -1,0 +1,6 @@
+{% if category.icon %}
+    <img class="categroyImage" src="{{ asset(category.icon) }}" />
+{% else %}
+    <div class="categroyImage"></div>
+{% endif %}
+<div>{{ category.name }}</div>

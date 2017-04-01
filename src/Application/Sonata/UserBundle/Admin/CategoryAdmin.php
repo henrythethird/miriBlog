@@ -2,6 +2,7 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
+use AppBundle\Form\IconType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,8 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CategoryAdmin extends AbstractAdmin {
 	protected function configureFormFields(FormMapper $form) {
-		$form->add('name', TextType::class)
-			->add('color', TextType::class);
+		$form
+            ->add('name', TextType::class)
+			->add('icon', IconType::class, [
+			    'required' => false
+            ]);
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -21,6 +25,9 @@ class CategoryAdmin extends AbstractAdmin {
 
 	protected function configureListFields(ListMapper $listMapper)
 	{
-		$listMapper->addIdentifier('name');
+		$listMapper
+            ->addIdentifier('name')
+            ->add('icon')
+        ;
 	}
 }

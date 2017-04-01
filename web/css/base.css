@@ -274,8 +274,9 @@ div#formRightText {
 }
 
 .category {
-    width: 25%;
-    height: 50px;
+    width: 20%;
+    padding: 20px 0;
+    height: 150px;
     line-height: 50px;
     overflow: hidden;
     -ms-text-overflow: ellipsis;
@@ -286,6 +287,11 @@ div#formRightText {
     float: left;
     text-align: center;
     opacity: 1;
+}
+
+.category .categroyImage {
+    width: 50px;
+    height: 50px;
 }
 
 .category:hover {
