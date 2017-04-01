@@ -276,7 +276,7 @@ div#formRightText {
 .category {
     width: 16.666666666666666666666%;
     padding: 20px 0;
-    height: 150px;
+    height: 135px;
     line-height: 50px;
     overflow: hidden;
     -ms-text-overflow: ellipsis;
@@ -310,6 +310,7 @@ div#formRightText {
     width: 100%;
     position: relative;
     z-index: 9;
+    background-color: white;
 }
 
 ul.archiveList, ul.archiveList ul {
