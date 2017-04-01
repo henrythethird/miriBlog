@@ -3,11 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Aggregate\Contact;
+use AppBundle\Aggregate\PostAggregate;
 use AppBundle\Entity\Post;
 use AppBundle\Form\ContactForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
@@ -31,6 +33,22 @@ class HomeController extends Controller
             'posts' => $posts,
 		    'recentPosts' => $recentPosts,
 	    ];
+    }
+
+	/**
+	 * @Route("/repopulate/{offset}", name="index_repopulate")
+	 * @Route("/repopulate/", name="index_repopulate_sans")
+	 */
+	public function indexRepopulate($offset = 0)
+	{
+		$postAggregate = $this->getDoctrine()
+			->getRepository(Post::class)
+			->findAllFirstPageResultsPaginator($offset);
+
+		return $this->createPaginatorResponse(
+			"home/batch.html.twig",
+			$postAggregate
+		);
     }
 
     /**
@@ -57,5 +75,14 @@ class HomeController extends Controller
         return [
         	'contactForm' => $contactForm->createView()
         ];
+    }
+
+    protected function createPaginatorResponse($view, PostAggregate $postAggregate) {
+        return new JsonResponse([
+            'view' => $this->renderView($view, [
+                'posts' => $postAggregate->getData()
+            ]),
+            'count' => $postAggregate->getCount()
+        ]);
     }
 }

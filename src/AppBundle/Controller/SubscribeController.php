@@ -23,8 +23,7 @@ class SubscribeController extends Controller {
     /**
      * @return Form
      */
-    protected function createSubscribeForm()
-    {
+    protected function createSubscribeForm() {
         $subscribe = new Subscribe();
         $subscribeForm = $this->createForm(SubscribeForm::class, $subscribe, [
             'action' => $this->generateUrl('mail_subscribe'),

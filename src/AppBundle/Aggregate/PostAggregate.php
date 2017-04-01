@@ -4,7 +4,7 @@ namespace AppBundle\Aggregate;
 
 use AppBundle\Entity\Post;
 
-class ArchiveAggregate {
+class PostAggregate {
 	/**
 	 * @var int
 	 */
