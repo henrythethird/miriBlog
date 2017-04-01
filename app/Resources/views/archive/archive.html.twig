@@ -84,20 +84,20 @@
         <li>
             {{ year }}
             <ul>
-                {% for month,monthArchive in yearArchive %}
-                    <li>
-                        {{ month }}
-                        <ul>
-                            {% for archivePost in monthArchive %}
-                                <li>
-                                    <a href="{{ path('blog_post', {'slug': archivePost.slug}) }}">
-                                        {{ archivePost.datePublished|date('d.m.Y') }}
-                                    </a>
-                                </li>
-                            {% endfor  %}
-                        </ul>
-                    </li>
-                {% endfor %}
+            {% for month,monthArchive in yearArchive %}
+                <li>
+                    {{ month }}
+                    <ul>
+                    {% for archivePost in monthArchive %}
+                        <li>
+                            <a href="{{ path('blog_post', {'slug': archivePost.slug}) }}">
+                                {{ archivePost.datePublished|date('d.m.Y') }}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                    </ul>
+                </li>
+            {% endfor %}
             </ul>
         </li>
     {% endfor %}
