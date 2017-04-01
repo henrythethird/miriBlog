@@ -6,10 +6,9 @@ use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class IngredientController extends BaseSubscribeController  {
+class IngredientController extends Controller  {
 	/**
 	 * @Route("/ingredient", name="ingredient_index")
 	 * @Route("/ingredient/{slug}", name="ingredient_filter")
@@ -31,7 +30,6 @@ class IngredientController extends BaseSubscribeController  {
 			'ingredients' => $ingredients,
 			'activeIngredient' => $ingredient,
 			'posts' => $posts,
-			'subscribeForm' => $this->createSubscribeForm()->createView()
 		];
 	}
 }

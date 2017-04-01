@@ -7,10 +7,10 @@ use AppBundle\Entity\Post;
 use AppBundle\Form\ContactForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class HomeController extends BaseSubscribeController
+class HomeController extends Controller
 {
     /**
      * @Route("/", name="home_index")
@@ -30,7 +30,6 @@ class HomeController extends BaseSubscribeController
 	    return [
             'posts' => $posts,
 		    'recentPosts' => $recentPosts,
-		    'subscribeForm' => $this->createSubscribeForm()->createView()
 	    ];
     }
 

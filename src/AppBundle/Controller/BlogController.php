@@ -5,10 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class BlogController extends BaseSubscribeController
+class BlogController extends Controller
 {
     /**
      * @Route("/blog/{slug}", name="blog_post")
@@ -18,7 +17,6 @@ class BlogController extends BaseSubscribeController
     {
 		return [
 			'post' => $post,
-			'subscribeForm' => $this->createSubscribeForm()->createView()
 		];
     }
 }

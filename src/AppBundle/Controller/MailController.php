@@ -6,15 +6,11 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\MailArchive;
 use AppBundle\Entity\Subscribe;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\ConstraintViolation;
 
-class MailController extends BaseSubscribeController
+class MailController extends SubscribeController
 {
     /**
      * @Route("/mail/view/{id}", name="mail_view")

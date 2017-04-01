@@ -3,18 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
-use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Post;
-use Doctrine\DBAL\Query\QueryBuilder;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArchiveController extends BaseSubscribeController {
+class ArchiveController extends Controller {
 	private static $months = [
 		'01' => 'Januar',
 		'02' => 'Februar',
@@ -59,7 +54,6 @@ class ArchiveController extends BaseSubscribeController {
 			'categories' => $categories,
 			'activeCategory' => $filterCategory,
 			'archive' => $aggregate,
-			'subscribeForm' => $this->createSubscribeForm()->createView()
 		];
 	}
 

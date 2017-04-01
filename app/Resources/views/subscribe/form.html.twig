@@ -1,0 +1,7 @@
+{{ form_start(subscribeForm) }}
+<div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+    {{ form_widget(subscribeForm.email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
+</div>
+<button style="float: right" type="submit" class="btn">Subscribe Now <i class="fa fa-envelope-o"></i></button>
+{{ form_end(subscribeForm) }}
