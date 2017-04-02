@@ -16,7 +16,7 @@ function initializeScrollSpy(url) {
 
         var index = batchContainer.attr('data-index');
 
-        if (index >= count) {
+        if (parseInt(index) >= parseInt(count)) {
             loadMore.hide();
             return;
         }
