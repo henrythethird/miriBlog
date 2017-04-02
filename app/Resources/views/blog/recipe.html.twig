@@ -12,10 +12,10 @@
                 <b>{{ recipeIngredient.unit }}</b>
                 {% if enableLinks %}<a href="{{ path('ingredient_filter', {'slug': recipeIngredient.ingredient.slug}) }}">{% endif %}
                     <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
-                    {% if enableLinks %}</a>{% endif %}
+                {% if enableLinks %}</a>{% endif %}
                 <span>
-                            {{ recipeIngredient.comment }}
-                        </span>
+                    {{ recipeIngredient.comment }}
+                </span>
             </div>
         {% endfor %}
     </div>
@@ -37,4 +37,22 @@
             </div>
         {% endfor %}
     </div>
+</div>
+
+{% set nutritionInformation = recipe.nutritionCached %}
+
+{% if nutritionInformation %}
+    <div class="col-xs-12 col-md-6">
+        <div class="row recipeNutrition">
+            {{ nutritionInformation|raw }}
+        </div>
+    </div>
+{% endif %}
+
+<div class="col-xs-12 {% if nutritionInformation %}col-md-6{% else %}row{% endif %}">
+    {% if recipe.content %}
+        <div class="recipeAppendix">
+            {{ recipe.content|raw }}
+        </div>
+    {% endif %}
 </div>

@@ -1,6 +1,15 @@
 {% if enableLinks is not defined %}
     {% set enableLinks = true %}
 {% endif %}
+
+<span class="pull-right tag">
+    <a href="{{ path('print_post', {slug: post.slug}) }}" class="btn btn-default btn-tag" tabindex="0"
+       data-toggle="popover" data-trigger="hover" data-placement="bottom" title="PDF"
+       data-content="Post als PDF herunterladen" style="margin-top: 20px">
+        <img src="{{ asset('images/categories/pdf.png') }}" alt="PDF" />
+    </a>
+</span>
+
 <h1>{{ post.title }}</h1>
 <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
 <div id="postContainer">
@@ -11,30 +20,15 @@
         <br>
         <span class="smallLine"></span>
         <br><br>
-        <!--<span class="pull-right tag">
-            <a href="{{ path('print_post', {slug: post.slug}) }}" class="btn btn-default btn-tag" tabindex="0" data-toggle="popover" data-trigger="hover"
-               data-placement="bottom" title="PDF" data-content="Rezept als PDF herunterladen">
+        <span class="pull-right tag">
+            <a href="{{ path('print_recipe', {id: recipe.id}) }}" class="btn btn-default btn-tag" tabindex="0"
+               data-toggle="popover" data-trigger="hover" data-placement="bottom" title="PDF"
+               data-content="Rezept als PDF herunterladen">
                 <img src="{{ asset('images/categories/pdf.png') }}" alt="PDF" />
             </a>
-        </span>-->
+        </span>
         {% include 'blog/recipe.html.twig' %}
-        {% set nutritionInformation = recipe.nutritionCached %}
 
-        {% if nutritionInformation %}
-            <div class="col-xs-12 col-md-6">
-                <div class="row recipeNutrition">
-                    {{ nutritionInformation|raw }}
-                </div>
-            </div>
-        {% endif %}
-
-        <div class="col-xs-12 {% if nutritionInformation %}col-md-6{% else %}row{% endif %}">
-            {% if recipe.content %}
-                <div class="recipeAppendix">
-                    {{ recipe.content|raw }}
-                </div>
-            {% endif %}
-        </div>
         {% set prevRecipe = recipe %}
     {% endfor %}
 
