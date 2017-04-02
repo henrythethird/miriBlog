@@ -64,15 +64,20 @@ class PostAdmin extends AbstractAdmin {
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
-		$datagridMapper->add('title');
+		$datagridMapper
+            ->add('title')
+            ->add('categories');
 	}
 
 	protected function configureListFields(ListMapper $listMapper)
 	{
-		$listMapper->addIdentifier('title')
-			->addIdentifier('datePublished', 'date', [
-                'format' => 'dd.MM.yyyy, HH:mm',
-			])
+		$listMapper
+            ->addIdentifier('title')
+            ->add('categories')
+            ->add('datePublished', 'date', [
+                'pattern' => 'dd.MM.yyyy',
+                'timezone' => 'Europe/Paris',
+            ])
         ;
 	}
 }
