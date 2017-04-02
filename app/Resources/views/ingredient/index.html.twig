@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ingredient {% if activeIngredient %}{{ activeIngredient.name }}{% endif %}{% endblock %}
+{% block title %}{% if not activeIngredient %}Zutaten{% else %}{{ activeIngredient.name }}{% endif %}{% endblock %}
 
 {% block containerLeft %}
-    <h1>Ingredient Index</h1>
+    <h1>Zutaten</h1>
 
-    <div>Click to jump to letter:
+    <div>Zu Zutaten springen:
     {% for letter in letters %}
         <a class="jump" href="#jump-{{ letter.letter }}">
             {{ letter.letter }}
@@ -26,14 +26,14 @@
         {% include 'archive/batch.html.twig' %}
     {% elseif activeIngredient %}
         <p>
-            No posts found with ingredient "{{ activeIngredient.name }}"
+            Oops nichts gefunden "{{ activeIngredient.name }}"
         </p>
     {% endif %}
 
     <div style="clear: both;">
     {% set prevLetter = '' %}
     {% for ingredient in ingredients %}
-        {% set letter = ingredient|slice(0,1) %}
+        {% set letter = ingredient|slice(0,1)|upper %}
         {% if letter != prevLetter %}
             <div class="bothMarg">
                 <br>

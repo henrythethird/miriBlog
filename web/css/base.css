@@ -94,8 +94,14 @@ div#headerRow a {
     pointer-events: initial;
 }
 
+div#headerRow a img {
+    width: 15px;
+    height: 15px;
+    vertical-align: text-bottom;
+}
+
 div#headerRow a.leftItem {
-    padding-right: 40px;
+    padding-right: 27px;
     font-size: 13px;
 }
 
@@ -427,4 +433,10 @@ ul.archiveList, ul.archiveList ul {
 
 .ingredientList {
     padding-bottom: 40px;
+}
+
+.navbar-default .navbar-nav > li > a img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }

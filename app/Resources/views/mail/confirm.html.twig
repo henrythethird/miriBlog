@@ -3,12 +3,12 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block altMail %}
-    <a href="{{ urlPrefix }}{{ path('mail_view', {'id': archiveUuid}) }}">If the E-Mail doesn't display correctly, click here</a>
+    <a href="{{ urlPrefix }}{{ path('mail_view', {'id': archiveUuid}) }}">Wenn die Nachricht nicht korrekt angezeigt wird, hier klicken</a>
 {% endblock %}
 
 {% block content %}
-    <p>Welcome to our mailing list. Please click the link below to confirm your subscription.</p>
-    <a href="{{ urlPrefix }}{{ path('mail_confirm', {'id': subscribeUuid}) }}">Click here to confirm :-)</a>
+    <p>Willkommen zum Newsletter. Bestätige die Anmeldung zum Newletter mit diesem Link:</p>
+    <a href="{{ urlPrefix }}{{ path('mail_confirm', {'id': subscribeUuid}) }}">Hier klicken zum bestätigen</a>
     <br>
     <br>
 {% endblock %}

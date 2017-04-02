@@ -45,7 +45,7 @@ class MailController extends SubscribeController
         $subscribe->setActive(false);
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', "Successfully unsubscribed! You will not receive any more messages.");
+        $this->addFlash('success', "Erfolgreich abgemeldet! Du wirst keine weiteren Nachrichten erhalten.");
 
         return $this->redirectToRoute('home_index');
     }
@@ -58,7 +58,7 @@ class MailController extends SubscribeController
         $subscribe->setActive(true);
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', "Successfully confirmed! You will now be notified of new content.");
+        $this->addFlash('success', "Erfolgreich verifiziert! Du wirst Meldungen erhalten, wenn neue Beiträge erfasst werden.");
 
         return $this->redirectToRoute('home_index');
     }
@@ -73,7 +73,7 @@ class MailController extends SubscribeController
         $entityManager->persist($entity);
         $entityManager->flush();
 
-        $this->addFlash('success', "Successfully subscribed! An email with a confirmation link has been sent to you");
+        $this->addFlash('success', "Erfolgreich abonniert! Ein E-Mail mit einem Bestätigungslink ist unterwegs.");
 
         $this->sendConfirmationMail($entity);
     }
@@ -95,7 +95,7 @@ class MailController extends SubscribeController
             return;
         }
 
-        $this->addFlash('warning', "The email address is in use but deactivated. Resending confirmation link.");
+        $this->addFlash('warning', "Die E-Mail-Adresse ist bereits registriert, aber deaktiviert. Ein neuer Bestätigungslink ist unterwegs.");
         $this->sendConfirmationMail($subscribe);
     }
 
@@ -104,7 +104,7 @@ class MailController extends SubscribeController
         if (!$subscribeForm->getErrors(true)) return;
 
         foreach ($subscribeForm->getErrors(true) as $error) {
-            $this->addFlash('danger', "There was an error when you tried to subscribe: ".$error->getMessage());
+            $this->addFlash('danger', "Es gab einen Fehler beim abonnieren: ".$error->getMessage());
         }
     }
 

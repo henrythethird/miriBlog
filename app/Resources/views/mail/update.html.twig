@@ -3,11 +3,11 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block altMail %}
-    <a href="{{ urlPrefix }}{{ path('mail_view', {'id': archiveUuid}) }}">If the E-Mail doesn't display correctly, click here</a>
+    <a href="{{ urlPrefix }}{{ path('mail_view', {'id': archiveUuid}) }}">Wenn die Nachricht nicht korrekt angezeigt wird, hier klicken</a>
 {% endblock %}
 
 {% block content %}
-    <p>Hey, we just added some new content. Check it out :-)</p>
+    <p>Es gibt Neuigkeiten. Check it out :-)</p>
     {% for post in posts %}
         {% include 'post/show.html.twig' %}
         {% if not loop.last %}

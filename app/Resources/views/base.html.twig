@@ -33,17 +33,17 @@
             <div id="wholeContainer">
                 <div id="headerRow" class="hidden-sm hidden-xs">
                     <a class="leftItem" href="{{ path('home_index') }}">
-                        HOME
-                    </a>
-                    <a class="leftItem" href="{{ path('home_about') }}">
-                        ABOUT
+                        <img src="{{ asset('images/categories/home.png') }}" /> HOME
                     </a>
                     <a class="leftItem" href="{{ path('archive') }}">
-                        ARCHIVE
+                        <img src="{{ asset('images/categories/archive.png') }}" /> ARCHIV
+                    </a>
+                    <a class="leftItem" href="{{ path('ingredient_index') }}">
+                        <img src="{{ asset('images/categories/ingredients.png') }}" /> ZUTATEN
                     </a>
 
-                    <a style="margin-left: 490px" class="leftItem" href="{{ path('ingredient_index') }}">
-                        INGREDIENTS
+                    <a style="margin-left: 445px" class="leftItem" href="{{ path('home_about') }}">
+                        <img src="{{ asset('images/categories/about.png') }}" /> ÜBER MICH
                     </a>
 
                     <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
@@ -73,13 +73,28 @@
                                 </button>
                             </div>
 
-                            <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="{{ path('home_index') }}">Home</a></li>
-                                    <li><a href="{{ path('home_about') }}">About</a></li>
-                                    <li><a href="{{ path('archive') }}">Archive</a></li>
-                                    <li><a href="{{ path('ingredient_index') }}">Ingredients</a></li>
+                                    <li>
+                                        <a href="{{ path('home_index') }}">
+                                            <img src="{{ asset('images/categories/home.png') }}" /> Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('home_about') }}">
+                                            <img src="{{ asset('images/categories/about.png') }}" /> Über mich
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('archive') }}">
+                                            <img src="{{ asset('images/categories/archive.png') }}" /> Archiv
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('ingredient_index') }}">
+                                            <img src="{{ asset('images/categories/ingredients.png') }}" /> Zutaten
+                                        </a>
+                                    </li>
                                     <li>
                                         <a class="rightItem" target="_blank" href="https://www.instagram.com/_mii_riam_/">
                                             <i class="fa fa-instagram" aria-hidden="true"></i>
@@ -102,7 +117,7 @@
 
                     <div class="container-fluid">
                         <div class="hidden-sm hidden-xs" style="height: 37px;">&nbsp;</div>
-                        {% for type,message in {success: 'Success', danger: 'Error', warning: 'Warning'} %}
+                        {% for type,message in {success: 'Erfolg', danger: 'Fehler', warning: 'Warnung'} %}
                             {% for flashMessage in app.session.flashbag.get(type) %}
                                 <p class="alert alert-{{ type }} alert-dismissibles" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -127,7 +142,7 @@
                                         </a>
 
                                         <br><br>
-                                        <div class="rightTitle">SUBSCRIBE VIA EMAIL</div>
+                                        <div class="rightTitle">NEWSLETTER ABONNIEREN</div>
                                         <span class="smallLine"></span>
                                         <br><br>
                                         {{ render(controller('AppBundle:Subscribe:subscribeForm')) }}
@@ -136,9 +151,12 @@
                             {% endblock %}
                         </div>
                     </div>
-                    <div id="footer">
+                    <footer id="footer">
                         © 2017 by Miriam Siegenthaler | <a href="{{ path('home_about') }}">About</a>
-                    </div>
+                        <span class="pull-right">
+                            <a href="https://icons8.com/">Icons by <img width="16" height="16" src="{{ asset('images/categories/icons8.png') }}" /></a>
+                        </span>
+                    </footer>
                 </div>
             </div>
         {% endblock %}

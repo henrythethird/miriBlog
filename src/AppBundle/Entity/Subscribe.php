@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="subscribe")
- * @UniqueEntity("email", message="E-Mail address already in use")
+ * @UniqueEntity("email", message="Die E-Mail-Adresse ist bereits vorhanden!")
  */
 class Subscribe {
 	/**
@@ -21,7 +21,9 @@ class Subscribe {
 
 	/**
 	 * @ORM\Column(type="string", unique=true)
-	 * @Assert\Email()
+	 * @Assert\Email(
+     *     message="Die E-Mail-Adresse {{ value }} ist nicht gültig",
+     * )
 	 */
 	private $email;
 

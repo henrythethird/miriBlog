@@ -5,7 +5,7 @@
         {% include 'home/batch.html.twig' %}
     </div>
     <div class="text-center">
-        <button id="loadMore" class="btn btn-default" data-loading-text="Loading...">Load more...</button>
+        <button id="loadMore" class="btn btn-default" data-loading-text="Lade...">Mehr laden...</button>
     </div>
 {% endblock %}
 
@@ -13,7 +13,7 @@
     {{ parent() }}
 
     <br><br><br>
-    <div class="rightTitle">RECENT POSTS</div>
+    <div class="rightTitle">KÜRZLICH ZUBEREITET</div>
     <span class="smallLine"></span>
     <br>
     {% for post in recentPosts %}
