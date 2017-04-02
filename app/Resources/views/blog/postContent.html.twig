@@ -1,3 +1,6 @@
+{% if enableLinks is not defined %}
+    {% set enableLinks = true %}
+{% endif %}
 <h1>{{ post.title }}</h1>
 <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
 <div id="postContainer">
@@ -18,12 +21,12 @@
                     <div class="piItem">
                         <b>{{ recipeIngredient.amount }}</b>
                         <b>{{ recipeIngredient.unit }}</b>
-                        <a href="{{ path('ingredient_filter', {'slug': recipeIngredient.ingredient.slug}) }}">
+                        {% if enableLinks %}<a href="{{ path('ingredient_filter', {'slug': recipeIngredient.ingredient.slug}) }}">{% endif %}
                             <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
-                        </a>
+                        {% if enableLinks %}</a>{% endif %}
                         <span>
-                                {{ recipeIngredient.comment }}
-                            </span>
+                            {{ recipeIngredient.comment }}
+                        </span>
                     </div>
                 {% endfor %}
             </div>

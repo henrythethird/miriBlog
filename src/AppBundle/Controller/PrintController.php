@@ -18,7 +18,8 @@ class PrintController extends Controller
     public function printPostAction(Post $post)
     {
         return [
-            'post' => $post
+            'post' => $post,
+            'enableLinks' => false
         ];
     }
 
