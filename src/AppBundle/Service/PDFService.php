@@ -53,7 +53,7 @@ class PDFService
     {
         return sprintf("%s%s", $this->baseUrl,
             $this->router->generate('print_post', [
-                'id' => $post->getId()
+                'slug' => $post->getSlug()
             ], Router::ABSOLUTE_PATH)
         );
     }

@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PrintController extends Controller
 {
     /**
-     * @Route("/print/post/view/{id}", name="print_post")
+     * @Route("/print/post/view/{slug}", name="print_post")
      * @Template("print/post.html.twig")
      */
     public function printPostAction(Post $post)
@@ -23,7 +23,7 @@ class PrintController extends Controller
     }
 
     /**
-     * @Route("/print/post/pdf/{id}", name="print_post")
+     * @Route("/print/post/pdf/{slug}", name="print_post")
      */
     public function printPostPDFAction(Post $post)
     {
