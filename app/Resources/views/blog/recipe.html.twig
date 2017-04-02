@@ -1,0 +1,40 @@
+<h2>{{ recipe.title }}</h2>
+<br>
+<div class="row heightFix">
+    <div class="col-xs-12 col-md-4 ingredientList">
+        <div class="sectionTitle">
+            <b>Z</b>UTATEN
+        </div>
+        <div class="feedsN">{{ recipe.feedsNPeople }}</div>
+        {% for recipeIngredient in recipe.recipeIngredients %}
+            <div class="piItem">
+                <b>{{ recipeIngredient.amount }}</b>
+                <b>{{ recipeIngredient.unit }}</b>
+                {% if enableLinks %}<a href="{{ path('ingredient_filter', {'slug': recipeIngredient.ingredient.slug}) }}">{% endif %}
+                    <span class="postIngredient">{{ recipeIngredient.ingredient }}</span>
+                    {% if enableLinks %}</a>{% endif %}
+                <span>
+                            {{ recipeIngredient.comment }}
+                        </span>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-12 col-md-8">
+        <div class="sectionTitle">
+            <b>Z</b>UBEREITUNG
+        </div>
+        {% for step in recipe.steps %}
+            <div class="step">
+                <div class="index">{{ loop.index }}</div>
+                <div class="description">
+                    {{ step.description }}
+                    {% if step.hint %}
+                        <div class="hint {% if step.invertHint %}right{% endif %}">
+                            {{ step.hint }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

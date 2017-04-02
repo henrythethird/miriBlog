@@ -39,9 +39,14 @@ class PDFService
         $request->setOrientation('portrait');
         $request->setMargin('1cm');
         $request->setCaptureDimensions(720, 0);
+        $request->setTimeout(15000);
 
         $response = $client->getMessageFactory()->createResponse();
         $client->send($request, $response);
+
+        if ($response->getStatus() != 200) {
+            throw new \RuntimeException("PDF could not be generated");
+        }
 
         return $outputFile;
     }
