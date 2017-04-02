@@ -20,10 +20,15 @@ class Tag
     /**
      * @ORM\Column(type="string")
      */
-    private $icon;
+    private $name;
 
     /**
      * @ORM\Column(type="string")
+     */
+    private $icon;
+
+    /**
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -33,6 +38,24 @@ class Tag
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Tag
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**
@@ -62,7 +85,7 @@ class Tag
     }
 
     /**
-     * @param strings $description
+     * @param string $description
      * @return Tag
      */
     public function setDescription($description)
@@ -71,5 +94,8 @@ class Tag
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

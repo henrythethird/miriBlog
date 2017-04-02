@@ -15,6 +15,7 @@ sonata_admin:
                     - admin.ingredient
                     - admin.post
                     - admin.recipe
+                    - admin.tag
             Media:
                 items:
                     - sonata.media.admin.media

@@ -37,6 +37,9 @@ class PostAdmin extends AbstractAdmin {
                 ->add('categories', null, [], [
                     'allow_add' => true
                 ])
+                ->add('tags', null, [], [
+                    'allow_add' => true
+                ])
             ->end()
             ->with('Pictures', [
                 'class' => 'col-md-6'
@@ -66,7 +69,8 @@ class PostAdmin extends AbstractAdmin {
 	{
 		$datagridMapper
             ->add('title')
-            ->add('categories');
+            ->add('categories')
+            ->add('tags');
 	}
 
 	protected function configureListFields(ListMapper $listMapper)
@@ -74,6 +78,7 @@ class PostAdmin extends AbstractAdmin {
 		$listMapper
             ->addIdentifier('title')
             ->add('categories')
+            ->add('tags')
             ->add('datePublished', 'date', [
                 'pattern' => 'dd.MM.yyyy',
                 'timezone' => 'Europe/Paris',

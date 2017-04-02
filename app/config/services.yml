@@ -81,3 +81,9 @@ services:
         class: Application\Sonata\UserBundle\Form\UrlType
         tags:
             - { name: form.type, alias: url_show }
+
+    admin.tag:
+        class: Application\Sonata\UserBundle\Admin\TagAdmin
+        arguments: [~, AppBundle\Entity\Tag, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Tag }
