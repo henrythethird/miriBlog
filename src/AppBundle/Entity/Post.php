@@ -38,7 +38,10 @@ class Post implements ContentInterface
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\ManyToOne(
+     *     targetEntity="Application\Sonata\MediaBundle\Entity\Media",
+     *     cascade={"persist"}
+     * )
      */
     private $picture;
 
@@ -63,24 +66,37 @@ class Post implements ContentInterface
     private $dateMailPublished;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="posts", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(
+     *     targetEntity="AppBundle\Entity\Category",
+     *     inversedBy="posts",
+     *     cascade={"persist", "remove"}
+     * )
      */
     private $categories;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Recipe", mappedBy="post", cascade={"persist", "remove"})
+	 * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Recipe",
+     *     mappedBy="post",
+     *     cascade={"persist", "remove"}
+     * )
 	 */
 	private $recipes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AlternateLink", mappedBy="post")
+     * @ORM\ManyToMany(
+     *     targetEntity="AppBundle\Entity\Tag",
+     *     cascade={"persist", "remove"}
+     * )
      */
-	private $alternateLinks;
+	private $tags;
+
 
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
 		$this->recipes = new ArrayCollection();
 		$this->categories = new ArrayCollection();
+		$this->tags = new ArrayCollection();
 	}
 
 	/**
@@ -92,24 +108,30 @@ class Post implements ContentInterface
 
 	/**
 	 * @param Recipe[]|ArrayCollection $recipes
+     * @return $this
 	 */
 	public function setRecipes($recipes) {
 		$this->recipes = $recipes;
+        return $this;
 	}
 
 	/**
 	 * @param Recipe $recipe
+     * @return $this
 	 */
 	public function addRecipe($recipe) {
 		$recipe->setPost($this);
 		$this->recipes->add($recipe);
+        return $this;
 	}
 
 	/**
 	 * @param Recipe $recipe
+     * @return $this
 	 */
 	public function removeRecipe($recipe) {
 		$this->recipes->removeElement($recipe);
+        return $this;
 	}
 
     /**
@@ -130,10 +152,12 @@ class Post implements ContentInterface
 
     /**
      * @param string $slug
+     * @return $this
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+        return $this;
     }
 
     /**
@@ -146,10 +170,12 @@ class Post implements ContentInterface
 
     /**
      * @param string $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -162,10 +188,12 @@ class Post implements ContentInterface
 
     /**
      * @param string $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -178,10 +206,12 @@ class Post implements ContentInterface
 
     /**
      * @param string $content
+     * @return $this
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
     /**
@@ -194,10 +224,12 @@ class Post implements ContentInterface
 
     /**
      * @param \DateTime $dateCreated
+     * @return $this
      */
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
+        return $this;
     }
 
     /**
@@ -210,10 +242,12 @@ class Post implements ContentInterface
 
     /**
      * @param \DateTime $datePublished
+     * @return $this
      */
     public function setDatePublished($datePublished)
     {
         $this->datePublished = $datePublished;
+        return $this;
     }
 
     /**
@@ -226,10 +260,12 @@ class Post implements ContentInterface
 
     /**
      * @param MediaInterface $picture
+     * @return $this
      */
     public function setPicture($picture)
     {
         $this->picture = $picture;
+        return $this;
     }
 
     /**
@@ -240,20 +276,54 @@ class Post implements ContentInterface
     }
 
     /**
-     * @param Category[] $categories
+     * @param Category[]|ArrayCollection $categories
+     * @return $this
      */
     public function setCategory($categories) {
         $this->categories = $categories;
+        return $this;
     }
 
     public function addCategory(Category $category)
     {
         $this->categories->add($category);
+        return $this;
     }
 
     public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
+        return $this;
+    }
+
+    /**
+     * @return Tag[]|ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        $this->tags->add($tag);
+        return $this;
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->add($tag);
+        return $this;
+    }
+
+    /**
+     * @param Tag[]|ArrayCollection $tags
+     * @return Post
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        return $this;
     }
 
     /**
@@ -267,6 +337,7 @@ class Post implements ContentInterface
     public function setDateMailPublished(\DateTime $dateMailPublished = null)
     {
         $this->dateMailPublished = $dateMailPublished;
+        return $this;
     }
 
 	public function __toString() {
