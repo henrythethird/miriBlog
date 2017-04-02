@@ -163,6 +163,11 @@
         {% block javascripts %}
             <script src="{{ asset('js/jquery.min.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                })
+            </script>
         {% endblock %}
     </body>
 </html>

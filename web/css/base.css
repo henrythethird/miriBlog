@@ -440,3 +440,11 @@ ul.archiveList, ul.archiveList ul {
     height: 20px;
     vertical-align: middle;
 }
+
+.btn-tag img {
+    height: 20px;
+}
+
+.btn-tag {
+    margin-right: 5px;
+}

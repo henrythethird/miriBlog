@@ -10,9 +10,12 @@
     <a href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
         <img class="image" alt="{{ post.title }}" src="{{ urlPrefix }}{% path post.picture, 'big' %}"/>
     </a>
-    <a class="btn btn-default" href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
-        Weiterlesen...
-    </a>
+    <div>
+        {% include 'post/tags.html.twig' %}
+        <a class="pull-right btn btn-default" href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
+            Weiterlesen...
+        </a>
+    </div>
     <br><br>
     <div style="clear: both"></div>
     <br>

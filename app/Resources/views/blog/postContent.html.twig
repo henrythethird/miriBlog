@@ -5,6 +5,8 @@
 <div class="date">{{ post.datePublished|date('d.m.Y h:i') }}</div>
 <div id="postContainer">
     {{ post.content|raw }}
+    {% set nutritionInformation = "" %}
+    {% set prevRecipe = null %}
     {% for recipe in post.recipes %}
         <br>
         <span class="smallLine"></span>
@@ -66,5 +68,14 @@
                 </div>
             {% endif %}
         </div>
+        {% set prevRecipe = recipe %}
     {% endfor %}
+
+    {% if post.tags %}
+        <div class="row">
+            <div class="col-xs-12 {% if not nutritionInformation and prevRecipe and not prevRecipe.content %}col-md-offset-4 col-md-8{% endif %}">
+                {% include 'post/tags.html.twig' %}
+            </div>
+        </div>
+    {% endif %}
 </div>

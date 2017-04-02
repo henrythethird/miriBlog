@@ -1,0 +1,8 @@
+{% for tag in post.tags %}
+    <span class="pull-left tag">
+        <button class="btn btn-default btn-tag" tabindex="0" data-toggle="popover" data-trigger="hover"
+                data-placement="bottom" title="{{ tag.name }}" data-content="{{ tag.description }}">
+            <img src="{{ asset(tag.icon) }}" alt="{{ tag.name }}" />
+        </button>
+    </span>
+{% endfor %}
