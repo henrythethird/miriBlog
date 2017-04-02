@@ -26,7 +26,7 @@ class SubscribeController extends Controller {
     protected function createSubscribeForm() {
         $subscribe = new Subscribe();
         $subscribeForm = $this->createForm(SubscribeForm::class, $subscribe, [
-            'action' => $this->absoluteUrl('mail_subscribe'),
+            'action' => $this->generateUrl('mail_subscribe'),
         ]);
 
         return $subscribeForm;
