@@ -4,6 +4,8 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class IconType extends AbstractType
@@ -45,11 +47,27 @@ class IconType extends AbstractType
         'images/categories/vegetarian.png',
     ];
 
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['raw_label'] = true;
+    }
+
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'choices' => array_combine(self::CHOICE_MAP, self::CHOICE_MAP)
+            'choices' => array_combine(
+                self::CHOICE_MAP,
+                $this->iconize(self::CHOICE_MAP)
+            )
         ]);
+    }
+
+    private function iconize($list)
+    {
+        return array_map(function($item) {
+            return sprintf('<img src="%s" />', $item);
+        }, $list);
     }
 
     public function getParent()
