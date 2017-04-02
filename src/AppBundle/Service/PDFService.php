@@ -38,6 +38,7 @@ class PDFService
         $request->setFormat('A4');
         $request->setOrientation('portrait');
         $request->setMargin('1cm');
+        $request->setCaptureDimensions(720, 0);
 
         $response = $client->getMessageFactory()->createResponse();
         $client->send($request, $response);
