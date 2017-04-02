@@ -1,0 +1,4 @@
+{% macro category(name, icon) %}
+    <img class="categroyImage" src="{{ asset(icon|default('images/categories/all.png')) }}" />
+    <div>{{ name }}</div>
+{% endmacro %}

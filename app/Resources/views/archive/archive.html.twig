@@ -2,33 +2,18 @@
 
 {% block title %}{% if activeCategory %}{{ activeCategory.name }}{% else %}All Categories{% endif %} - Archive - {% endblock %}
 
-{% set iterationWidth = 6 %}
 {% block containerLeft %}
     <div id="batchContainer" data-index="1" data-lock="" data-count="99">
-        <div>
-            {% set loopLength = categories|length %}
-            {% set lastIteration = loopLength // iterationWidth %}
-            {% set width = '' %}
+        <div class="text-center row">
             {% for category in categories if category != activeCategory %}
-                {% set currentIteration = loop.index0 // iterationWidth %}
-                {% if currentIteration == lastIteration and not loop.index0 % iterationWidth %}
-                    {% set width = 'width: ' ~ (1/(loopLength - loop.index0)*100) ~ '%' %}
-                {% endif %}
-                <a href="{{ path('archive_slug', {slug: category.slug}) }}">
-                    <div class="category" style="{{ width }}">
-                        {% include 'archive/category.html.twig' %}
-                    </div>
+                <a class="category col-md-2 col-xs-3" href="{{ path('archive_slug', {slug: category.slug}) }}">
+                    {{ archive.category(category.name, category.icon) }}
                 </a>
             {% endfor %}
 
             {% if activeCategory %}
-                <a href="{{ path('archive') }}">
-                    <div class="category" style="{% if not width %}width: 100%{% else %}{{ width }}{% endif %}">
-                        <img class="categroyImage" src="{{ asset('images/categories/all.png') }}" />
-                        <div>
-                            All Categories
-                        </div>
-                    </div>
+                <a class="category col-md-2 col-xs-4" href="{{ path('archive') }}">
+                    {{ archive.category('Alle') }}
                 </a>
             {% endif %}
         </div>
@@ -36,14 +21,11 @@
         <div class="categoryPlaceholder">
         {% if activeCategory %}
             <div class="category categoryTotal">
-                {% include 'archive/category.html.twig' with {category: activeCategory} %}
+                {{ archive.category(activeCategory.name, activeCategory.icon) }}
             </div>
         {% else %}
             <div class="category categoryTotal">
-                <img class="categroyImage" src="{{ asset('images/categories/all.png') }}" />
-                <div>
-                    All Categories
-                </div>
+                {{ archive.category('Alle') }}
             </div>
         {% endif %}
         </div>
