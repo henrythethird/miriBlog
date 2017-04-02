@@ -164,8 +164,15 @@
             <script src="{{ asset('js/jquery.min.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script type="text/javascript">
-                $(function () {
+                function enablePopover() {
                     $('[data-toggle="popover"]').popover()
+                }
+                $(function () {
+                    enablePopover();
+
+                    $(document).ajaxComplete(function() {
+                       enablePopover();
+                    });
                 })
             </script>
         {% endblock %}
