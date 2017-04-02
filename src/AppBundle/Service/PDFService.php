@@ -52,7 +52,7 @@ class PDFService
     private function generateUrl(Post $post)
     {
         return sprintf("%s%s", $this->baseUrl,
-            $this->router->generate('print_post', [
+            $this->router->generate('print_view_post', [
                 'slug' => $post->getSlug()
             ], Router::ABSOLUTE_PATH)
         );
