@@ -8,6 +8,8 @@
 !/var/logs
 /var/logs/*
 !var/logs/.gitkeep
+/web/post/pdf/*
+!/web/post/pdf/.gitkeep
 !/var/sessions
 /var/sessions/*
 !var/sessions/.gitkeep

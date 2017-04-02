@@ -31,6 +31,10 @@ services:
         class: AppBundle\Service\SubscribeService
         arguments: ["@doctrine.orm.entity_manager", "@app_bundle.mail"]
 
+    app_bundle.pdf:
+        class: AppBundle\Service\PDFService
+        arguments: ["%pdf_path%", "%base_url%", "@router"]
+
     admin.category:
         class: Application\Sonata\UserBundle\Admin\CategoryAdmin
         arguments: [~, AppBundle\Entity\Category, ~]

@@ -35,7 +35,9 @@
         "sonata-project/formatter-bundle": "^3.1",
         "sonata-project/media-bundle": "^3.3",
         "sonata-project/classification-bundle": "^3.2.1",
-        "eightpoints/guzzle-bundle": "^5.3"
+        "eightpoints/guzzle-bundle": "^5.3",
+        "jonnyw/php-phantomjs": "^4.5",
+        "jakoch/phantomjs-installer": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -51,10 +53,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-install-cmd": [
-            "@symfony-scripts"
+            "@symfony-scripts",
+            "PhantomInstaller\\Installer::installPhantomJS"
         ],
         "post-update-cmd": [
-            "@symfony-scripts"
+            "@symfony-scripts",
+            "PhantomInstaller\\Installer::installPhantomJS"
         ]
     },
     "extra": {

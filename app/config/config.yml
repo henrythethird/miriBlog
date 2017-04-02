@@ -13,6 +13,7 @@ imports:
 
 parameters:
     locale: en
+    pdf_path: "%kernel.root_dir%/../web/post/pdf"
 
 framework:
     translator:      { fallbacks: ["%locale%"] }
