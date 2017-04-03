@@ -50,6 +50,10 @@ class PDFCreatorCommand extends ContainerAwareCommand
 
         /** @var DownloadableInterface $object */
         foreach ($objects as $object) {
+            if ($object->getPdfFile()) {
+                continue;
+            }
+
             $filePath = $this->generatePath(sprintf("%s_%s", $class, $object->getId()));
 
             $url = $this->getContainer()
