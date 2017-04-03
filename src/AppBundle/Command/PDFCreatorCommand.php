@@ -19,6 +19,7 @@ class PDFCreatorCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:pdfcreator')
+            ->addOption('ignore-cache', 'i')
             ->setDescription('Creates pdf');
     }
 
@@ -27,21 +28,22 @@ class PDFCreatorCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->generatePosts();
-        $this->generateRecipes();
+        $ignoreCache = $input->getOption('ignore-cache');
+        $this->generatePosts($ignoreCache);
+        $this->generateRecipes($ignoreCache);
     }
 
-    private function generatePosts()
+    private function generatePosts($ignoreCache)
     {
-        $this->generate(Post::class, 'post', 'print_view_post');
+        $this->generate(Post::class, 'post', 'print_view_post', $ignoreCache);
     }
 
-    private function generateRecipes()
+    private function generateRecipes($ignoreCache)
     {
-        $this->generate(Recipe::class, 'recipe', 'print_view_recipe');
+        $this->generate(Recipe::class, 'recipe', 'print_view_recipe', $ignoreCache);
     }
 
-    private function generate($classWithNamespace, $class, $route)
+    private function generate($classWithNamespace, $class, $route, $ignoreCache)
     {
         $entityManager = $this->getContainer()->get('doctrine')->getManager();
         $objects = $entityManager
@@ -50,7 +52,7 @@ class PDFCreatorCommand extends ContainerAwareCommand
 
         /** @var DownloadableInterface $object */
         foreach ($objects as $object) {
-            if ($object->getPdfFile()) {
+            if (!$ignoreCache && $object->getPdfFile()) {
                 continue;
             }
 
@@ -62,7 +64,8 @@ class PDFCreatorCommand extends ContainerAwareCommand
 
             $this->getContainer()->get('app_bundle.pdf')->generate(
                 $this->generateAbsoluteUrl($url),
-                $filePath
+                $filePath,
+                $ignoreCache
             );
 
             $object->setPdfFile(new PdfFile($filePath));
