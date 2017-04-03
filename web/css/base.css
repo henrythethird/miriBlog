@@ -448,3 +448,15 @@ ul.archiveList, ul.archiveList ul {
 .btn-tag {
     margin-right: 5px;
 }
+
+.share {
+    text-align: right;
+}
+
+.share i {
+    color: black;
+}
+
+.share a.jssocials-share-link {
+    border-width: 1px;
+}

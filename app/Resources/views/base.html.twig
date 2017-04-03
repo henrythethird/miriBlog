@@ -12,6 +12,8 @@
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/base.css') }}">
             <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/jssocials.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/jssocials-theme-plain.css') }}">
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -161,8 +163,9 @@
             </div>
         {% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('js/jquery.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jssocials.min.js') }}"></script>
             <script type="text/javascript">
                 function enablePopover() {
                     $('[data-toggle="popover"]').popover()
@@ -172,6 +175,12 @@
 
                     $(document).ajaxComplete(function() {
                        enablePopover();
+                    });
+
+                    $(".share").jsSocials({
+                        showLabel: false,
+                        showCount: false,
+                        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
                     });
                 })
             </script>
