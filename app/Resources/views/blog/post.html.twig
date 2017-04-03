@@ -3,7 +3,7 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block containerLeft %}
-    {% include 'print/download.html.twig' with {downloadable: post} %}
+    {% include 'print/download.html.twig' with {downloadable: post, title: 'Beitrag als PDF herunterladen'} %}
     {% include 'blog/postContent.html.twig' %}
     <br>
     {% set current_url = 'http://kuchenkruemel.ch' ~ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
