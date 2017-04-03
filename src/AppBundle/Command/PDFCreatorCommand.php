@@ -2,6 +2,8 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\DownloadableInterface;
+use AppBundle\Entity\PdfFile;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Recipe;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -29,6 +31,42 @@ class PDFCreatorCommand extends ContainerAwareCommand
         $this->generateRecipes();
     }
 
+    private function generatePosts()
+    {
+        $this->generate(Post::class, 'post', 'print_view_post');
+    }
+
+    private function generateRecipes()
+    {
+        $this->generate(Recipe::class, 'recipe', 'print_view_recipe');
+    }
+
+    private function generate($classWithNamespace, $class, $route)
+    {
+        $entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $objects = $entityManager
+            ->getRepository($classWithNamespace)
+            ->findAll();
+
+        /** @var DownloadableInterface $object */
+        foreach ($objects as $object) {
+            $filePath = $this->generatePath(sprintf("%s_%s", $class, $object->getId()));
+
+            $url = $this->getContainer()
+                ->get('router')
+                ->generate($route, ['id' => $object->getId()]);
+
+            $this->getContainer()->get('app_bundle.pdf')->generate(
+                $this->generateAbsoluteUrl($url),
+                $filePath
+            );
+
+            $object->setPdfFile(new PdfFile($filePath));
+        }
+
+        $entityManager->flush();
+    }
+
     private function generateAbsoluteUrl($offset)
     {
         return sprintf("%s%s", $this->getContainer()->getParameter('base_url'), $offset);
@@ -37,47 +75,5 @@ class PDFCreatorCommand extends ContainerAwareCommand
     private function generatePath($offset)
     {
         return sprintf("%s/%s.pdf", $this->getContainer()->getParameter('pdf_path'), $offset);
-    }
-
-    private function generatePosts()
-    {
-        /** @var Post[] $posts */
-        $posts = $this->getContainer()->get('doctrine')
-            ->getRepository(Post::class)
-            ->findAll();
-
-        foreach ($posts as $post) {
-            $filePath = $this->generatePath(sprintf("post_%s", $post->getSlug()));
-
-            $url = $this->getContainer()
-                ->get('router')
-                ->generate('print_view_post', ['slug' => $post->getSlug()]);
-
-            $this->getContainer()->get('app_bundle.pdf')->generate(
-                $this->generateAbsoluteUrl($url),
-                $filePath
-            );
-        }
-    }
-
-    private function generateRecipes()
-    {
-        /** @var Recipe[] $posts */
-        $posts = $this->getContainer()->get('doctrine')
-            ->getRepository(Recipe::class)
-            ->findAll();
-
-        foreach ($posts as $post) {
-            $filePath = $this->generatePath(sprintf("recpie_%s", $post->getId()));
-
-            $url = $this->getContainer()
-                ->get('router')
-                ->generate('print_view_recipe', ['id' => $post->getId()]);
-
-            $this->getContainer()->get('app_bundle.pdf')->generate(
-                $this->generateAbsoluteUrl($url),
-                $filePath
-            );
-        }
     }
 }

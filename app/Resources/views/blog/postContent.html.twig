@@ -13,13 +13,7 @@
         <span class="smallLine"></span>
         <br><br>
         {% if enableLinks %}
-            <span class="pull-right tag">
-                <a href="{{ path('print_recipe', {id: recipe.id}) }}" class="btn btn-default btn-tag" tabindex="0"
-                   data-toggle="popover" data-trigger="hover" data-placement="bottom" title="PDF"
-                   data-content="Rezept als PDF herunterladen">
-                    <img src="{{ asset('images/categories/pdf.png') }}" alt="PDF" />
-                </a>
-            </span>
+            {% include 'print/download.html.twig' with {downloadable: post} %}
         {% endif %}
         {% include 'blog/recipe.html.twig' %}
 

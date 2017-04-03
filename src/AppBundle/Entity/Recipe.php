@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="recipe")
  */
-class Recipe implements ContentInterface {
+class Recipe implements ContentInterface, DownloadableInterface {
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
@@ -70,6 +70,15 @@ class Recipe implements ContentInterface {
      * @ORM\Column(type="text", nullable=true)
      */
     private $nutritionCached;
+
+    /**
+     * @ORM\OneToOne(
+     *     targetEntity="AppBundle\Entity\PdfFile",
+     *     cascade={"persist", "remove"}
+     * )
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $pdfFile;
 
 	public function __construct() {
 		$this->recipeIngredients = new ArrayCollection();
@@ -215,5 +224,23 @@ class Recipe implements ContentInterface {
     public function setNutritionCached($nutritionCached)
     {
         $this->nutritionCached = $nutritionCached;
+    }
+
+    /**
+     * @return PdfFile
+     */
+    public function getPdfFile()
+    {
+        return $this->pdfFile;
+    }
+
+    /**
+     * @param PdfFile $pdfFile
+     * @return $this
+     */
+    public function setPdfFile(PdfFile $pdfFile)
+    {
+        $this->pdfFile = $pdfFile;
+        return $this;
     }
 }

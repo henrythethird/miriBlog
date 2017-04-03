@@ -3,13 +3,7 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block containerLeft %}
-    <span class="pull-right tag">
-        <a href="{{ path('print_post', {slug: post.slug}) }}" class="btn btn-default btn-tag" tabindex="0"
-           data-toggle="popover" data-trigger="hover" data-placement="bottom" title="PDF"
-           data-content="Post als PDF herunterladen" style="margin-top: 20px">
-            <img src="{{ asset('images/categories/pdf.png') }}" alt="PDF" />
-        </a>
-    </span>
+    {% include 'print/download.html.twig' with {downloadable: post} %}
     {% include 'blog/postContent.html.twig' %}
     <br>
     {% set current_url = 'http://kuchenkruemel.ch' ~ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}

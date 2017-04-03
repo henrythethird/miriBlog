@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @ORM\Table()
  */
-class Post implements ContentInterface
+class Post implements ContentInterface, DownloadableInterface
 {
     /**
      * @ORM\Id
@@ -91,6 +91,14 @@ class Post implements ContentInterface
      */
 	private $tags;
 
+    /**
+     * @ORM\OneToOne(
+     *     targetEntity="AppBundle\Entity\PdfFile",
+     *     cascade={"persist", "remove"}
+     * )
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $pdfFile;
 
 	public function __construct() {
 		$this->dateCreated = new \DateTime();
@@ -340,7 +348,25 @@ class Post implements ContentInterface
         return $this;
     }
 
-	public function __toString() {
+    /**
+     * @return PdfFile
+     */
+    public function getPdfFile()
+    {
+        return $this->pdfFile;
+    }
+
+    /**
+     * @param PdfFile $pdfFile
+     * @return $this
+     */
+    public function setPdfFile(PdfFile $pdfFile)
+    {
+        $this->pdfFile = $pdfFile;
+        return $this;
+    }
+
+    public function __toString() {
 		return $this->getTitle();
     }
 }

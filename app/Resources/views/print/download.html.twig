@@ -1,0 +1,10 @@
+{% if downloadable.pdfFile %}
+    {% set file = downloadable.pdfFile %}
+    <span class="pull-right tag">
+        <a href="{{ path('print_download', {id: file.id}) }}" class="btn btn-default btn-tag" tabindex="0"
+           data-toggle="popover" data-trigger="hover" data-placement="bottom" title="PDF"
+           data-content="Rezept als PDF herunterladen">
+            <img src="{{ asset('images/categories/pdf.png') }}" alt="PDF" />
+        </a>
+    </span>
+{% endif %}
