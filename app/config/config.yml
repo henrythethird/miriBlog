@@ -14,6 +14,8 @@ imports:
 parameters:
     locale: en
     pdf_path: "%kernel.root_dir%/../web/post/pdf"
+    web_path: "%kernel.root_dir%/../web/"
+    catagory_offset: "images/categories"
 
 framework:
     translator:      { fallbacks: ["%locale%"] }

@@ -11,6 +11,12 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
+    app_bundle.icon_type:
+        class: AppBundle\Form\IconType
+        arguments: ["%web_path%", "%catagory_offset%"]
+        tags:
+            - { name: form.type }
+
     app_bundle.nutrition_api:
         class: AppBundle\Service\NutritionApiService
         arguments: ["@guzzle.client.api_nutrition", "%nutrition_endpoint%"]
