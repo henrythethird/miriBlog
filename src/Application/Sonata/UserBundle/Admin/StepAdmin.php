@@ -15,6 +15,7 @@ class StepAdmin extends AbstractAdmin {
 				'required' => false
 			])
 			->add('invert_hint')
+            ->add('separatorAbove')
 			->add('position', 'hidden')
 		;
 	}

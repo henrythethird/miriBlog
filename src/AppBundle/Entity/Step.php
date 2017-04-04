@@ -37,6 +37,11 @@ class Step {
 	 */
 	private $recipe;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $separatorAbove = false;
+
 	/**
 	 * @ORM\Column(type="integer")
 	 */
@@ -118,4 +123,22 @@ class Step {
 	public function setInvertHint($invert_hint) {
 		$this->invert_hint = $invert_hint;
 	}
+
+    /**
+     * @return boolean
+     */
+    public function hasSeparatorAbove()
+    {
+        return $this->separatorAbove;
+    }
+
+    /**
+     * @param boolean $separatorAbove
+     * @return Step
+     */
+    public function setSeparatorAbove($separatorAbove)
+    {
+        $this->separatorAbove = $separatorAbove;
+        return $this;
+    }
 }

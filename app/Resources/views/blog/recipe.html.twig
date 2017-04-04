@@ -7,7 +7,7 @@
         </div>
         <div class="feedsN">{{ recipe.feedsNPeople }}</div>
         {% for recipeIngredient in recipe.recipeIngredients %}
-            <div class="piItem">
+            <div class="piItem {% if recipeIngredient.hasSeparatorAbove %}separatorAbove{% endif %}">
                 <b>{{ recipeIngredient.amount }}</b>
                 <b>{{ recipeIngredient.unit }}</b>
                 {% if enableLinks %}<a href="{{ path('ingredient_filter', {'slug': recipeIngredient.ingredient.slug}) }}">{% endif %}
@@ -24,7 +24,7 @@
             <b>Z</b>UBEREITUNG
         </div>
         {% for step in recipe.steps %}
-            <div class="step">
+            <div class="step {% if step.hasSeparatorAbove %}separatorAbove{% endif %}">
                 <div class="index">{{ loop.index }}</div>
                 <div class="description">
                     {{ step.description }}

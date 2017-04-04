@@ -23,6 +23,7 @@ class RecipeIngredientAdmin extends AbstractAdmin {
 			->add('comment', TextType::class, [
 				'required' => false
 			])
+            ->add('separatorAbove')
 			->add('position', 'hidden')
 		;
 	}

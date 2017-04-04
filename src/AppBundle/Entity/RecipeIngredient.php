@@ -49,6 +49,11 @@ class RecipeIngredient {
 	 */
 	private $unit;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+	private $separatorAbove = false;
+
 	/**
 	 * @return int
 	 */
@@ -65,9 +70,11 @@ class RecipeIngredient {
 
 	/**
 	 * @param mixed $position
+     * @return RecipeIngredient
 	 */
 	public function setPosition($position) {
 		$this->position = $position;
+		return $this;
 	}
 
 	/**
@@ -79,9 +86,11 @@ class RecipeIngredient {
 
 	/**
 	 * @param string $comment
+     * @return RecipeIngredient
 	 */
 	public function setComment($comment) {
 		$this->comment = $comment;
+		return $this;
 	}
 
 	/**
@@ -93,9 +102,11 @@ class RecipeIngredient {
 
 	/**
 	 * @param Recipe $recipe
+     * @return RecipeIngredient
 	 */
 	public function setRecipe(Recipe $recipe) {
 		$this->recipe = $recipe;
+		return $this;
 	}
 
 	/**
@@ -107,9 +118,11 @@ class RecipeIngredient {
 
 	/**
 	 * @param Ingredient $ingredient
+     * @return RecipeIngredient
 	 */
 	public function setIngredient(Ingredient $ingredient) {
 		$this->ingredient = $ingredient;
+		return $this;
 	}
 
 	/**
@@ -121,9 +134,11 @@ class RecipeIngredient {
 
 	/**
 	 * @param float $amount
+     * @return RecipeIngredient
 	 */
 	public function setAmount($amount) {
 		$this->amount = $amount;
+		return $this;
 	}
 
 	/**
@@ -135,8 +150,28 @@ class RecipeIngredient {
 
 	/**
 	 * @param string $unit
-	 */
+     * @return RecipeIngredient
+     */
 	public function setUnit($unit) {
 		$this->unit = $unit;
+		return $this;
 	}
+
+    /**
+     * @return boolean
+     */
+    public function hasSeparatorAbove()
+    {
+        return $this->separatorAbove;
+    }
+
+    /**
+     * @param boolean $separatorAbove
+     * @return RecipeIngredient
+     */
+    public function setSeparatorAbove($separatorAbove)
+    {
+        $this->separatorAbove = $separatorAbove;
+        return $this;
+    }
 }
