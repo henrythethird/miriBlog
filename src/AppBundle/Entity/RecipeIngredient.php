@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @ORM\Table(name="recipe_ingredients")
  */
-class RecipeIngredient {
+class RecipeIngredient implements SeparatableInterface {
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
