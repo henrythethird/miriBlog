@@ -14,7 +14,9 @@
         }
 
         #postContainer img {
-            width: 25% !important;
+            width: 35% !important;
+            display: block;
+            margin: 0 auto;
         }
 
         .tag {
@@ -22,11 +24,3 @@
         }
     </style>
 {% endblock stylesheets %}
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        $(function() {
-            $('#postContainer img').parent().css('text-align', 'center');
-        });
-    </script>
-{% endblock javascripts %}
