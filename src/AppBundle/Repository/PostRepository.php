@@ -58,6 +58,8 @@ class PostRepository extends EntityRepository
     {
         return $this->createQueryBuilder('p')
             ->where('p.dateMailPublished IS NULL')
+            ->andWhere('p.datePublished <= :DATE')
+            ->setParameter('DATE', new \DateTime("+48 hours"))
             ->orderBy('p.datePublished')
             ->getQuery()
             ->getResult();
