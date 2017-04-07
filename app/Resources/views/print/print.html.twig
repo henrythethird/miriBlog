@@ -1,3 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            zoom: 0.7;
+        }
+
+        .heightFix {
+            zoom: 0.7;
+        }
+
+        #postContainer img {
+            width: 25% !important;
+        }
+
+        .tag {
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('#postContainer img').parent().css('text-align', 'center');
+        });
+    </script>
+{% endblock javascripts %}

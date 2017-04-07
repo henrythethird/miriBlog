@@ -2,11 +2,9 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Post;
 use JonnyW\PhantomJs\Client;
 use JonnyW\PhantomJs\Http\PdfRequest;
 use PhantomInstaller\PhantomBinary;
-use Symfony\Component\Routing\Router;
 
 class PDFService
 {
@@ -49,8 +47,8 @@ class PDFService
         $request->setOutputFile($outputFile);
         $request->setFormat('A4');
         $request->setOrientation('portrait');
-        $request->setMargin('1cm');
-        $request->setCaptureDimensions(720, 0);
+        $request->setMargin('2cm');
+        $request->setViewportSize(2000, 0);
         $request->setTimeout(15000);
 
         return $request;

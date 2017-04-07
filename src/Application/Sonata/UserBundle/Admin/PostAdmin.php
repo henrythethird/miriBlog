@@ -85,4 +85,12 @@ class PostAdmin extends AbstractAdmin {
             ])
         ;
 	}
+
+    public function configure()
+    {
+        parent::configure();
+
+        $this->datagridValues['_sort_by']    = 'datePublished';
+        $this->datagridValues['_sort_order'] = 'DESC';
+    }
 }

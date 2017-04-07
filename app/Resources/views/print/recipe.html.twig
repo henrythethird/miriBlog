@@ -1,5 +1,10 @@
 {% extends 'print/print.html.twig' %}
 
 {% block body %}
+    <div id="postContainer">
+        <p>
+            {% thumbnail recipe.post.picture, 'medium' %}
+        </p>
     {% include 'blog/recipe.html.twig' %}
+    </div>
 {% endblock %}

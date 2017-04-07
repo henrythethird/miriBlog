@@ -121,7 +121,7 @@ class Recipe implements ContentInterface, DownloadableInterface {
 	}
 
 	/**
-	 * @return mixed
+	 * @return Post
 	 */
 	public function getPost() {
 		return $this->post;

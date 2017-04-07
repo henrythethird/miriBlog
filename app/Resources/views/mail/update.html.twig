@@ -9,7 +9,7 @@
 {% block content %}
     <p>Es gibt Neuigkeiten. Check it out :-)</p>
     {% for post in posts %}
-        {% include 'post/show.html.twig' %}
+        {% include 'post/show.html.twig' with {showTags: false} %}
         {% if not loop.last %}
             <hr>
         {% endif %}
