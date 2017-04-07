@@ -27,7 +27,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.8&appId=989203281120687";
+            js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.8&appId=405056999860727";
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
@@ -167,6 +167,11 @@
             <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/jssocials.min.js') }}"></script>
             <script type="text/javascript">
+                jsSocials.shares["facebook-like"]= {
+                    label: "Like",
+                    logo: "fa fa-facebook",
+                    shareUrl: "https://www.facebook.com/v2.3/plugins/like.php?locale=en_US&share=false&show_faces=true&href={url}",
+                };
                 function enablePopover() {
                     $('[data-toggle="popover"]').popover()
                 }
@@ -180,7 +185,7 @@
                     $(".share").jsSocials({
                         showLabel: false,
                         showCount: false,
-                        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "stumbleupon", "whatsapp"]
                     });
                 })
             </script>
