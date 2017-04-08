@@ -11,7 +11,7 @@
         <img class="image" alt="{{ post.title }}" src="{{ urlPrefix }}{% path post.picture, 'big' %}"/>
     </a>
     <div>
-        {% if showTags|default(true) %}
+        {% if not hideTags|default(false) %}
             {% include 'post/tags.html.twig' %}
         {% endif %}
         <a class="pull-right btn btn-default" href="{{ urlPrefix }}{{ path('blog_post', {'slug': post.slug}) }}">
